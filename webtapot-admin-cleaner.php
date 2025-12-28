@@ -64,16 +64,6 @@ if ( ! function_exists( 'wac_fs' ) ) {
 
 // Helper functions (define early)
 function wac_is_premium() {
-    // TEST MODE - Only works in development with specific secret key
-    // DO NOT USE IN PRODUCTION - Remove before release!
-    if ( defined( 'WAC_TEST_PRO' ) && WAC_TEST_PRO && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-        // Additional security: Only allow in localhost or specific IP
-        $allowed_ips = array( '127.0.0.1', '::1' );
-        $current_ip = $_SERVER['REMOTE_ADDR'] ?? '';
-        if ( in_array( $current_ip, $allowed_ips ) || strpos( $_SERVER['HTTP_HOST'] ?? '', 'localhost' ) !== false ) {
-            return true;
-        }
-    }
     $fs = wac_fs();
     return $fs && $fs->is_paying();
 }
