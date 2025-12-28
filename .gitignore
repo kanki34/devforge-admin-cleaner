@@ -1,0 +1,24 @@
+# WordPress
+.DS_Store
+*.zip
+*.log
+
+# Vendor (Freemius SDK)
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+
