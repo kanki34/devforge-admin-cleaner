@@ -22,3 +22,9 @@ Thumbs.db
 *.bak
 *.cache
 
+# PREMIUM FILES - DO NOT COMMIT TO PUBLIC REPO
+# These should only be in private repo or local
+includes/pro/*.php
+# But keep the directory structure
+!includes/pro/
+!includes/pro/.gitkeep
