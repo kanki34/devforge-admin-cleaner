@@ -1,5 +1,5 @@
-=== Webtapot Admin Cleaner ===
-Contributors: webtapot
+=== DevForge Admin Cleaner ===
+Contributors: devforge
 Tags: admin, dashboard, cleanup, security, menu-editor, dark-mode, duplicate-post
 Requires at least: 5.0
 Tested up to: 6.4
@@ -12,7 +12,7 @@ The most comprehensive WordPress admin customization toolkit. Command palette, m
 
 == Description ==
 
-**Webtapot Admin Cleaner** is the ultimate admin customization suite for WordPress. Transform your admin area with a Command Palette (Cmd/Ctrl+K), drag & drop menu editor, dark mode, duplicate posts, unused media cleanup, and so much more.
+**DevForge Admin Cleaner** is the ultimate admin customization suite for WordPress. Transform your admin area with a Command Palette (Cmd/Ctrl+K), drag & drop menu editor, dark mode, duplicate posts, unused media cleanup, and so much more.
 
 ### Killer Features
 
@@ -154,7 +154,7 @@ Find and delete unused media files. Free up disk space with intelligent scanning
 
 == Installation ==
 
-1. Upload `webtapot-admin-cleaner` to `/wp-content/plugins/`
+1. Upload `devforge-admin-cleaner` to `/wp-content/plugins/`
 2. Activate the plugin
 3. Go to **Admin Cleaner** in the admin menu
 4. Press **Cmd/Ctrl + K** to try the Command Palette

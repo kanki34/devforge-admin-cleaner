@@ -29,7 +29,7 @@ class WAC_Settings {
             'Admin Cleaner',
             'Admin Cleaner',
             'manage_options',
-            'webtapot-admin-cleaner',
+            'devforge-admin-cleaner',
             array( $this, 'render_page' ),
             'dashicons-admin-tools',
             80
@@ -53,7 +53,7 @@ class WAC_Settings {
      */
     public function settings_saved_notice() {
         if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) {
-            if ( isset( $_GET['page'] ) && $_GET['page'] === 'webtapot-admin-cleaner' ) {
+            if ( isset( $_GET['page'] ) && $_GET['page'] === 'devforge-admin-cleaner' ) {
                 // Use JavaScript notification instead of WordPress notice
                 echo '<script>jQuery(function($){if(typeof wacShowNotification !== "undefined"){wacShowNotification("Settings saved successfully!","success");}});</script>';
             }
@@ -185,7 +185,7 @@ class WAC_Settings {
                     'appearance', 'menus-roles', 'productivity', 'security', 'tools'
                 );
                 foreach ( $tabs as $id => $name ) :
-                    $url = admin_url( 'admin.php?page=webtapot-admin-cleaner&tab=' . $id );
+                    $url = admin_url( 'admin.php?page=devforge-admin-cleaner&tab=' . $id );
                     $class = ( $tab === $id ) ? 'nav-tab nav-tab-active' : 'nav-tab';
                 ?>
                     <a href="<?php echo esc_url( $url ); ?>" class="<?php echo $class; ?>">

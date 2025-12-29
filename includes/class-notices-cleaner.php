@@ -103,12 +103,12 @@ class WAC_Notices_Cleaner {
     public static function get_notice_options() {
         return array(
             'hide_all_notices' => array(
-                'label' => __( 'Hide All Notices', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Hide all admin notices for non-admin users', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Hide All Notices', 'devforge-admin-cleaner' ),
+                'description' => __( 'Hide all admin notices for non-admin users', 'devforge-admin-cleaner' ),
             ),
             'hide_update_notices' => array(
-                'label' => __( 'Hide Update Notices', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Hide plugin/theme update notifications', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Hide Update Notices', 'devforge-admin-cleaner' ),
+                'description' => __( 'Hide plugin/theme update notifications', 'devforge-admin-cleaner' ),
             ),
         );
     }

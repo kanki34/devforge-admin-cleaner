@@ -198,7 +198,7 @@ class WAC_Disable_Features {
             if ( ! is_user_logged_in() ) {
                 return new WP_Error( 
                     'rest_disabled', 
-                    __( 'REST API is disabled for non-authenticated users.', 'webtapot-admin-cleaner' ), 
+                    __( 'REST API is disabled for non-authenticated users.', 'devforge-admin-cleaner' ), 
                     array( 'status' => 401 ) 
                 );
             }
@@ -231,32 +231,32 @@ class WAC_Disable_Features {
     public static function get_features() {
         return array(
             'disable_comments' => array(
-                'label' => __( 'Disable Comments', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Completely disable comments system', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Disable Comments', 'devforge-admin-cleaner' ),
+                'description' => __( 'Completely disable comments system', 'devforge-admin-cleaner' ),
             ),
             'disable_emojis' => array(
-                'label' => __( 'Disable Emojis', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Remove emoji scripts for faster loading', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Disable Emojis', 'devforge-admin-cleaner' ),
+                'description' => __( 'Remove emoji scripts for faster loading', 'devforge-admin-cleaner' ),
             ),
             'disable_rss' => array(
-                'label' => __( 'Disable RSS Feeds', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Disable all RSS feed endpoints', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Disable RSS Feeds', 'devforge-admin-cleaner' ),
+                'description' => __( 'Disable all RSS feed endpoints', 'devforge-admin-cleaner' ),
             ),
             'disable_xmlrpc' => array(
-                'label' => __( 'Disable XML-RPC', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Disable XML-RPC (recommended for security)', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Disable XML-RPC', 'devforge-admin-cleaner' ),
+                'description' => __( 'Disable XML-RPC (recommended for security)', 'devforge-admin-cleaner' ),
             ),
             'disable_rest_api' => array(
-                'label' => __( 'Restrict REST API', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Require authentication for REST API access', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Restrict REST API', 'devforge-admin-cleaner' ),
+                'description' => __( 'Require authentication for REST API access', 'devforge-admin-cleaner' ),
             ),
             'disable_gutenberg' => array(
-                'label' => __( 'Disable Gutenberg', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Use classic editor instead of block editor', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Disable Gutenberg', 'devforge-admin-cleaner' ),
+                'description' => __( 'Use classic editor instead of block editor', 'devforge-admin-cleaner' ),
             ),
             'remove_wp_version' => array(
-                'label' => __( 'Hide WordPress Version', 'webtapot-admin-cleaner' ),
-                'description' => __( 'Remove version number from frontend (security)', 'webtapot-admin-cleaner' ),
+                'label' => __( 'Hide WordPress Version', 'devforge-admin-cleaner' ),
+                'description' => __( 'Remove version number from frontend (security)', 'devforge-admin-cleaner' ),
             ),
         );
     }

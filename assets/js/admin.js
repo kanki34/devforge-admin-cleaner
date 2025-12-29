@@ -1,5 +1,5 @@
 /**
- * Webtapot Admin Cleaner
+ * DevForge Admin Cleaner
  */
 (function($) {
     'use strict';

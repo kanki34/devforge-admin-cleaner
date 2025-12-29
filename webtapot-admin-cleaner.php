@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: Webtapot Admin Cleaner
- * Plugin URI: https://webtapot.com/plugins/admin-cleaner
+ * Plugin Name: DevForge Admin Cleaner
+ * Plugin URI: https://profiles.wordpress.org/devforge/
  * Description: The ultimate WordPress admin customization toolkit.
  * Version: 2.5.0
- * Author: Webtapot
- * Author URI: https://webtapot.com
+ * Author: DevForge
+ * Author URI: https://profiles.wordpress.org/devforge/
  * License: GPL v2 or later
- * Text Domain: webtapot-admin-cleaner
+ * Text Domain: devforge-admin-cleaner
  * Requires at least: 5.0
  * Requires PHP: 7.2
  */
@@ -46,7 +46,7 @@ if ( ! function_exists( 'wac_fs' ) ) {
                 'has_addons'          => false,
                 'has_paid_plans'      => true,
                 'menu'                => array(
-                    'slug'    => 'webtapot-admin-cleaner',
+                    'slug'    => 'devforge-admin-cleaner',
                     'support' => false,
                 ),
             ) );
@@ -65,7 +65,20 @@ if ( ! function_exists( 'wac_fs' ) ) {
 // Helper functions (define early)
 function wac_is_premium() {
     $fs = wac_fs();
-    return $fs && $fs->is_paying();
+    
+    // Freemius yoksa kesinlikle false
+    if ( ! $fs ) {
+        return false;
+    }
+    
+    // Sadece gerçekten aktif ve geçerli lisansı olan kullanıcılar için true
+    // has_active_valid_license() en sıkı kontrol
+    if ( method_exists( $fs, 'has_active_valid_license' ) ) {
+        return $fs->has_active_valid_license();
+    }
+    
+    // Fallback: is_paying() kontrolü (sadece gerçek ödeme yapanlar)
+    return $fs->is_paying();
 }
 
 function wac_get_option( $key, $default = '' ) {

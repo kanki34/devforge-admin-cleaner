@@ -119,7 +119,7 @@ class WAC_Maintenance_Mode {
         $wp_admin_bar->add_node( array(
             'id'    => 'wac-maintenance-notice',
             'title' => '<span style="background:#ff9500;color:#fff;padding:2px 8px;border-radius:3px;font-size:11px;">Maintenance Mode</span>',
-            'href'  => admin_url( 'admin.php?page=webtapot-admin-cleaner&tab=features' ),
+            'href'  => admin_url( 'admin.php?page=devforge-admin-cleaner&tab=features' ),
         ) );
     }
 }

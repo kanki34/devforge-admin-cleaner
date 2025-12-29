@@ -53,12 +53,12 @@ class WAC_Login_Redirect {
      */
     public static function get_redirect_options() {
         return array(
-            ''                      => __( 'Default (Dashboard)', 'webtapot-admin-cleaner' ),
-            home_url()              => __( 'Homepage', 'webtapot-admin-cleaner' ),
-            admin_url()             => __( 'Admin Dashboard', 'webtapot-admin-cleaner' ),
-            admin_url( 'profile.php' ) => __( 'Profile Page', 'webtapot-admin-cleaner' ),
-            admin_url( 'edit.php' ) => __( 'Posts List', 'webtapot-admin-cleaner' ),
-            'custom'                => __( 'Custom URL', 'webtapot-admin-cleaner' ),
+            ''                      => __( 'Default (Dashboard)', 'devforge-admin-cleaner' ),
+            home_url()              => __( 'Homepage', 'devforge-admin-cleaner' ),
+            admin_url()             => __( 'Admin Dashboard', 'devforge-admin-cleaner' ),
+            admin_url( 'profile.php' ) => __( 'Profile Page', 'devforge-admin-cleaner' ),
+            admin_url( 'edit.php' ) => __( 'Posts List', 'devforge-admin-cleaner' ),
+            'custom'                => __( 'Custom URL', 'devforge-admin-cleaner' ),
         );
     }
 }
