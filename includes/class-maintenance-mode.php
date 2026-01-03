@@ -29,6 +29,11 @@ class WAC_Maintenance_Mode {
     }
 
     public function show_maintenance_page() {
+        // CRITICAL: Never show maintenance page on admin pages
+        if ( is_admin() ) {
+            return;
+        }
+        
         if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
             return;
         }
@@ -101,7 +106,9 @@ class WAC_Maintenance_Mode {
         </head>
         <body>
             <div class="container">
+                <?php if ( wac_is_premium() ) : ?>
                 <div class="status">Maintenance</div>
+                <?php endif; ?>
                 <h1><?php echo esc_html( $title ); ?></h1>
                 <p><?php echo esc_html( $message ); ?></p>
             </div>

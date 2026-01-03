@@ -426,45 +426,81 @@ class WAC_Dashboard_Widgets {
         
         // Try to get from transient first (cached)
         $widgets = get_transient( 'wac_dashboard_widgets_list' );
-        if ( $widgets !== false && is_array( $widgets ) ) {
-            return $widgets;
+        if ( $widgets === false || ! is_array( $widgets ) ) {
+            $widgets = array();
         }
         
-        $widgets = array();
-        global $wp_meta_boxes;
+        // CRITICAL: Get custom widgets from database
+        $options = get_option( 'wac_settings', array() );
+        $custom_widgets = isset( $options['custom_dashboard_widgets'] ) ? $options['custom_dashboard_widgets'] : array();
         
-        // Get currently registered widgets (if dashboard was already loaded)
-        if ( isset( $wp_meta_boxes['dashboard'] ) && is_array( $wp_meta_boxes['dashboard'] ) ) {
-            foreach ( $wp_meta_boxes['dashboard'] as $context => $priorities ) {
-                if ( ! is_array( $priorities ) ) continue;
-                
-                foreach ( $priorities as $priority => $boxes ) {
-                    if ( ! is_array( $boxes ) ) continue;
+        // CRITICAL: Remove custom widgets from $widgets array (they should only appear in Custom Widgets section)
+        // Normalize custom widget IDs for case-insensitive comparison
+        $custom_ids_normalized = array();
+        if ( ! empty( $custom_widgets ) && is_array( $custom_widgets ) ) {
+            foreach ( $custom_widgets as $custom_id ) {
+                if ( ! empty( $custom_id ) ) {
+                    $custom_ids_normalized[ strtolower( trim( $custom_id ) ) ] = $custom_id;
+                }
+            }
+        }
+        
+        // Remove custom widgets from $widgets array
+        foreach ( $widgets as $widget_id => $widget_data ) {
+            $widget_id_normalized = strtolower( trim( $widget_id ) );
+            if ( isset( $custom_ids_normalized[ $widget_id_normalized ] ) ) {
+                unset( $widgets[ $widget_id ] );
+            }
+        }
+        
+        // If no widgets from cache, try to get from current state
+        if ( empty( $widgets ) || count( $widgets ) <= count( $custom_widgets ) ) {
+            global $wp_meta_boxes;
+            
+            // Get currently registered widgets (if dashboard was already loaded)
+            if ( isset( $wp_meta_boxes['dashboard'] ) && is_array( $wp_meta_boxes['dashboard'] ) ) {
+                foreach ( $wp_meta_boxes['dashboard'] as $context => $priorities ) {
+                    if ( ! is_array( $priorities ) ) continue;
                     
-                    foreach ( $boxes as $widget_id => $widget_data ) {
-                        if ( ! is_array( $widget_data ) ) continue;
+                    foreach ( $priorities as $priority => $boxes ) {
+                        if ( ! is_array( $boxes ) ) continue;
                         
-                        $title = isset( $widget_data['title'] ) ? $widget_data['title'] : $widget_id;
-                        $title = wp_strip_all_tags( $title );
-                        
-                        if ( empty( $title ) && isset( $widget_data['callback'] ) ) {
-                            if ( is_array( $widget_data['callback'] ) && isset( $widget_data['callback'][1] ) ) {
-                                $title = $widget_data['callback'][1];
-                            } elseif ( is_string( $widget_data['callback'] ) ) {
-                                $title = $widget_data['callback'];
+                        foreach ( $boxes as $widget_id => $widget_data ) {
+                            if ( ! is_array( $widget_data ) ) continue;
+                            
+                            // Skip if this is a custom widget (case-insensitive check)
+                            $widget_id_normalized = strtolower( trim( $widget_id ) );
+                            if ( isset( $custom_ids_normalized[ $widget_id_normalized ] ) ) {
+                                continue;
                             }
+                            
+                            // Skip if already in widgets array
+                            if ( isset( $widgets[ $widget_id ] ) ) {
+                                continue;
+                            }
+                            
+                            $title = isset( $widget_data['title'] ) ? $widget_data['title'] : $widget_id;
+                            $title = wp_strip_all_tags( $title );
+                            
+                            if ( empty( $title ) && isset( $widget_data['callback'] ) ) {
+                                if ( is_array( $widget_data['callback'] ) && isset( $widget_data['callback'][1] ) ) {
+                                    $title = $widget_data['callback'][1];
+                                } elseif ( is_string( $widget_data['callback'] ) ) {
+                                    $title = $widget_data['callback'];
+                                }
+                            }
+                            
+                            if ( empty( $title ) ) {
+                                $title = ucwords( str_replace( array( '_', '-' ), ' ', $widget_id ) );
+                            }
+                            
+                            $widgets[ $widget_id ] = array(
+                                'id' => $widget_id,
+                                'title' => $title,
+                                'context' => $context,
+                                'priority' => $priority,
+                            );
                         }
-                        
-                        if ( empty( $title ) ) {
-                            $title = ucwords( str_replace( array( '_', '-' ), ' ', $widget_id ) );
-                        }
-                        
-                        $widgets[ $widget_id ] = array(
-                            'id' => $widget_id,
-                            'title' => $title,
-                            'context' => $context,
-                            'priority' => $priority,
-                        );
                     }
                 }
             }
@@ -481,6 +517,12 @@ class WAC_Dashboard_Widgets {
         );
         
         foreach ( $default_widgets as $id => $title ) {
+            // Skip if this is a custom widget
+            $id_normalized = strtolower( trim( $id ) );
+            if ( isset( $custom_ids_normalized[ $id_normalized ] ) ) {
+                continue;
+            }
+            
             if ( ! isset( $widgets[ $id ] ) ) {
                 $widgets[ $id ] = array(
                     'id' => $id,
@@ -491,13 +533,24 @@ class WAC_Dashboard_Widgets {
             }
         }
         
+        // Final pass: Remove any custom widgets that might have been added (double-check)
+        // This is CRITICAL to ensure custom widgets never appear in plugin/theme/core sections
+        foreach ( $widgets as $widget_id => $widget_data ) {
+            $widget_id_normalized = strtolower( trim( $widget_id ) );
+            if ( isset( $custom_ids_normalized[ $widget_id_normalized ] ) ) {
+                unset( $widgets[ $widget_id ] );
+            }
+        }
+        
         // Sort by title
         uasort( $widgets, function( $a, $b ) {
             return strcasecmp( $a['title'], $b['title'] );
         } );
         
-        // Cache for 1 hour
-        set_transient( 'wac_dashboard_widgets_list', $widgets, HOUR_IN_SECONDS );
+        // Cache for 1 hour (but don't overwrite if we only have custom widgets)
+        if ( count( $widgets ) > count( $custom_widgets ) ) {
+            set_transient( 'wac_dashboard_widgets_list', $widgets, HOUR_IN_SECONDS );
+        }
         
         return $widgets;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: DevForge Admin Cleaner
+ * Plugin Name: Admin Toolkit
  * Plugin URI: https://profiles.wordpress.org/devforge/
  * Description: The ultimate WordPress admin customization toolkit.
  * Version: 2.5.0
@@ -37,7 +37,7 @@ if ( ! function_exists( 'wac_fs' ) ) {
 
             $wac_fs = fs_dynamic_init( array(
                 'id'                  => '22593',
-                'slug'                => 'webtapot-admin-cleaner',
+                'slug'                => 'devforge-admin-cleaner',
                 'type'                => 'plugin',
                 'public_key'          => 'pk_90248dc6b1f90534fbc8021d2d714',
                 'is_premium'          => false,
@@ -205,8 +205,8 @@ function wac_init() {
     WAC_Settings::get_instance();
     WAC_Dashboard_Widgets::get_instance();
     WAC_Admin_Cleaner::get_instance();
-    WAC_Role_Manager::get_instance();
-    WAC_Login_Redirect::get_instance();
+        // WAC_Role_Manager::get_instance(); // Disabled - Role Menus feature removed, using Menu Editor instead
+        WAC_Login_Redirect::get_instance();
     WAC_Disable_Features::get_instance();
     WAC_Notices_Cleaner::get_instance();
     WAC_Maintenance_Mode::get_instance();

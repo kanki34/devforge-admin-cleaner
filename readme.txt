@@ -1,4 +1,4 @@
-=== DevForge Admin Cleaner ===
+=== Admin Toolkit ===
 Contributors: devforge
 Tags: admin, dashboard, cleanup, security, menu-editor, dark-mode, duplicate-post
 Requires at least: 5.0
@@ -12,11 +12,11 @@ The most comprehensive WordPress admin customization toolkit. Command palette, m
 
 == Description ==
 
-**DevForge Admin Cleaner** is the ultimate admin customization suite for WordPress. Transform your admin area with a Command Palette (Cmd/Ctrl+K), drag & drop menu editor, dark mode, duplicate posts, unused media cleanup, and so much more.
+**Admin Toolkit** is the ultimate admin customization suite for WordPress. Transform your admin area with a Command Palette (Cmd/Ctrl+Shift+P), drag & drop menu editor, dark mode, duplicate posts, unused media cleanup, and so much more.
 
 ### Killer Features
 
-**Command Palette (Cmd/Ctrl + K)**
+**Command Palette (Cmd/Ctrl + Shift + P)**
 Search everything instantly - posts, pages, users, settings, plugins. Like Spotlight for your WordPress admin.
 
 **Duplicate Posts**
@@ -62,7 +62,7 @@ Find and delete unused media files. Free up disk space with intelligent scanning
 ### Pro Features
 
 **Command Palette** (NEW)
-* Press Cmd/Ctrl + K anywhere in admin
+* Press Cmd/Ctrl + Shift + P anywhere in admin
 * Search posts, pages, users instantly
 * Jump to any admin page
 * Quick actions & shortcuts
@@ -156,13 +156,13 @@ Find and delete unused media files. Free up disk space with intelligent scanning
 
 1. Upload `devforge-admin-cleaner` to `/wp-content/plugins/`
 2. Activate the plugin
-3. Go to **Admin Cleaner** in the admin menu
-4. Press **Cmd/Ctrl + K** to try the Command Palette
+3. Go to **Admin Toolkit** in the admin menu
+4. Press **Cmd/Ctrl + Shift + P** to try the Command Palette
 
 == Frequently Asked Questions ==
 
 = How do I open the Command Palette? =
-Press Cmd+K (Mac) or Ctrl+K (Windows/Linux) anywhere in the admin area.
+Press Cmd+Shift+P (Mac) or Ctrl+Shift+P (Windows/Linux) anywhere in the admin area.
 
 = Will this affect my site's frontend? =
 No. This plugin only modifies the WordPress admin area.
@@ -187,7 +187,7 @@ Yes! The duplicate feature works with all post types including WooCommerce produ
 == Changelog ==
 
 = 2.5.0 =
-* NEW: Command Palette (Cmd/Ctrl + K) - Search everything instantly
+* NEW: Command Palette (Cmd/Ctrl + Shift + P) - Search everything instantly
 * NEW: Duplicate Posts - One-click duplication with bulk support
 * NEW: Media Cleanup - Find and delete unused media files
 * NEW: Login History - Track all login attempts with details

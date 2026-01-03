@@ -216,12 +216,12 @@ class WAC_Disable_Features {
         // Disable for post types
         add_filter( 'use_block_editor_for_post_type', '__return_false', 10 );
         
-        // Remove Gutenberg styles
+        // Remove Gutenberg styles (but keep global-styles as it contains theme styles)
         add_action( 'wp_enqueue_scripts', function() {
             wp_dequeue_style( 'wp-block-library' );
             wp_dequeue_style( 'wp-block-library-theme' );
             wp_dequeue_style( 'wc-blocks-style' );
-            wp_dequeue_style( 'global-styles' );
+            // DO NOT remove 'global-styles' - it contains theme CSS and is required for frontend styling
         }, 100 );
     }
 

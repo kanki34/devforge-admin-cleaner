@@ -34,15 +34,16 @@ class WAC_Login_Redirect {
         $options = get_option( 'wac_settings', array() );
         $redirects = isset( $options['login_redirect'] ) ? $options['login_redirect'] : array();
         
-        if ( empty( $redirects ) ) {
-            return $redirect_to;
-        }
-
         // Check each role (primary role first)
         foreach ( $user->roles as $role ) {
             if ( isset( $redirects[ $role ] ) && ! empty( $redirects[ $role ] ) ) {
                 return esc_url( $redirects[ $role ] );
             }
+        }
+        
+        // If no role-specific redirect, check default
+        if ( isset( $redirects['default'] ) && ! empty( $redirects['default'] ) ) {
+            return esc_url( $redirects['default'] );
         }
 
         return $redirect_to;
