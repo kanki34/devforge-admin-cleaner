@@ -908,6 +908,23 @@ class WAC_Settings {
                             View Docs
                         </a>
                     </div>
+                    
+                    <?php if ( $is_pro ) : ?>
+                    <!-- Professional Services Card -->
+                    <div class="wac-sidebar-card" style="background:linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);border-color:#1d1d1f">
+                        <h3 style="color:#fff">💼 Professional Services</h3>
+                        <p style="color:rgba(255,255,255,0.8)">Need custom WordPress development or plugin customization? Let's work together!</p>
+                        <ul style="margin:12px 0;padding-left:0;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.8;list-style:none">
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Plugin Development</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> WordPress Customization</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Theme Development</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> Performance Optimization</li>
+                        </ul>
+                        <a href="https://pro.fiverr.com/hbasoglu/" target="_blank" class="wac-sidebar-btn" style="background:#34c759;margin-top:12px">
+                            View My Services
+                        </a>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
