@@ -1,0 +1,153 @@
+# Copyright (C) 2024 DevForge
+# This file is distributed under the same license as the Admin Toolkit plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Admin Toolkit 2.5.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/devforge-admin-cleaner\n"
+"POT-Creation-Date: 2024-01-05 22:00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+# Plugin Header
+msgid "Admin Toolkit"
+msgstr ""
+
+msgid "The ultimate WordPress admin customization toolkit."
+msgstr ""
+
+# Settings Page
+msgid "Admin Toolkit"
+msgstr ""
+
+msgid "Customize your WordPress admin area, improve productivity, and enhance security with powerful tools."
+msgstr ""
+
+# Dashboard Tab
+msgid "Dashboard"
+msgstr ""
+
+msgid "Widgets"
+msgstr ""
+
+msgid "Toolbar"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Hide Dashboard Widgets"
+msgstr ""
+
+msgid "Hide any dashboard widget including those from themes and plugins (e.g., Elementor, WooCommerce, etc.)"
+msgstr ""
+
+msgid "Tip: Visit the Dashboard page first to load all widgets, then return here to see them."
+msgstr ""
+
+msgid "Admin Toolbar"
+msgstr ""
+
+msgid "Hide Admin Toolbar in wp-admin"
+msgstr ""
+
+msgid "Completely hide the admin toolbar in WordPress admin area (no space left)"
+msgstr ""
+
+msgid "Hide Admin Toolbar on Frontend"
+msgstr ""
+
+msgid "Completely hide the admin toolbar on frontend for all users including admins (no space left, content starts from top)"
+msgstr ""
+
+msgid "Hide Screen Options"
+msgstr ""
+
+msgid "Hide Help Tab"
+msgstr ""
+
+msgid "Hide All Admin Notices"
+msgstr ""
+
+msgid "Hide Update Notices"
+msgstr ""
+
+# Menus & Roles Tab
+msgid "Menus & Roles"
+msgstr ""
+
+msgid "Login Redirect"
+msgstr ""
+
+msgid "Redirect users to a custom URL after login based on their role."
+msgstr ""
+
+# Productivity Tab
+msgid "Productivity"
+msgstr ""
+
+msgid "Heartbeat Control"
+msgstr ""
+
+msgid "Control WordPress Heartbeat API to reduce server load and improve performance."
+msgstr ""
+
+# Cleanup Tab
+msgid "Cleanup"
+msgstr ""
+
+msgid "Disable Features"
+msgstr ""
+
+msgid "Disable WordPress features you don't need for better performance."
+msgstr ""
+
+msgid "Maintenance Mode"
+msgstr ""
+
+# Tools Tab
+msgid "Tools"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset all settings to defaults. This includes Menu Editor customizations."
+msgstr ""
+
+# Sidebar
+msgid "Upgrade to Pro"
+msgstr ""
+
+msgid "Unlock all premium features and take full control of your WordPress admin area."
+msgstr ""
+
+msgid "Upgrade Now →"
+msgstr ""
+
+msgid "Professional Services"
+msgstr ""
+
+msgid "Need a custom website or WordPress help? Let's work together!"
+msgstr ""
+
+msgid "Custom Website Design"
+msgstr ""
+
+msgid "Technical Issue Fixing"
+msgstr ""
+
+msgid "Malicious Code Cleanup"
+msgstr ""
+
+msgid "Hosting Migration"
+msgstr ""
+
+msgid "View My Services"
+msgstr ""
+
