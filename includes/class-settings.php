@@ -784,6 +784,8 @@ class WAC_Settings {
                 <?php endforeach; ?>
             </nav>
 
+            <div class="wac-settings-layout">
+                <div class="wac-settings-main">
             <form method="post" action="options.php" class="wac-settings-form" id="wac-settings-form">
                 <?php settings_fields( 'wac_settings_group' ); ?>
                 
@@ -865,6 +867,45 @@ class WAC_Settings {
                 </div>
                 <?php endif; ?>
             </form>
+                </div>
+                
+                <div class="wac-settings-sidebar">
+                    <!-- Upgrade Card -->
+                    <div class="wac-sidebar-card">
+                        <h3>🚀 Upgrade to Pro</h3>
+                        <p>Unlock all premium features and take full control of your WordPress admin area.</p>
+                        <ul style="margin:12px 0;padding-left:20px;font-size:12px;color:#86868b;line-height:1.8">
+                            <li>White Label Admin</li>
+                            <li>Login Page Customizer</li>
+                            <li>Menu Editor</li>
+                            <li>Command Palette</li>
+                            <li>Activity Log</li>
+                            <li>And much more...</li>
+                        </ul>
+                        <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-sidebar-btn wac-sidebar-btn-secondary">
+                            Upgrade Now →
+                        </a>
+                    </div>
+                    
+                    <!-- Support Card -->
+                    <div class="wac-sidebar-card">
+                        <h3>💬 Need Help?</h3>
+                        <p>Have questions or need assistance? We're here to help!</p>
+                        <a href="https://wordpress.org/support/plugin/devforge-admin-cleaner/" target="_blank" class="wac-sidebar-btn">
+                            Get Support
+                        </a>
+                    </div>
+                    
+                    <!-- Documentation Card -->
+                    <div class="wac-sidebar-card">
+                        <h3>📚 Documentation</h3>
+                        <p>Learn how to get the most out of Admin Toolkit with our comprehensive guides.</p>
+                        <a href="https://wordpress.org/plugins/devforge-admin-cleaner/#description" target="_blank" class="wac-sidebar-btn wac-sidebar-btn-secondary">
+                            View Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <?php $this->render_scripts(); ?>
@@ -875,7 +916,20 @@ class WAC_Settings {
         ?>
         <style>
         body.wp-admin #wpcontent{background:#fff}
-        .wac-settings-wrap{max-width:900px;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:13px;color:#1d1d1f;background:transparent!important;padding:32px 20px 20px}
+        .wac-settings-wrap{max-width:1400px;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:13px;color:#1d1d1f;background:transparent!important;padding:32px 20px 20px}
+        .wac-settings-layout{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+        .wac-settings-main{min-width:0}
+        .wac-settings-sidebar{position:sticky;top:32px}
+        .wac-sidebar-card{background:#fff;border:1px solid #e5e5ea;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+        .wac-sidebar-card:last-child{margin-bottom:0}
+        .wac-sidebar-card h3{margin:0 0 12px;font-size:14px;font-weight:600;color:#1d1d1f}
+        .wac-sidebar-card p{margin:0 0 12px;font-size:12px;color:#86868b;line-height:1.5}
+        .wac-sidebar-card p:last-child{margin-bottom:0}
+        .wac-sidebar-btn{display:block;width:100%;padding:10px 16px;background:#007aff;color:#fff;text-align:center;text-decoration:none;border-radius:6px;font-size:13px;font-weight:500;transition:background .15s ease;margin-top:12px}
+        .wac-sidebar-btn:hover{background:#0056b3;color:#fff}
+        .wac-sidebar-btn-secondary{background:#1d1d1f}
+        .wac-sidebar-btn-secondary:hover{background:#000}
+        @media (max-width:1200px){.wac-settings-layout{grid-template-columns:1fr}.wac-settings-sidebar{position:static}}
         .wac-settings-wrap *{box-sizing:border-box}
         .wac-settings-wrap h1{font-size:28px;font-weight:600;margin:0 0 8px;display:flex;align-items:center;gap:12px;color:#1d1d1f;letter-spacing:-.5px}
         .wac-settings-wrap h1 .dashicons{display:none}
