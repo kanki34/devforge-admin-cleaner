@@ -915,7 +915,7 @@ class WAC_Settings {
                         <h3 style="color:#fff">💼 Professional Services</h3>
                         <p style="color:rgba(255,255,255,0.8)">Need a custom website or WordPress help? Let's work together!</p>
                         <ul style="margin:12px 0;padding-left:0;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.8;list-style:none">
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Website Design (Elementor)</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Website Design</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Technical Issue Fixing</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Malicious Code Cleanup</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> Hosting Migration</li>
