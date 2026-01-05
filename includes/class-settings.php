@@ -891,24 +891,6 @@ class WAC_Settings {
                         </a>
                     </div>
                     
-                    <!-- Support Card -->
-                    <div class="wac-sidebar-card">
-                        <h3>💬 Need Help?</h3>
-                        <p>Have questions or need assistance? We're here to help!</p>
-                        <a href="https://wordpress.org/support/plugin/devforge-admin-cleaner/" target="_blank" class="wac-sidebar-btn">
-                            Get Support
-                        </a>
-                    </div>
-                    
-                    <!-- Documentation Card -->
-                    <div class="wac-sidebar-card">
-                        <h3>📚 Documentation</h3>
-                        <p>Learn how to get the most out of Admin Toolkit with our comprehensive guides.</p>
-                        <a href="https://wordpress.org/plugins/devforge-admin-cleaner/#description" target="_blank" class="wac-sidebar-btn wac-sidebar-btn-secondary">
-                            View Docs
-                        </a>
-                    </div>
-                    
                     <!-- Professional Services Card -->
                     <div class="wac-sidebar-card" style="background:linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);border-color:#1d1d1f">
                         <h3 style="color:#fff">💼 Professional Services</h3>
