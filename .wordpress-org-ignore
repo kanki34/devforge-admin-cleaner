@@ -1,0 +1,50 @@
+# WordPress.org SVN ignore file
+# Files and folders listed here will NOT be uploaded to WordPress.org
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Development files
+node_modules/
+npm-debug.log
+yarn-error.log
+package.json
+package-lock.json
+composer.json
+composer.lock
+.env
+.env.local
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build files
+dist/
+build/
+*.map
+
+# Documentation (not needed in SVN)
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+
+# Freemius (will be added separately via Freemius SDK)
+vendor/freemius/
+
+# Test files
+tests/
+phpunit.xml
+.phpunit.result.cache
+
+# Local development
+local-sites/
+*.local
+

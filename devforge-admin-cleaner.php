@@ -208,6 +208,12 @@ function wac_includes() {
     }
 }
 
+// Load text domain
+add_action( 'plugins_loaded', 'wac_load_textdomain' );
+function wac_load_textdomain() {
+    load_plugin_textdomain( 'devforge-admin-cleaner', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+
 // Initialize
 function wac_init() {
     wac_includes();
