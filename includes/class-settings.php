@@ -1386,7 +1386,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Custom Widgets</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2025,7 +2025,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Command Palette</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2078,7 +2078,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Duplicate Posts</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2149,7 +2149,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Admin Columns</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2265,7 +2265,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Admin Theme</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2292,7 +2292,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>White Label Admin <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 20px;font-size:13px">
@@ -2385,7 +2385,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Login Page Design</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2579,7 +2579,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Custom CSS</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2724,7 +2724,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Activity Log</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2750,7 +2750,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Export / Import</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2827,7 +2827,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Security Tweaks</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2867,7 +2867,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Login Protection</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2909,7 +2909,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Login History</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2939,7 +2939,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>White Label Admin <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2994,7 +2994,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Login Page Design</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3069,7 +3069,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Custom CSS</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3306,7 +3306,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>White Label Admin <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3363,7 +3363,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Login Page Design</h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3441,7 +3441,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Command Palette <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3477,7 +3477,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Duplicate Posts <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3876,7 +3876,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Media Cleanup <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3902,7 +3902,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Security Tweaks <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3939,7 +3939,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Activity Log <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -3964,7 +3964,7 @@ class WAC_Settings {
             <div class="wac-section-header">
                 <h2>Export / Import <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">

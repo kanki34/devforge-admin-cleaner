@@ -1,6 +1,6 @@
 === Admin Toolkit ===
 Contributors: devforge
-Tags: admin, dashboard, cleanup, security, menu-editor, dark-mode, duplicate-post
+Tags: admin, dashboard, cleanup, security, performance, customization, maintenance-mode
 Requires at least: 5.0
 Tested up to: 6.4
 Stable tag: 2.5.0
@@ -8,84 +8,83 @@ Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The most comprehensive WordPress admin customization toolkit. Command palette, menu editor, dark mode, duplicate posts, media cleanup, and 25+ powerful features.
+The ultimate WordPress admin customization toolkit. Clean up your dashboard, optimize performance, customize admin area, and take full control of WordPress admin.
 
 == Description ==
 
-**Admin Toolkit** is the ultimate admin customization suite for WordPress. Transform your admin area with a Command Palette (Cmd/Ctrl+Shift+P), drag & drop menu editor, dark mode, duplicate posts, unused media cleanup, and so much more.
+**Admin Toolkit** is a comprehensive WordPress admin customization and optimization plugin. Clean up your dashboard, hide unwanted widgets, optimize performance, customize admin toolbar, enable maintenance mode, and so much more - all from one powerful interface.
 
-### Killer Features
+Perfect for developers, agencies, and site owners who want a cleaner, faster, and more professional WordPress admin experience.
 
-**Command Palette (Cmd/Ctrl + Shift + P)**
-Search everything instantly - posts, pages, users, settings, plugins. Like Spotlight for your WordPress admin.
+### 🎯 Free Features
 
-**Duplicate Posts**
-One-click duplication for posts, pages, and any custom post type. Includes bulk action support.
+**Dashboard Management**
+* Hide any dashboard widget (WordPress core, plugins, themes)
+* Custom widget detection and management
+* Persistent widget list (never lose hidden widgets)
+* Clean, organized dashboard interface
 
-**Media Cleanup**
-Find and delete unused media files. Free up disk space with intelligent scanning.
+**Admin Toolbar Control**
+* Hide WordPress logo, site name, updates, comments
+* Remove "New" (+) menu
+* Hide search bar
+* Completely hide toolbar in admin or frontend
 
-### Free Features
+**General Admin Cleanup**
+* Hide Screen Options tab
+* Hide Help tab
+* Hide all admin notices
+* Hide update notices
 
-**Dashboard Cleanup**
-* Hide unwanted dashboard widgets
-* Remove Screen Options and Help tab
-* Clean up admin notices
+**Login Redirect**
+* Custom redirect URLs per user role
+* Redirect after login based on role
+* Perfect for client sites
 
-**Admin Toolbar**
-* Hide WordPress logo, updates, comments
-* Customize visible toolbar items
-* Per-role visibility control
-
-**Role-Based Menu Control**
-* Hide admin menus per user role
-* Keep admin area clean for clients
-* Custom login redirects per role
-
-**Disable Features**
+**Disable Unused Features**
 * Disable comments globally
-* Remove emojis, RSS feeds, XML-RPC
+* Remove emojis
+* Disable RSS feeds
+* Disable XML-RPC
 * Disable Gutenberg editor
 * Hide WordPress version
+* And more...
 
 **Maintenance Mode**
 * Show maintenance page to visitors
-* Customize title, message, colors
+* Custom title and message
+* Custom background color
 * Background image support
+* Logged-in users can still access site
 
-**Performance Cleanup**
-* Clean post revisions & auto-drafts
+**Performance Optimization**
+* Heartbeat Control - Reduce server load
+* Custom heartbeat intervals for dashboard and editor
+* Disable heartbeat on frontend
+* Optimize WordPress performance
+
+**Admin Announcements**
+* Create announcements for all admin users
+* Show as dashboard widget or admin notice
+* Multiple styles (info, success, warning, error)
+* Dismissible or persistent options
+
+**Database Cleanup**
+* Clean post revisions
+* Remove auto-drafts
 * Delete expired transients
-* Empty trash, spam & orphaned data
+* Empty trash and spam
 * Optimize database tables
 
-### Pro Features
+### 🚀 Pro Features (Upgrade to unlock)
 
-**Command Palette** (NEW)
+**Command Palette**
 * Press Cmd/Ctrl + Shift + P anywhere in admin
 * Search posts, pages, users instantly
 * Jump to any admin page
 * Quick actions & shortcuts
 
-**Duplicate Posts** (NEW)
-* One-click post/page duplication
-* Copies all meta, taxonomies, featured image
-* Bulk duplicate support
-* Duplicate link in admin bar
-
-**Media Cleanup** (NEW)
-* Scan for unused media files
-* Preview before deleting
-* Bulk selection & deletion
-* Disk space freed indicator
-
-**Login History** (NEW)
-* Track all login attempts
-* IP address, browser, OS detection
-* Failed login tracking
-* Exportable history
-
-**Admin Menu Editor**
+**Menu Editor**
 * Drag & drop menu reordering
 * Rename menu items
 * Change menu icons
@@ -97,17 +96,23 @@ Find and delete unused media files. Free up disk space with intelligent scanning
 * Quick shortcuts widget
 * Personal notes widget
 
-**Admin Announcements**
-* Create announcements for users
-* Dashboard widget or notice bar
-* Multiple styles (info, success, warning, error)
-* Dismissible or persistent
-
 **Admin Theme & Dark Mode**
 * Dark mode with one click
 * Custom color schemes
 * Custom accent colors
 * Per-user dark mode toggle
+
+**Login Page Customizer**
+* Custom login logo
+* Background image & colors
+* Custom CSS
+* Custom login message
+* Editable link texts and colors
+
+**White Label**
+* Custom admin logo
+* Custom footer text
+* Hide WordPress branding
 
 **Role Editor**
 * Create custom user roles
@@ -115,17 +120,23 @@ Find and delete unused media files. Free up disk space with intelligent scanning
 * Clone existing roles
 * Full capability management
 
+**Duplicate Posts**
+* One-click post/page duplication
+* Copies all meta, taxonomies, featured image
+* Bulk duplicate support
+* Duplicate link in admin bar
+
+**Media Cleanup**
+* Scan for unused media files
+* Preview before deleting
+* Bulk selection & deletion
+* Disk space freed indicator
+
 **Admin Columns**
 * Add custom columns to post lists
 * Featured Image, Post ID, Word Count
 * Last Modified, Page Template
 * Custom Field columns
-
-**Heartbeat Control**
-* Reduce server load
-* Custom intervals for dashboard & editor
-* Disable on frontend
-* Performance optimization
 
 **Security Tweaks**
 * Disable file editor
@@ -133,81 +144,83 @@ Find and delete unused media files. Free up disk space with intelligent scanning
 * Limit login attempts
 * Custom login URL
 
-**White Label**
-* Custom admin logo
-* Custom footer text
-* Hide WordPress branding
-
-**Login Page Designer**
-* Custom login logo
-* Background image & colors
-* Custom CSS
-
 **Activity Log**
 * Track user actions
 * Login/logout monitoring
 * Post change tracking
+* Exportable logs
+
+**Login History**
+* Track all login attempts
+* IP address, browser, OS detection
+* Failed login tracking
+* Exportable history
 
 **Export/Import**
 * Backup all settings
 * Transfer between sites
+* JSON format
 
 == Installation ==
 
-1. Upload `devforge-admin-cleaner` to `/wp-content/plugins/`
-2. Activate the plugin
+1. Upload `devforge-admin-cleaner` folder to `/wp-content/plugins/`
+2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to **Admin Toolkit** in the admin menu
-4. Press **Cmd/Ctrl + Shift + P** to try the Command Palette
+4. Start customizing your admin area!
 
 == Frequently Asked Questions ==
 
-= How do I open the Command Palette? =
-Press Cmd+Shift+P (Mac) or Ctrl+Shift+P (Windows/Linux) anywhere in the admin area.
-
 = Will this affect my site's frontend? =
-No. This plugin only modifies the WordPress admin area.
+No. This plugin only modifies the WordPress admin area. Your frontend remains completely unchanged.
 
-= How do I enable dark mode? =
-Go to Branding tab and select "Dark Mode" theme, or click the bulb icon in the admin bar to toggle.
+= Can I hide dashboard widgets from plugins? =
+Yes! Admin Toolkit can detect and hide widgets from any plugin or theme, including Elementor, WooCommerce, and others.
 
-= Can I duplicate custom post types? =
-Yes! The duplicate feature works with all post types including WooCommerce products.
+= How do I enable maintenance mode? =
+Go to Cleanup → Maintenance Mode, enable it, and customize the message. Logged-in users will still see the site normally.
+
+= Does this work with multisite? =
+Yes, Admin Toolkit works with both single-site and multisite installations.
+
+= Can I customize the login page? =
+Yes! This is a Pro feature. Upgrade to customize login logo, background, colors, and more.
+
+= How do I upgrade to Pro? =
+Click the "Upgrade to Pro" button in the plugin settings, or visit the upgrade link in the sidebar.
 
 == Screenshots ==
 
-1. Command Palette - Quick search everything
-2. Admin Menu Editor with drag & drop
-3. Dark mode and color schemes
-4. Duplicate posts in action
-5. Media Cleanup scanner
-6. Login History tracker
-7. Dashboard Widget Builder
-8. Admin Announcements
+1. Dashboard Widget Management - Hide any widget with one click
+2. Admin Toolbar Control - Customize what appears in the toolbar
+3. Maintenance Mode - Custom maintenance page with colors and images
+4. Heartbeat Control - Optimize WordPress performance
+5. Admin Announcements - Create notices for users
+6. Disable Features - Turn off unused WordPress features
+7. Login Redirect - Custom redirects per role
+8. Database Cleanup - Clean up and optimize your database
 
 == Changelog ==
 
 = 2.5.0 =
-* NEW: Command Palette (Cmd/Ctrl + Shift + P) - Search everything instantly
-* NEW: Duplicate Posts - One-click duplication with bulk support
-* NEW: Media Cleanup - Find and delete unused media files
-* NEW: Login History - Track all login attempts with details
-* NEW: Heartbeat Control - Optimize admin performance
-* NEW: Admin Announcements - Create notices for users
-* Improved: Better dark mode implementation
-* Improved: More robust activity logging
-* Fixed: Various UI improvements
+* NEW: Heartbeat Control added to free version - Optimize admin performance
+* NEW: Admin Announcements added to free version - Create notices for users
+* IMPROVED: Dashboard widget management - Persistent widget list, never lose hidden widgets
+* IMPROVED: Better widget detection and categorization
+* FIXED: Widget list persistence issues
+* FIXED: Various UI improvements
 
 = 2.1.0 =
-* NEW: Admin Menu Editor with drag & drop
-* NEW: Dashboard Widget Builder
-* NEW: Dark Mode and color schemes
-* NEW: Role Editor
-* NEW: Admin Columns
+* NEW: Admin Menu Editor with drag & drop (Pro)
+* NEW: Dashboard Widget Builder (Pro)
+* NEW: Dark Mode and color schemes (Pro)
+* NEW: Role Editor (Pro)
+* NEW: Admin Columns (Pro)
 
 = 2.0.0 =
 * Complete redesign with Clean System UI
 * Added maintenance mode
 * Added database cleanup tools
+* Improved performance
 
 = 1.0.0 =
 * Initial release
@@ -215,4 +228,4 @@ Yes! The duplicate feature works with all post types including WooCommerce produ
 == Upgrade Notice ==
 
 = 2.5.0 =
-Massive update! Command Palette, Duplicate Posts, Media Cleanup, Login History, and more Pro features.
+Major update! Heartbeat Control and Admin Announcements now available in free version. Plus many improvements to dashboard widget management.
