@@ -151,6 +151,11 @@ function wac_includes() {
         require_once WAC_PLUGIN_DIR . 'includes/pro/class-heartbeat-control.php';
     }
     
+    // Admin Announcements - Available in Free version
+    if ( file_exists( WAC_PLUGIN_DIR . 'includes/pro/class-admin-announcements.php' ) ) {
+        require_once WAC_PLUGIN_DIR . 'includes/pro/class-admin-announcements.php';
+    }
+    
     if ( wac_is_premium() ) {
         if ( file_exists( WAC_PLUGIN_DIR . 'includes/pro/class-white-label.php' ) ) {
             require_once WAC_PLUGIN_DIR . 'includes/pro/class-white-label.php';

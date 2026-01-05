@@ -1409,17 +1409,14 @@ class WAC_Settings {
         </div>
         
         <!-- Admin Announcements -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section">
             <div class="wac-section-header">
                 <h2>Announcements</h2>
-                <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="wac-unlock-btn">Unlock</a>
-                <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
                 Create announcements to show to all admin users on the dashboard or as notices.
             </p>
-            <?php if ( $is_pro && class_exists( 'WAC_Admin_Announcements' ) ) : ?>
+            <?php if ( class_exists( 'WAC_Admin_Announcements' ) ) : ?>
                 <?php WAC_Admin_Announcements::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
