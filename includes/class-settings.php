@@ -454,7 +454,7 @@ class WAC_Settings {
                     $clean[ $key ] = 0;
                 } else {
                     // Preserve existing value if checkbox not in current form (different tab)
-                    $clean[ $key ] = ! empty( $existing[ $key ] ) ? 1 : 0;
+                $clean[ $key ] = ! empty( $existing[ $key ] ) ? 1 : 0;
                 }
             }
         }
@@ -742,12 +742,12 @@ class WAC_Settings {
         <div class="wrap wac-settings-wrap">
             <div style="margin-bottom:32px">
                 <h1>
-                    Admin Toolkit
+                    <?php echo esc_html__( 'Admin Toolkit', 'devforge-admin-cleaner' ); ?>
                     <span class="wac-version">v<?php echo WAC_VERSION; ?></span>
                     <?php if ( $is_pro ) : ?><span class="wac-pro-badge">PRO</span><?php endif; ?>
                 </h1>
                 <p style="margin:8px 0 0;font-size:14px;color:#86868b;max-width:600px">
-                    Customize your WordPress admin area, improve productivity, and enhance security with powerful tools.
+                    <?php echo esc_html__( 'Customize your WordPress admin area, improve productivity, and enhance security with powerful tools.', 'devforge-admin-cleaner' ); ?>
                 </p>
             </div>
 
@@ -759,14 +759,14 @@ class WAC_Settings {
             <nav class="wac-tabs">
                 <?php
                 $tabs = array(
-                    'dashboard'    => 'Dashboard',
-                    'appearance'   => 'Appearance',
-                    'menus-roles'  => 'Menus & Roles',
-                    'productivity' => 'Productivity',
-                    'cleanup'      => 'Cleanup',
-                    'disable-features' => 'Disable Features',
-                    'security'     => 'Security',
-                    'tools'        => 'Tools',
+                    'dashboard'    => __( 'Dashboard', 'devforge-admin-cleaner' ),
+                    'appearance'   => __( 'Appearance', 'devforge-admin-cleaner' ),
+                    'menus-roles'  => __( 'Menus & Roles', 'devforge-admin-cleaner' ),
+                    'productivity' => __( 'Productivity', 'devforge-admin-cleaner' ),
+                    'cleanup'      => __( 'Cleanup', 'devforge-admin-cleaner' ),
+                    'disable-features' => __( 'Disable Features', 'devforge-admin-cleaner' ),
+                    'security'     => __( 'Security', 'devforge-admin-cleaner' ),
+                    'tools'        => __( 'Tools', 'devforge-admin-cleaner' ),
                 );
                 $pro_tabs = array( 
                     'appearance', 'menus-roles', 'productivity', 'security', 'tools'
@@ -1189,7 +1189,7 @@ class WAC_Settings {
                     }
                     frame.close();
                     if (typeof wacShowNotification === 'function') {
-                        wacShowNotification('Image selected', 'success');
+                    wacShowNotification('Image selected', 'success');
                     }
                 });
                 
@@ -1428,10 +1428,10 @@ class WAC_Settings {
         <div class="wac-settings-section">
             <div class="wac-section-header">
                 <div>
-                    <h2>Hide Dashboard Widgets</h2>
+                    <h2><?php echo esc_html__( 'Hide Dashboard Widgets', 'devforge-admin-cleaner' ); ?></h2>
                     <p style="color:#86868b;margin:4px 0 0;font-size:13px">
-                        Hide any dashboard widget including those from themes and plugins (e.g., Elementor, WooCommerce, etc.)
-                        <br><small style="color:#ff9500">💡 Tip: Visit the Dashboard page first to load all widgets, then return here to see them.</small>
+                        <?php echo esc_html__( 'Hide any dashboard widget including those from themes and plugins (e.g., Elementor, WooCommerce, etc.)', 'devforge-admin-cleaner' ); ?>
+                        <br><small style="color:#ff9500">💡 <?php echo esc_html__( 'Tip: Visit the Dashboard page first to load all widgets, then return here to see them.', 'devforge-admin-cleaner' ); ?></small>
                     </p>
                 </div>
             </div>
@@ -1776,9 +1776,9 @@ class WAC_Settings {
                     // Add hidden inputs for each remaining widget
                     customWidgetIds.forEach(function(widgetId) {
                         $container.append($('<input>', {
-                            type: 'hidden',
-                            name: 'wac_settings[custom_dashboard_widgets][]',
-                            value: widgetId
+                                        type: 'hidden',
+                                        name: 'wac_settings[custom_dashboard_widgets][]',
+                                        value: widgetId
                         }));
                     });
                     
@@ -1927,7 +1927,7 @@ class WAC_Settings {
         <!-- Dashboard Toolbar Sub-tab -->
         <div id="dashboard-toolbar" class="wac-sub-tab-content <?php echo $active_sub_tab === 'dashboard-toolbar' ? 'active' : ''; ?>">
         <div class="wac-settings-section">
-            <h2>Admin Toolbar</h2>
+            <h2><?php echo esc_html__( 'Admin Toolbar', 'devforge-admin-cleaner' ); ?></h2>
             <div class="wac-checkbox-list">
                 <?php
                 $bar_items = array(
@@ -1975,22 +1975,22 @@ class WAC_Settings {
         <!-- Dashboard General Sub-tab -->
         <div id="dashboard-general" class="wac-sub-tab-content <?php echo $active_sub_tab === 'dashboard-general' ? 'active' : ''; ?>">
         <div class="wac-settings-section">
-            <h2>General</h2>
+            <h2><?php echo esc_html__( 'General', 'devforge-admin-cleaner' ); ?></h2>
             <div class="wac-checkbox-list">
                 <label class="wac-checkbox-item">
-                    <span>Hide Screen Options</span>
+                    <span><?php echo esc_html__( 'Hide Screen Options', 'devforge-admin-cleaner' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_screen_options]" value="1" <?php checked( ! empty( $opt['hide_screen_options'] ) ); ?>>
                 </label>
                 <label class="wac-checkbox-item">
-                    <span>Hide Help Tab</span>
+                    <span><?php echo esc_html__( 'Hide Help Tab', 'devforge-admin-cleaner' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_help_tab]" value="1" <?php checked( ! empty( $opt['hide_help_tab'] ) ); ?>>
                 </label>
                 <label class="wac-checkbox-item">
-                    <span>Hide All Admin Notices</span>
+                    <span><?php echo esc_html__( 'Hide All Admin Notices', 'devforge-admin-cleaner' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_all_notices]" value="1" <?php checked( ! empty( $opt['hide_all_notices'] ) ); ?>>
                 </label>
                 <label class="wac-checkbox-item">
-                    <span>Hide Update Notices</span>
+                    <span><?php echo esc_html__( 'Hide Update Notices', 'devforge-admin-cleaner' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_update_notices]" value="1" <?php checked( ! empty( $opt['hide_update_notices'] ) ); ?>>
                 </label>
             </div>
@@ -2218,7 +2218,7 @@ class WAC_Settings {
         
         $menus = WAC_Role_Manager::get_default_menu_items();
         ?>
-        
+
         <div class="wac-settings-section">
             <h2>Login Redirect</h2>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
@@ -2901,7 +2901,7 @@ class WAC_Settings {
         </div>
         </div>
         <!-- End Security Login Protection Sub-tab -->
-
+        
         <!-- Security Login History Sub-tab -->
         <div id="security-login-history" class="wac-sub-tab-content <?php echo $active_sub_tab === 'security-login-history' ? 'active' : ''; ?>">
         <!-- Login History -->
@@ -2926,7 +2926,7 @@ class WAC_Settings {
             </div>
             <?php endif; ?>
         </div>
-        </div>
+            </div>
         <!-- End Security Login History Sub-tab -->
         <?php
     }
@@ -3135,7 +3135,7 @@ class WAC_Settings {
         ?>
         </div>
         <!-- End Cleanup Database Sub-tab -->
-
+        
         <!-- Cleanup Media Sub-tab -->
         <div id="cleanup-media" class="wac-sub-tab-content <?php echo $active_sub_tab === 'cleanup-media' ? 'active' : ''; ?>">
         <?php
@@ -3144,7 +3144,7 @@ class WAC_Settings {
         ?>
         </div>
         <!-- End Cleanup Media Sub-tab -->
-
+        
         <!-- Cleanup Maintenance Sub-tab -->
         <div id="cleanup-maintenance" class="wac-sub-tab-content <?php echo $active_sub_tab === 'cleanup-maintenance' ? 'active' : ''; ?>">
         <?php
@@ -3201,7 +3201,7 @@ class WAC_Settings {
         ?>
         </div>
         <!-- End Menus & Roles Menu Editor Sub-tab -->
-
+        
         <!-- Menus & Roles Role Editor Sub-tab -->
         <div id="menus-roles-role-editor" class="wac-sub-tab-content <?php echo $active_sub_tab === 'menus-roles-role-editor' ? 'active' : ''; ?>">
         <?php
