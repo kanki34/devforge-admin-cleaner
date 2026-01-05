@@ -880,6 +880,10 @@ class WAC_Settings {
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Menu Editor</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Command Palette</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Activity Log</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Dashboard Widgets</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Admin Columns</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Role Editor</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Export/Import Settings</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> And much more...</li>
                         </ul>
                         <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-sidebar-btn wac-sidebar-btn-secondary">
