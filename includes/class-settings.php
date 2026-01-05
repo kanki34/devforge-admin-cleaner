@@ -2012,6 +2012,7 @@ class WAC_Settings {
             'productivity-command-palette' => 'Command Palette',
             'productivity-duplicate' => 'Duplicate Posts',
             'productivity-columns' => 'Admin Columns',
+            'productivity-heartbeat' => 'Heartbeat Control',
         );
         
         // Get active sub-tab from hash or default
@@ -2189,6 +2190,29 @@ class WAC_Settings {
         </div>
         </div>
         <!-- End Productivity Columns Sub-tab -->
+
+        <!-- Productivity Heartbeat Control Sub-tab -->
+        <div id="productivity-heartbeat" class="wac-sub-tab-content <?php echo $active_sub_tab === 'productivity-heartbeat' ? 'active' : ''; ?>">
+        <!-- Heartbeat Control -->
+        <div class="wac-settings-section">
+            <div class="wac-section-header">
+                <h2>Heartbeat Control</h2>
+            </div>
+            <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
+                Control WordPress Heartbeat API to reduce server load and improve performance.
+            </p>
+            <?php if ( class_exists( 'WAC_Heartbeat_Control' ) ) : ?>
+                <?php WAC_Heartbeat_Control::render_ui(); ?>
+            <?php else : ?>
+            <div class="wac-feature-list">
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Disable heartbeat on frontend</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Modify heartbeat frequency</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Reduce server load</div>
+            </div>
+            <?php endif; ?>
+        </div>
+        </div>
+        <!-- End Productivity Heartbeat Control Sub-tab -->
         <?php
     }
 
@@ -2201,31 +2225,6 @@ class WAC_Settings {
         $menus = WAC_Role_Manager::get_default_menu_items();
         ?>
         
-        <div class="wac-settings-section">
-            <h2>Hide Menus by Role</h2>
-            <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Hide specific admin menu items for non-admin roles.
-            </p>
-            <?php foreach ( $roles as $role_key => $role_name ) : 
-                $hidden = isset( $role_settings[ $role_key ] ) ? $role_settings[ $role_key ] : array();
-            ?>
-                <div class="wac-role-block">
-                    <div class="wac-role-header"><?php echo esc_html( $role_name ); ?></div>
-                    <div class="wac-role-grid">
-                        <?php foreach ( $menus as $slug => $name ) : ?>
-                            <label>
-                                <input type="checkbox" 
-                                       name="wac_settings[role_menu_settings][<?php echo esc_attr( $role_key ); ?>][]" 
-                                       value="<?php echo esc_attr( $slug ); ?>"
-                                       <?php checked( in_array( $slug, $hidden ) ); ?>>
-                                <?php echo esc_html( $name ); ?>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
         <div class="wac-settings-section">
             <h2>Login Redirect</h2>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">

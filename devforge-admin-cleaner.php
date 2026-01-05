@@ -146,6 +146,11 @@ function wac_includes() {
     require_once WAC_PLUGIN_DIR . 'includes/class-maintenance-mode.php';
     require_once WAC_PLUGIN_DIR . 'includes/class-performance-cleaner.php';
     
+    // Heartbeat Control - Available in Free version
+    if ( file_exists( WAC_PLUGIN_DIR . 'includes/pro/class-heartbeat-control.php' ) ) {
+        require_once WAC_PLUGIN_DIR . 'includes/pro/class-heartbeat-control.php';
+    }
+    
     if ( wac_is_premium() ) {
         if ( file_exists( WAC_PLUGIN_DIR . 'includes/pro/class-white-label.php' ) ) {
             require_once WAC_PLUGIN_DIR . 'includes/pro/class-white-label.php';
