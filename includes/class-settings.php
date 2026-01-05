@@ -874,13 +874,13 @@ class WAC_Settings {
                     <div class="wac-sidebar-card">
                         <h3>🚀 Upgrade to Pro</h3>
                         <p>Unlock all premium features and take full control of your WordPress admin area.</p>
-                        <ul style="margin:12px 0;padding-left:20px;font-size:12px;color:#86868b;line-height:1.8">
-                            <li>White Label Admin</li>
-                            <li>Login Page Customizer</li>
-                            <li>Menu Editor</li>
-                            <li>Command Palette</li>
-                            <li>Activity Log</li>
-                            <li>And much more...</li>
+                        <ul style="margin:12px 0;padding-left:20px;font-size:12px;color:#86868b;line-height:1.8;list-style:none;padding-left:0">
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> White Label Admin</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Login Page Customizer</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Menu Editor</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Command Palette</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Activity Log</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> And much more...</li>
                         </ul>
                         <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-sidebar-btn wac-sidebar-btn-secondary">
                             Upgrade Now →
