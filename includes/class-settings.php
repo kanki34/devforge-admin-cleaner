@@ -909,7 +909,6 @@ class WAC_Settings {
                         </a>
                     </div>
                     
-                    <?php if ( $is_pro ) : ?>
                     <!-- Professional Services Card -->
                     <div class="wac-sidebar-card" style="background:linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);border-color:#1d1d1f">
                         <h3 style="color:#fff">💼 Professional Services</h3>
@@ -924,7 +923,6 @@ class WAC_Settings {
                             View My Services
                         </a>
                     </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
