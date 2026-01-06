@@ -74,7 +74,7 @@ class WAC_Role_Manager {
             if ( ! empty( $item[0] ) && ! empty( $item[2] ) ) {
                 // Clean menu title (remove notification bubbles)
                 $title = preg_replace( '/<span.*<\/span>/i', '', $item[0] );
-                $title = trim( strip_tags( $title ) );
+                $title = trim( wp_strip_all_tags( $title ) );
                 
                 if ( ! empty( $title ) && $item[2] !== 'admin-toolkit' ) {
                     $items[ $item[2] ] = $title;

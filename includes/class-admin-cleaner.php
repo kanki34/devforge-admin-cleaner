@@ -271,9 +271,9 @@ class WAC_Admin_Cleaner {
             <script>
             (function() {
                 var hasRun = false;
-                var isAdminPage = <?php echo $is_admin_js; ?>;
-                var hideInAdmin = <?php echo $hide_admin_js; ?>;
-                var hideOnFrontend = <?php echo $hide_frontend_js; ?>;
+                var isAdminPage = <?php echo wp_json_encode( $is_admin_js ); ?>;
+                var hideInAdmin = <?php echo wp_json_encode( $hide_admin_js ); ?>;
+                var hideOnFrontend = <?php echo wp_json_encode( $hide_frontend_js ); ?>;
                 
                 function removeAdminBarSpacing() {
                     try {

@@ -743,7 +743,7 @@ class WAC_Settings {
             <div style="margin-bottom:32px">
                 <h1>
                     <?php echo esc_html__( 'Admin Toolkit', 'admin-toolkit' ); ?>
-                    <span class="wac-version">v<?php echo WAC_VERSION; ?></span>
+                    <span class="wac-version">v<?php echo esc_html( WAC_VERSION ); ?></span>
                     <?php if ( $is_pro ) : ?><span class="wac-pro-badge">PRO</span><?php endif; ?>
                 </h1>
                 <p style="margin:8px 0 0;font-size:14px;color:#86868b;max-width:600px">
@@ -775,7 +775,7 @@ class WAC_Settings {
                     $url = admin_url( 'admin.php?page=admin-toolkit&tab=' . $id );
                     $class = ( $tab === $id ) ? 'nav-tab nav-tab-active' : 'nav-tab';
                 ?>
-                    <a href="<?php echo esc_url( $url ); ?>" class="<?php echo $class; ?>">
+                    <a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( $class ); ?>">
                         <?php echo esc_html( $name ); ?>
                         <?php if ( in_array( $id, $pro_tabs ) && ! $is_pro ) : ?>
                             <span class="wac-pro-badge-small">PRO</span>
@@ -1350,7 +1350,7 @@ class WAC_Settings {
             <?php foreach ( $sub_tabs as $id => $name ) : 
                 $class = ( $id === $default_tab ) ? 'wac-sub-tab wac-sub-tab-active' : 'wac-sub-tab';
             ?>
-                <a href="#<?php echo esc_attr( $id ); ?>" class="<?php echo $class; ?>" data-target="<?php echo esc_attr( $id ); ?>">
+                <a href="#<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $class ); ?>" data-target="<?php echo esc_attr( $id ); ?>">
                     <?php echo esc_html( $name ); ?>
                 </a>
             <?php endforeach; ?>
@@ -1665,6 +1665,7 @@ class WAC_Settings {
                     echo '<p style="margin:0 0 8px;font-size:13px;color:#856404;font-weight:500">' . esc_html__( 'No widgets detected yet', 'admin-toolkit' ) . '</p>';
                     echo '<p style="margin:0;font-size:12px;color:#856404">' . esc_html__( 'To see all dashboard widgets (including Elementor, WooCommerce, etc.):', 'admin-toolkit' ) . '</p>';
                     echo '<ol style="margin:8px 0 0 20px;padding:0;font-size:12px;color:#856404">';
+                    /* translators: %s: Link to dashboard page */
                     echo '<li>' . sprintf( esc_html__( 'Visit the %s', 'admin-toolkit' ), '<a href="' . esc_url( admin_url() ) . '" target="_blank" style="color:#007aff">' . esc_html__( 'Dashboard page', 'admin-toolkit' ) . '</a>' ) . '</li>';
                     echo '<li>' . esc_html__( 'Return to this page - widgets will appear automatically', 'admin-toolkit' ) . '</li>';
                     echo '</ol>';
@@ -2060,7 +2061,7 @@ class WAC_Settings {
             </div>
             <?php else : ?>
             <div class="wac-feature-preview">
-                <img src="<?php echo WAC_PLUGIN_URL; ?>assets/img/preview-command.png" alt="" onerror="this.style.display='none'">
+                <img src="<?php echo esc_url( WAC_PLUGIN_URL . 'assets/img/preview-command.png' ); ?>" alt="" onerror="this.style.display='none'">
                 <div class="wac-preview-placeholder" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:40px 20px;text-align:center">
                     <span class="dashicons dashicons-search" style="font-size:48px;color:#86868b"></span>
                     <p style="margin:0"><?php echo esc_html__( 'Search anything with Cmd/Ctrl + Shift + P', 'admin-toolkit' ); ?></p>
@@ -2886,7 +2887,7 @@ class WAC_Settings {
                 <tr>
                     <th><?php echo esc_html__( 'Custom Login URL', 'admin-toolkit' ); ?></th>
                     <td>
-                        <code><?php echo home_url( '/' ); ?></code>
+                        <code><?php echo esc_url( home_url( '/' ) ); ?></code>
                         <input type="text" name="wac_settings[custom_login_url]" value="<?php echo esc_attr( $opt['custom_login_url'] ?? '' ); ?>" style="width:120px;" placeholder="my-login">
                     </td>
                 </tr>

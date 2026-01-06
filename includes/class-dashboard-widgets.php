@@ -129,14 +129,14 @@ class WAC_Dashboard_Widgets {
                 
                 // Send to server if we found widgets
                 if (widgets.length > 0) {
-                    var ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : '<?php echo admin_url( 'admin-ajax.php' ); ?>';
+                    var ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>';
                     
                     $.ajax({
                         url: ajaxUrl,
                         type: 'POST',
                         data: {
                             action: 'wac_save_detected_widgets',
-                            nonce: '<?php echo wp_create_nonce( 'wac_admin_nonce' ); ?>',
+                            nonce: '<?php echo esc_js( wp_create_nonce( 'wac_admin_nonce' ) ); ?>',
                             widgets: JSON.stringify(widgets)
                         },
                         success: function(response) {

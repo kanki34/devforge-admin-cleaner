@@ -44,7 +44,7 @@ class WAC_Performance_Cleaner {
      */
     public function get_db_size() {
         global $wpdb;
-        $size = $wpdb->get_var( "SELECT SUM(data_length + index_length) FROM information_schema.tables WHERE table_schema = '" . DB_NAME . "'" );
+        $size = $wpdb->get_var( $wpdb->prepare( "SELECT SUM(data_length + index_length) FROM information_schema.tables WHERE table_schema = %s", DB_NAME ) );
         return $size ? size_format( $size ) : '0 B';
     }
 
@@ -170,7 +170,7 @@ class WAC_Performance_Cleaner {
                 <small>Database Size</small>
             </div>
             <button type="button" class="button wac-clean-all" data-cleanup="all" <?php echo $total === 0 ? 'disabled' : ''; ?>>
-                Clean All (<?php echo $total; ?> items)
+                Clean All (<?php echo esc_html( $total ); ?> items)
             </button>
         </div>
         
@@ -223,7 +223,7 @@ class WAC_Performance_Cleaner {
                         <span><?php echo esc_html( $item['desc'] ); ?></span>
                     </div>
                     <div class="wac-cleanup-count <?php echo $has_items ? 'has-items' : ''; ?>">
-                        <?php echo $item['count']; ?>
+                        <?php echo esc_html( $item['count'] ); ?>
                     </div>
                     <button type="button" class="wac-cleanup-btn" data-cleanup="<?php echo esc_attr( $key ); ?>" <?php echo ! $has_items ? 'disabled' : ''; ?>>
                         Clean
@@ -272,12 +272,12 @@ class WAC_Performance_Cleaner {
                 setTimeout(function() { progressFill.css('width', '80%'); progressText.text('Almost done...'); }, 600);
                 
                 $.ajax({
-                    url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
+                    url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',
                     type: 'POST',
                     data: {
                         action: 'wac_cleanup',
                         type: type,
-                        nonce: '<?php echo wp_create_nonce( 'wac_admin_nonce' ); ?>'
+                        nonce: '<?php echo esc_js( wp_create_nonce( 'wac_admin_nonce' ) ); ?>'
                     },
                     success: function(res) {
                         progressFill.css('width', '100%');
