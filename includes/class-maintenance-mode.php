@@ -42,8 +42,8 @@ class WAC_Maintenance_Mode {
             return;
         }
 
-        $title = $this->options['maintenance_title'] ?? 'We\'ll be right back';
-        $message = $this->options['maintenance_message'] ?? 'Our site is currently undergoing scheduled maintenance. Please check back shortly.';
+        $title = $this->options['maintenance_title'] ?? __( 'We\'ll be right back', 'devforge-admin-cleaner' );
+        $message = $this->options['maintenance_message'] ?? __( 'Our site is currently undergoing scheduled maintenance. Please check back shortly.', 'devforge-admin-cleaner' );
         $bg_color = $this->options['maintenance_bg_color'] ?? '#ffffff';
         $text_color = $this->options['maintenance_text_color'] ?? '#1d1d1f';
         $bg_image = $this->options['maintenance_bg_image'] ?? '';
