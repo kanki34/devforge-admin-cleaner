@@ -872,8 +872,8 @@ class WAC_Settings {
                 <div class="wac-settings-sidebar">
                     <!-- Upgrade Card -->
                     <div class="wac-sidebar-card">
-                        <h3>🚀 Upgrade to Pro</h3>
-                        <p>Unlock all premium features and take full control of your WordPress admin area.</p>
+                        <h3>🚀 <?php echo esc_html__( 'Upgrade to Pro', 'devforge-admin-cleaner' ); ?></h3>
+                        <p><?php echo esc_html__( 'Unlock all premium features and take full control of your WordPress admin area.', 'devforge-admin-cleaner' ); ?></p>
                         <ul style="margin:12px 0;padding-left:20px;font-size:12px;color:#86868b;line-height:1.8;list-style:none;padding-left:0">
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> White Label Admin</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Login Page Customizer</li>
@@ -893,8 +893,8 @@ class WAC_Settings {
                     
                     <!-- Professional Services Card -->
                     <div class="wac-sidebar-card" style="background:linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);border-color:#1d1d1f">
-                        <h3 style="color:#fff">💼 Professional Services</h3>
-                        <p style="color:rgba(255,255,255,0.8)">Need a custom website or WordPress help? Let's work together!</p>
+                        <h3 style="color:#fff">💼 <?php echo esc_html__( 'Professional Services', 'devforge-admin-cleaner' ); ?></h3>
+                        <p style="color:rgba(255,255,255,0.8)"><?php echo esc_html__( 'Need a custom website or WordPress help? Let\'s work together!', 'devforge-admin-cleaner' ); ?></p>
                         <ul style="margin:12px 0;padding-left:0;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.8;list-style:none">
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Website Design</li>
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Technical Issue Fixing</li>
@@ -902,7 +902,7 @@ class WAC_Settings {
                             <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> Hosting Migration</li>
                         </ul>
                         <a href="https://pro.fiverr.com/hbasoglu/" target="_blank" class="wac-sidebar-btn" style="background:#34c759;margin-top:12px">
-                            View My Services
+                            <?php echo esc_html__( 'View My Services', 'devforge-admin-cleaner' ); ?>
                         </a>
                     </div>
                 </div>
@@ -2806,9 +2806,9 @@ class WAC_Settings {
         
         // Sub-tabs for Security
         $sub_tabs = array(
-            'security-tweaks' => 'Security Tweaks',
-            'security-login-protection' => 'Login Protection',
-            'security-login-history' => 'Login History',
+            'security-tweaks' => __( 'Security Tweaks', 'devforge-admin-cleaner' ),
+            'security-login-protection' => __( 'Login Protection', 'devforge-admin-cleaner' ),
+            'security-login-history' => __( 'Login History', 'devforge-admin-cleaner' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2825,13 +2825,13 @@ class WAC_Settings {
         <!-- Security Tweaks -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Security Tweaks</h2>
+                <h2><?php echo esc_html__( 'Security Tweaks', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Harden your WordPress installation with these security options.
+                <?php echo esc_html__( 'Harden your WordPress installation with these security options.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
                 <?php foreach ( $security as $key => $s ) : ?>
@@ -2849,11 +2849,11 @@ class WAC_Settings {
                 <?php endforeach; ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Hide WordPress version</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Disable XML-RPC</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Disable file editing</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Disable author archives</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Force HTTPS admin</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Hide WordPress version', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable XML-RPC', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable file editing', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable author archives', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Force HTTPS admin', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2865,26 +2865,26 @@ class WAC_Settings {
         <!-- Login Protection -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Login Protection</h2>
+                <h2><?php echo esc_html__( 'Login Protection', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Protect your login page with rate limiting and custom URL.
+                <?php echo esc_html__( 'Protect your login page with rate limiting and custom URL.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <table class="form-table">
                 <tr>
-                    <th>Max Login Attempts</th>
+                    <th><?php echo esc_html__( 'Max Login Attempts', 'devforge-admin-cleaner' ); ?></th>
                     <td><input type="number" name="wac_settings[max_login_attempts]" value="<?php echo esc_attr( $opt['max_login_attempts'] ?? 5 ); ?>" min="1" max="20" style="width:70px;"></td>
                 </tr>
                 <tr>
-                    <th>Lockout (minutes)</th>
+                    <th><?php echo esc_html__( 'Lockout (minutes)', 'devforge-admin-cleaner' ); ?></th>
                     <td><input type="number" name="wac_settings[login_lockout_time]" value="<?php echo esc_attr( $opt['login_lockout_time'] ?? 15 ); ?>" min="1" max="60" style="width:70px;"></td>
                 </tr>
                 <tr>
-                    <th>Custom Login URL</th>
+                    <th><?php echo esc_html__( 'Custom Login URL', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <code><?php echo home_url( '/' ); ?></code>
                         <input type="text" name="wac_settings[custom_login_url]" value="<?php echo esc_attr( $opt['custom_login_url'] ?? '' ); ?>" style="width:120px;" placeholder="my-login">
@@ -2893,9 +2893,9 @@ class WAC_Settings {
             </table>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Limit failed login attempts</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Temporary IP lockout</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Custom login URL (hide wp-login.php)</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Limit failed login attempts', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Temporary IP lockout', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Custom login URL (hide wp-login.php)', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2907,22 +2907,22 @@ class WAC_Settings {
         <!-- Login History -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Login History</h2>
+                <h2><?php echo esc_html__( 'Login History', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Track all login attempts with IP address, browser, and device information.
+                <?php echo esc_html__( 'Track all login attempts with IP address, browser, and device information.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Login_History' ) ) : ?>
                 <?php WAC_Login_History::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Track successful and failed logins</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> IP address logging</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Browser and device detection</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Geolocation (country/city)</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Track successful and failed logins', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'IP address logging', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Browser and device detection', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Geolocation (country/city)', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
