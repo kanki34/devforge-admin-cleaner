@@ -181,7 +181,8 @@ class WAC_Settings {
                             jQuery(function($) {
                                 // Wait a bit more to ensure everything is ready
                                 setTimeout(function() {
-                                    wacShowNotification(<?php echo wp_json_encode( __( 'Settings saved successfully!', 'admin-toolkit' ) ); ?>, "success");
+                                    <?php $settings_message = __( 'Settings saved successfully!', 'admin-toolkit' ); ?>
+                                    wacShowNotification(<?php echo wp_json_encode( $settings_message, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ); ?>, "success");
                                 }, 500);
                             });
                         } else {
