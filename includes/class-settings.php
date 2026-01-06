@@ -792,13 +792,16 @@ class WAC_Settings {
                     'appearance', 'menus-roles', 'productivity', 'security', 'tools'
                 );
                 $show_pro_features = get_user_meta( get_current_user_id(), 'wac_view_pro_features', true ) === '1';
+                // Filter out Pro tabs if in Free view mode
+                if ( ! $is_pro && ! $show_pro_features ) {
+                    $tabs = array_filter( $tabs, function( $key ) use ( $pro_tabs ) {
+                        return ! in_array( $key, $pro_tabs );
+                    }, ARRAY_FILTER_USE_KEY );
+                }
                 foreach ( $tabs as $id => $name ) :
                     $url = admin_url( 'admin.php?page=admin-toolkit&tab=' . $id );
                     $class = ( $tab === $id ) ? 'nav-tab nav-tab-active' : 'nav-tab';
                     $is_pro_tab = in_array( $id, $pro_tabs );
-                    if ( ! $is_pro && ! $show_pro_features && $is_pro_tab ) {
-                        $class .= ' wac-pro-tab';
-                    }
                 ?>
                     <a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( $class ); ?>">
                         <?php echo esc_html( $name ); ?>
@@ -1355,6 +1358,9 @@ class WAC_Settings {
             $toggle.on('change', function() {
                 showPro = $(this).is(':checked');
                 
+                // Toggle view immediately (before AJAX)
+                applyViewMode();
+                
                 // Save preference via AJAX
                 $.ajax({
                     url: ajaxUrl,
@@ -1365,8 +1371,8 @@ class WAC_Settings {
                         nonce: '<?php echo esc_js( wp_create_nonce( 'wac_view_mode_nonce' ) ); ?>'
                     },
                     success: function() {
-                        // Toggle view immediately
-                        applyViewMode();
+                        // Reload page to update tab list
+                        window.location.reload();
                     }
                 });
             });
