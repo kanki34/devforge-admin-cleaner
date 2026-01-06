@@ -3103,7 +3103,7 @@ class WAC_Settings {
                 <li>Activity Logging</li>
                 <li>Export/Import</li>
             </ul>
-            <a href="<?php echo esc_url( wac_fs()->get_upgrade_url() ); ?>" class="button button-hero">Upgrade to Pro</a>
+            <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="button button-hero"><?php echo esc_html__( 'Upgrade to Pro', 'admin-toolkit' ); ?></a>
         </div>
         <?php
     }
@@ -3187,16 +3187,16 @@ class WAC_Settings {
             echo '</div>';
         } else {
             echo '<div class="wac-settings-section ' . ( ! $is_pro ? 'wac-locked' : '' ) . '">';
-            echo '<div class="wac-section-header"><h2>Admin Menu Editor</h2>';
-            if ( ! $is_pro ) {
-                echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">Unlock</a>';
+            echo '<div class="wac-section-header"><h2>' . esc_html__( 'Admin Menu Editor', 'admin-toolkit' ) . '</h2>';
+            if ( ! $is_pro && function_exists( 'wac_fs' ) && wac_fs() ) {
+                echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">' . esc_html__( 'Unlock', 'admin-toolkit' ) . '</a>';
             }
             echo '</div>';
-            echo '<p style="color:#86868b;margin:-8px 0 16px;font-size:13px">Drag to reorder menu items, rename them, change icons, and control visibility per role.</p>';
+            echo '<p style="color:#86868b;margin:-8px 0 16px;font-size:13px">' . esc_html__( 'Drag to reorder menu items, rename them, change icons, and control visibility per role.', 'admin-toolkit' ) . '</p>';
             echo '<div class="wac-feature-list">';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Drag & drop menu reordering</div>';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Rename any menu item</div>';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Change menu icons</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Drag & drop menu reordering', 'admin-toolkit' ) . '</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Rename any menu item', 'admin-toolkit' ) . '</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Change menu icons', 'admin-toolkit' ) . '</div>';
             echo '</div></div>';
         }
         ?>
@@ -3213,9 +3213,9 @@ class WAC_Settings {
             echo '</div>';
         } else {
             echo '<div class="wac-settings-section ' . ( ! $is_pro ? 'wac-locked' : '' ) . '">';
-            echo '<div class="wac-section-header"><h2>Role Editor <span class="wac-pro-badge-small">PRO</span></h2>';
-            if ( ! $is_pro ) {
-                echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">Unlock</a>';
+            echo '<div class="wac-section-header"><h2>' . esc_html__( 'Role Editor', 'admin-toolkit' ) . ' <span class="wac-pro-badge-small">PRO</span></h2>';
+            if ( ! $is_pro && function_exists( 'wac_fs' ) && wac_fs() ) {
+                echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">' . esc_html__( 'Unlock', 'admin-toolkit' ) . '</a>';
             }
             echo '</div>';
             echo '<p style="color:#86868b;margin:-8px 0 16px;font-size:13px">Create custom roles, clone existing ones, and manage all capabilities in detail.</p>';
