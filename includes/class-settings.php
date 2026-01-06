@@ -875,19 +875,19 @@ class WAC_Settings {
                         <h3>🚀 <?php echo esc_html__( 'Upgrade to Pro', 'devforge-admin-cleaner' ); ?></h3>
                         <p><?php echo esc_html__( 'Unlock all premium features and take full control of your WordPress admin area.', 'devforge-admin-cleaner' ); ?></p>
                         <ul style="margin:12px 0;padding-left:20px;font-size:12px;color:#86868b;line-height:1.8;list-style:none;padding-left:0">
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> White Label Admin</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Login Page Customizer</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Menu Editor</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Command Palette</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Activity Log</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Dashboard Widgets</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Admin Columns</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Role Editor</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Export/Import Settings</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> And much more...</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'White Label Admin', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Login Page Customizer', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Menu Editor', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Command Palette', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Activity Log', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Custom Dashboard Widgets', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Admin Columns', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Role Editor', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Export/Import Settings', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'And much more...', 'devforge-admin-cleaner' ); ?></li>
                         </ul>
                         <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-sidebar-btn wac-sidebar-btn-secondary">
-                            Upgrade Now →
+                            <?php echo esc_html__( 'Upgrade Now', 'devforge-admin-cleaner' ); ?> →
                         </a>
                     </div>
                     
@@ -896,10 +896,10 @@ class WAC_Settings {
                         <h3 style="color:#fff">💼 <?php echo esc_html__( 'Professional Services', 'devforge-admin-cleaner' ); ?></h3>
                         <p style="color:rgba(255,255,255,0.8)"><?php echo esc_html__( 'Need a custom website or WordPress help? Let\'s work together!', 'devforge-admin-cleaner' ); ?></p>
                         <ul style="margin:12px 0;padding-left:0;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.8;list-style:none">
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Custom Website Design</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Technical Issue Fixing</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> Malicious Code Cleanup</li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> Hosting Migration</li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Custom Website Design', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Technical Issue Fixing', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Malicious Code Cleanup', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Hosting Migration', 'devforge-admin-cleaner' ); ?></li>
                         </ul>
                         <a href="https://pro.fiverr.com/hbasoglu/" target="_blank" class="wac-sidebar-btn" style="background:#34c759;margin-top:12px">
                             <?php echo esc_html__( 'View My Services', 'devforge-admin-cleaner' ); ?>
