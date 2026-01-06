@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Admin Toolkit
  * Description: The ultimate WordPress admin customization toolkit.
- * Version: 2.5.0
+ * Version: 2.6.0
  * Author: DevForge
  * Author URI: https://profiles.wordpress.org/devforge/
  * License: GPL v2 or later
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Constants
-define( 'WAC_VERSION', '2.5.0' );
+define( 'WAC_VERSION', '2.6.0' );
 define( 'WAC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WAC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
