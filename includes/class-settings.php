@@ -181,7 +181,11 @@ class WAC_Settings {
                             jQuery(function($) {
                                 // Wait a bit more to ensure everything is ready
                                 setTimeout(function() {
-                                    wacShowNotification("<?php echo esc_js( __( 'Settings saved successfully!', 'admin-toolkit' ) ); ?>", "success");
+                                    <?php
+                                    $notification_message = __( 'Settings saved successfully!', 'admin-toolkit' );
+                                    $notification_message = esc_js( $notification_message );
+                                    ?>
+                                    wacShowNotification("<?php echo $notification_message; ?>", "success");
                                 }, 500);
                             });
                         } else {
