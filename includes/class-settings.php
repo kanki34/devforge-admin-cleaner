@@ -1354,11 +1354,15 @@ class WAC_Settings {
             // Apply initial view mode
             applyViewMode();
             
-            // Toggle view mode
-            $toggle.on('change', function() {
-                showPro = $(this).is(':checked');
+            // Toggle view mode - use both change and click events for better compatibility
+            $toggle.on('change click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                // Toggle view immediately (before AJAX)
+                var newShowPro = $(this).is(':checked');
+                showPro = newShowPro;
+                
+                // Apply view mode immediately for visual feedback
                 applyViewMode();
                 
                 // Save preference via AJAX
@@ -1370,11 +1374,18 @@ class WAC_Settings {
                         show_pro: showPro ? '1' : '0',
                         nonce: '<?php echo esc_js( wp_create_nonce( 'wac_view_mode_nonce' ) ); ?>'
                     },
-                    success: function() {
+                    success: function(response) {
                         // Reload page to update tab list
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('AJAX error:', error);
+                        // Reload anyway to ensure state is saved
                         window.location.reload();
                     }
                 });
+                
+                return false;
             });
             
         });
