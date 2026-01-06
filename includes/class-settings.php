@@ -3222,9 +3222,9 @@ class WAC_Settings {
             echo '<div class="wac-feature-list">';
             echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Create custom user roles', 'admin-toolkit' ) . '</div>';
             echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Clone existing roles', 'admin-toolkit' ) . '</div>';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Edit all 70+ capabilities</div>';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Delete unused roles</div>';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Visual capability editor</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Edit all 70+ capabilities', 'admin-toolkit' ) . '</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Delete unused roles', 'admin-toolkit' ) . '</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Visual capability editor', 'admin-toolkit' ) . '</div>';
             echo '</div></div>';
         }
         ?>
