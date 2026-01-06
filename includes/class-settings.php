@@ -2301,8 +2301,8 @@ class WAC_Settings {
             <?php if ( $is_pro ) : ?>
             <div class="wac-row" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #e5e5ea">
                 <div>
-                    <div class="wac-row-label" style="font-weight:600;margin-bottom:4px">Enable White Label</div>
-                    <p style="margin:0;font-size:11px;color:#86868b">Activate white label features to customize admin branding</p>
+                    <div class="wac-row-label" style="font-weight:600;margin-bottom:4px"><?php echo esc_html__( 'Enable White Label', 'devforge-admin-cleaner' ); ?></div>
+                    <p style="margin:0;font-size:11px;color:#86868b"><?php echo esc_html__( 'Activate white label features to customize admin branding', 'devforge-admin-cleaner' ); ?></p>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[white_label_enabled]" id="wac-white-label-enabled" value="1"
@@ -2313,44 +2313,44 @@ class WAC_Settings {
             <table class="form-table" id="wac-white-label-settings">
                 <tr>
                     <th colspan="2" style="padding:16px 0 8px;font-size:13px;font-weight:600;color:#1d1d1f;border-bottom:1px solid #e5e5ea;margin-bottom:16px">
-                        Admin Branding
+                        <?php echo esc_html__( 'Admin Branding', 'devforge-admin-cleaner' ); ?>
                     </th>
                 </tr>
                 <tr>
-                    <th style="padding-top:16px">Admin Logo</th>
+                    <th style="padding-top:16px"><?php echo esc_html__( 'Admin Logo', 'devforge-admin-cleaner' ); ?></th>
                     <td style="padding-top:16px">
                         <div class="wac-media-field">
                             <input type="url" name="wac_settings[custom_admin_logo]" id="wac-custom-admin-logo" value="<?php echo esc_url( $opt['custom_admin_logo'] ?? '' ); ?>" class="regular-text" placeholder="https://" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
-                            <button type="button" class="wac-media-btn" id="wac-admin-logo-btn" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>Select</button>
+                            <button type="button" class="wac-media-btn" id="wac-admin-logo-btn" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_html__( 'Select', 'devforge-admin-cleaner' ); ?></button>
                         </div>
                         <?php if ( ! empty( $opt['custom_admin_logo'] ) ) : ?>
                             <div class="wac-media-preview"><img src="<?php echo esc_url( $opt['custom_admin_logo'] ); ?>"></div>
                         <?php else : ?>
                             <div class="wac-media-preview"></div>
                         <?php endif; ?>
-                        <p class="description" style="margin-top:8px;font-size:11px;color:#86868b">Replace the WordPress logo in the admin menu and admin bar. Recommended: 200x50px transparent PNG</p>
+                        <p class="description" style="margin-top:8px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Replace the WordPress logo in the admin menu and admin bar. Recommended: 200x50px transparent PNG', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th>Hide WordPress Logo</th>
+                    <th><?php echo esc_html__( 'Hide WordPress Logo', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <label style="display:flex;align-items:center;gap:8px">
                             <input type="checkbox" name="wac_settings[hide_wp_logo]" id="wac-hide-wp-logo" value="1" <?php checked( ! empty( $opt['hide_wp_logo'] ) ); ?> <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
-                            <span>Remove WordPress logo from the admin bar</span>
+                            <span><?php echo esc_html__( 'Remove WordPress logo from the admin bar', 'devforge-admin-cleaner' ); ?></span>
                         </label>
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b">Hides the WordPress logo icon from the top admin bar</p>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Hides the WordPress logo icon from the top admin bar', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
                 <tr>
                     <th colspan="2" style="padding:24px 0 8px;font-size:13px;font-weight:600;color:#1d1d1f;border-bottom:1px solid #e5e5ea;margin-top:8px">
-                        Footer Branding
+                        <?php echo esc_html__( 'Footer Branding', 'devforge-admin-cleaner' ); ?>
                     </th>
                 </tr>
                 <tr>
-                    <th style="padding-top:16px">Footer Text</th>
+                    <th style="padding-top:16px"><?php echo esc_html__( 'Footer Text', 'devforge-admin-cleaner' ); ?></th>
                     <td style="padding-top:16px">
-                        <input type="text" name="wac_settings[custom_footer_text]" id="wac-custom-footer-text" value="<?php echo esc_attr( $opt['custom_footer_text'] ?? '' ); ?>" class="regular-text" placeholder="Powered by Your Company" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b">Replace the default "Thank you for creating with WordPress" footer text</p>
+                        <input type="text" name="wac_settings[custom_footer_text]" id="wac-custom-footer-text" value="<?php echo esc_attr( $opt['custom_footer_text'] ?? '' ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'Powered by Your Company', 'devforge-admin-cleaner' ); ?>" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Replace the default "Thank you for creating with WordPress" footer text', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
             </table>
@@ -2422,44 +2422,44 @@ class WAC_Settings {
                         <div style="margin-top:12px;padding-top:12px;border-top:1px solid #e5e5ea">
                             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px">Position</label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Position', 'devforge-admin-cleaner' ); ?></label>
                                     <select name="wac_settings[login_bg_position]" style="width:100%;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px">
-                                        <option value="center center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center center' ); ?>>Center</option>
-                                        <option value="center top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center top' ); ?>>Center Top</option>
-                                        <option value="center bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center bottom' ); ?>>Center Bottom</option>
-                                        <option value="left center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left center' ); ?>>Left Center</option>
-                                        <option value="right center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right center' ); ?>>Right Center</option>
-                                        <option value="left top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left top' ); ?>>Left Top</option>
-                                        <option value="right top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right top' ); ?>>Right Top</option>
-                                        <option value="left bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left bottom' ); ?>>Left Bottom</option>
-                                        <option value="right bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right bottom' ); ?>>Right Bottom</option>
+                                        <option value="center center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center center' ); ?>><?php echo esc_html__( 'Center', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="center top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center top' ); ?>><?php echo esc_html__( 'Center Top', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="center bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center bottom' ); ?>><?php echo esc_html__( 'Center Bottom', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="left center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left center' ); ?>><?php echo esc_html__( 'Left Center', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="right center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right center' ); ?>><?php echo esc_html__( 'Right Center', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="left top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left top' ); ?>><?php echo esc_html__( 'Left Top', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="right top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right top' ); ?>><?php echo esc_html__( 'Right Top', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="left bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left bottom' ); ?>><?php echo esc_html__( 'Left Bottom', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="right bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right bottom' ); ?>><?php echo esc_html__( 'Right Bottom', 'devforge-admin-cleaner' ); ?></option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px">Size</label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Size', 'devforge-admin-cleaner' ); ?></label>
                                     <select name="wac_settings[login_bg_size]" style="width:100%;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px">
-                                        <option value="cover" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'cover' ); ?>>Cover</option>
-                                        <option value="contain" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'contain' ); ?>>Contain</option>
-                                        <option value="auto" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'auto' ); ?>>Auto</option>
+                                        <option value="cover" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'cover' ); ?>><?php echo esc_html__( 'Cover', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="contain" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'contain' ); ?>><?php echo esc_html__( 'Contain', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="auto" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'auto' ); ?>><?php echo esc_html__( 'Auto', 'devforge-admin-cleaner' ); ?></option>
                                     </select>
                                 </div>
                             </div>
                             <div style="margin-bottom:12px">
-                                <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px">Repeat</label>
+                                <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Repeat', 'devforge-admin-cleaner' ); ?></label>
                                 <select name="wac_settings[login_bg_repeat]" style="width:100%;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px">
-                                    <option value="no-repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'no-repeat' ); ?>>No Repeat</option>
-                                    <option value="repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat' ); ?>>Repeat</option>
-                                    <option value="repeat-x" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-x' ); ?>>Repeat X</option>
-                                    <option value="repeat-y" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-y' ); ?>>Repeat Y</option>
+                                    <option value="no-repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'no-repeat' ); ?>><?php echo esc_html__( 'No Repeat', 'devforge-admin-cleaner' ); ?></option>
+                                    <option value="repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat' ); ?>><?php echo esc_html__( 'Repeat', 'devforge-admin-cleaner' ); ?></option>
+                                    <option value="repeat-x" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-x' ); ?>><?php echo esc_html__( 'Repeat X', 'devforge-admin-cleaner' ); ?></option>
+                                    <option value="repeat-y" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-y' ); ?>><?php echo esc_html__( 'Repeat Y', 'devforge-admin-cleaner' ); ?></option>
                                 </select>
                             </div>
                             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px">Overlay Color</label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Overlay Color', 'devforge-admin-cleaner' ); ?></label>
                                     <input type="color" name="wac_settings[login_bg_overlay]" value="<?php echo esc_attr( $opt['login_bg_overlay'] ?? '#000000' ); ?>" style="width:100%;height:36px;border:1px solid #d1d1d6;border-radius:6px;cursor:pointer">
                                 </div>
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px">Overlay Opacity</label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Overlay Opacity', 'devforge-admin-cleaner' ); ?></label>
                                     <div style="display:flex;align-items:center;gap:8px">
                                         <input type="range" name="wac_settings[login_bg_overlay_opacity]" min="0" max="100" value="<?php echo esc_attr( $opt['login_bg_overlay_opacity'] ?? 0 ); ?>" style="flex:1" oninput="this.nextElementSibling.value=this.value">
                                         <input type="number" min="0" max="100" value="<?php echo esc_attr( $opt['login_bg_overlay_opacity'] ?? 0 ); ?>" style="width:60px;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px" oninput="this.previousElementSibling.value=this.value">
@@ -2494,63 +2494,63 @@ class WAC_Settings {
                     </td>
                 </tr>
                 <tr>
-                    <th>Login Button Text</th>
+                    <th><?php echo esc_html__( 'Login Button Text', 'devforge-admin-cleaner' ); ?></th>
                     <td>
-                        <input type="text" name="wac_settings[login_btn_text]" value="<?php echo esc_attr( $opt['login_btn_text'] ?? 'Log In' ); ?>" class="regular-text" placeholder="Log In">
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b">Custom text for the login button</p>
+                        <input type="text" name="wac_settings[login_btn_text]" value="<?php echo esc_attr( $opt['login_btn_text'] ?? __( 'Log In', 'devforge-admin-cleaner' ) ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'Log In', 'devforge-admin-cleaner' ); ?>">
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Custom text for the login button', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th>Form Settings</th>
+                    <th><?php echo esc_html__( 'Form Settings', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:12px">
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_remember]" value="1" <?php checked( ! empty( $opt['login_hide_remember'] ) ); ?>>
-                                <span>Hide "Remember Me" checkbox</span>
+                                <span><?php echo esc_html__( 'Hide "Remember Me" checkbox', 'devforge-admin-cleaner' ); ?></span>
                             </label>
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_lost_password]" value="1" <?php checked( ! empty( $opt['login_hide_lost_password'] ) ); ?>>
-                                <span>Hide "Lost your password?" link</span>
+                                <span><?php echo esc_html__( 'Hide "Lost your password?" link', 'devforge-admin-cleaner' ); ?></span>
                             </label>
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_back_to_site]" value="1" <?php checked( ! empty( $opt['login_hide_back_to_site'] ) ); ?>>
-                                <span>Hide "Back to [Site]" link</span>
+                                <span><?php echo esc_html__( 'Hide "Back to [Site]" link', 'devforge-admin-cleaner' ); ?></span>
                             </label>
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_register]" value="1" <?php checked( ! empty( $opt['login_hide_register'] ) ); ?>>
-                                <span>Hide "Register" link</span>
+                                <span><?php echo esc_html__( 'Hide "Register" link', 'devforge-admin-cleaner' ); ?></span>
                             </label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th>Form Width</th>
+                    <th><?php echo esc_html__( 'Form Width', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <input type="number" name="wac_settings[login_form_width]" value="<?php echo esc_attr( $opt['login_form_width'] ?? '320' ); ?>" min="280" max="600" step="10" style="width:80px"> px
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b">Login form width (default: 320px)</p>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Login form width (default: 320px)', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th>Form Border Radius</th>
+                    <th><?php echo esc_html__( 'Form Border Radius', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <input type="number" name="wac_settings[login_form_radius]" value="<?php echo esc_attr( $opt['login_form_radius'] ?? '0' ); ?>" min="0" max="20" step="1" style="width:80px"> px
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b">Border radius for login form (0-20px)</p>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Border radius for login form (0-20px)', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th>Form Shadow</th>
+                    <th><?php echo esc_html__( 'Form Shadow', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <label style="display:flex;align-items:center;gap:8px">
                             <input type="checkbox" name="wac_settings[login_form_shadow]" value="1" <?php checked( ! empty( $opt['login_form_shadow'] ) ); ?>>
-                            <span>Enable box shadow on login form</span>
+                            <span><?php echo esc_html__( 'Enable box shadow on login form', 'devforge-admin-cleaner' ); ?></span>
                         </label>
                     </td>
                 </tr>
                 <tr>
-                    <th>Custom Login Message</th>
+                    <th><?php echo esc_html__( 'Custom Login Message', 'devforge-admin-cleaner' ); ?></th>
                     <td>
-                        <textarea name="wac_settings[login_custom_message]" rows="3" class="large-text" placeholder="Enter a custom message to display above the login form"><?php echo esc_textarea( $opt['login_custom_message'] ?? '' ); ?></textarea>
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b">Optional message displayed above the login form</p>
+                        <textarea name="wac_settings[login_custom_message]" rows="3" class="large-text" placeholder="<?php echo esc_attr__( 'Enter a custom message to display above the login form', 'devforge-admin-cleaner' ); ?>"><?php echo esc_textarea( $opt['login_custom_message'] ?? '' ); ?></textarea>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Optional message displayed above the login form', 'devforge-admin-cleaner' ); ?></p>
                     </td>
                 </tr>
             </table>
@@ -2640,19 +2640,19 @@ class WAC_Settings {
             
             <table class="form-table" id="wac-maintenance-fields">
                 <tr>
-                    <th>Title</th>
-                    <td><input type="text" name="wac_settings[maintenance_title]" value="<?php echo esc_attr( $opt['maintenance_title'] ?? '' ); ?>" class="regular-text" placeholder="We'll be right back" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>></td>
+                    <th><?php echo esc_html__( 'Title', 'devforge-admin-cleaner' ); ?></th>
+                    <td><input type="text" name="wac_settings[maintenance_title]" value="<?php echo esc_attr( $opt['maintenance_title'] ?? '' ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'We\'ll be right back', 'devforge-admin-cleaner' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>></td>
                 </tr>
                 <tr>
-                    <th>Message</th>
-                    <td><textarea name="wac_settings[maintenance_message]" rows="2" class="large-text" placeholder="Our site is currently undergoing scheduled maintenance." <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_textarea( $opt['maintenance_message'] ?? '' ); ?></textarea></td>
+                    <th><?php echo esc_html__( 'Message', 'devforge-admin-cleaner' ); ?></th>
+                    <td><textarea name="wac_settings[maintenance_message]" rows="2" class="large-text" placeholder="<?php echo esc_attr__( 'Our site is currently undergoing scheduled maintenance.', 'devforge-admin-cleaner' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_textarea( $opt['maintenance_message'] ?? '' ); ?></textarea></td>
                 </tr>
                 <tr>
-                    <th>Background</th>
+                    <th><?php echo esc_html__( 'Background', 'devforge-admin-cleaner' ); ?></th>
                     <td>
                         <div class="wac-color-row">
                             <div class="wac-color-item">
-                                <label>Color</label>
+                                <label><?php echo esc_html__( 'Color', 'devforge-admin-cleaner' ); ?></label>
                                 <input type="color" name="wac_settings[maintenance_bg_color]" value="<?php echo esc_attr( $opt['maintenance_bg_color'] ?? '#ffffff' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>>
                             </div>
                             <div class="wac-color-item">
@@ -2703,9 +2703,9 @@ class WAC_Settings {
     private function tab_tools( $opt, $is_pro ) {
         // Sub-tabs for Tools
         $sub_tabs = array(
-            'tools-activity-log' => 'Activity Log',
-            'tools-export-import' => 'Export/Import',
-            'tools-reset' => 'Reset',
+            'tools-activity-log' => __( 'Activity Log', 'devforge-admin-cleaner' ),
+            'tools-export-import' => __( 'Export/Import', 'devforge-admin-cleaner' ),
+            'tools-reset' => __( 'Reset', 'devforge-admin-cleaner' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2722,13 +2722,13 @@ class WAC_Settings {
         <!-- Activity Log -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Activity Log</h2>
+                <h2><?php echo esc_html__( 'Activity Log', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Track all admin actions: post edits, plugin changes, user management, and more.
+                <?php echo esc_html__( 'Track all admin actions: post edits, plugin changes, user management, and more.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Activity_Log' ) ) : ?>
                 <?php WAC_Activity_Log::render_ui(); ?>
@@ -2748,13 +2748,13 @@ class WAC_Settings {
         <!-- Export/Import -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Export / Import</h2>
+                <h2><?php echo esc_html__( 'Export / Import', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Backup and migrate your settings between sites.
+                <?php echo esc_html__( 'Backup and migrate your settings between sites.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-export-import-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -2784,16 +2784,16 @@ class WAC_Settings {
         <!-- Tools Reset Sub-tab -->
         <div id="tools-reset" class="wac-sub-tab-content <?php echo $active_sub_tab === 'tools-reset' ? 'active' : ''; ?>">
         <div class="wac-settings-section">
-            <h2>Reset</h2>
-            <p style="margin:0 0 12px;color:#86868b;">Reset all settings to defaults. This includes Menu Editor customizations.</p>
+            <h2><?php echo esc_html__( 'Reset', 'devforge-admin-cleaner' ); ?></h2>
+            <p style="margin:0 0 12px;color:#86868b;"><?php echo esc_html__( 'Reset all settings to defaults. This includes Menu Editor customizations.', 'devforge-admin-cleaner' ); ?></p>
             <?php if ( isset( $_GET['reset'] ) && $_GET['reset'] == '1' ) : ?>
                 <div class="notice notice-success is-dismissible" style="margin:12px 0;">
-                    <p>All settings have been reset to defaults.</p>
+                    <p><?php echo esc_html__( 'All settings have been reset to defaults.', 'devforge-admin-cleaner' ); ?></p>
                 </div>
             <?php endif; ?>
             <form method="post" style="display:inline">
                 <?php wp_nonce_field( 'wac_reset', '_wac_reset' ); ?>
-                <button type="submit" name="wac_reset" class="button button-primary" onclick="return confirm('Are you sure? This will reset ALL settings including Menu Editor customizations. This cannot be undone.');">Reset All Settings</button>
+                <button type="submit" name="wac_reset" class="button button-primary" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This will reset ALL settings including Menu Editor customizations. This cannot be undone.', 'devforge-admin-cleaner' ) ); ?>');"><?php echo esc_html__( 'Reset All Settings', 'devforge-admin-cleaner' ); ?></button>
             </form>
         </div>
         </div>
