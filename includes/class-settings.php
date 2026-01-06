@@ -181,7 +181,7 @@ class WAC_Settings {
                             jQuery(function($) {
                                 // Wait a bit more to ensure everything is ready
                                 setTimeout(function() {
-                                    wacShowNotification("Settings saved successfully!", "success");
+                                    wacShowNotification("<?php echo esc_js( __( 'Settings saved successfully!', 'devforge-admin-cleaner' ) ); ?>", "success");
                                 }, 500);
                             });
                         } else {
@@ -863,7 +863,7 @@ class WAC_Settings {
 
                 <?php if ( ! in_array( $tab, array( 'tools' ) ) ) : ?>
                 <div class="submit">
-                    <?php submit_button( 'Save Changes', 'primary', 'submit', false ); ?>
+                    <?php submit_button( __( 'Save Changes', 'devforge-admin-cleaner' ), 'primary', 'submit', false ); ?>
                 </div>
                 <?php endif; ?>
             </form>
@@ -1384,23 +1384,23 @@ class WAC_Settings {
         <!-- Dashboard Widget Builder -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Custom Widgets</h2>
+                <h2><?php echo esc_html__( 'Custom Widgets', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Create custom dashboard widgets with text, RSS feeds, stats, shortcuts, or personal notes.
+                <?php echo esc_html__( 'Create custom dashboard widgets with text, RSS feeds, stats, shortcuts, or personal notes.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Dashboard_Builder' ) ) : ?>
                 <?php WAC_Dashboard_Builder::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Text/HTML widgets</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> RSS feed widgets</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Quick stats widget</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Personal notes widget</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Role-based visibility</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Text/HTML widgets', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'RSS feed widgets', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Quick stats widget', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Personal notes widget', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Role-based visibility', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -1408,19 +1408,19 @@ class WAC_Settings {
         <!-- Admin Announcements -->
         <div class="wac-settings-section">
             <div class="wac-section-header">
-                <h2>Announcements</h2>
+                <h2><?php echo esc_html__( 'Announcements', 'devforge-admin-cleaner' ); ?></h2>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Create announcements to show to all admin users on the dashboard or as notices.
+                <?php echo esc_html__( 'Create announcements to show to all admin users on the dashboard or as notices.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( class_exists( 'WAC_Admin_Announcements' ) ) : ?>
                 <?php WAC_Admin_Announcements::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Dashboard widget announcements</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Admin notice bar announcements</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Multiple styles (info, success, warning, error)</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Dismissible or persistent options</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dashboard widget announcements', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Admin notice bar announcements', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Multiple styles (info, success, warning, error)', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dismissible or persistent options', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -1562,7 +1562,7 @@ class WAC_Settings {
                 
                 // Display core widgets
                 if ( ! empty( $core_widgets ) ) {
-                    echo '<div style="margin-bottom:16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">WordPress Core</strong></div>';
+                    echo '<div style="margin-bottom:16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'WordPress Core', 'devforge-admin-cleaner' ) . '</strong></div>';
                     foreach ( $core_widgets as $id => $label ) : ?>
                         <label class="wac-checkbox-item">
                             <span><?php echo esc_html( $label ); ?></span>
@@ -1584,7 +1584,7 @@ class WAC_Settings {
                         $filtered_plugin_widgets[ $id ] = $label;
                     }
                     if ( ! empty( $filtered_plugin_widgets ) ) {
-                        echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">Plugins & Themes</strong></div>';
+                        echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Plugins & Themes', 'devforge-admin-cleaner' ) . '</strong></div>';
                         foreach ( $filtered_plugin_widgets as $id => $label ) : 
                             // Check if this widget should be treated as custom (user wants to delete it)
                             // If it's in custom_dashboard_widgets, show delete button
@@ -1597,7 +1597,7 @@ class WAC_Settings {
                                            value="<?php echo esc_attr( $id ); ?>" <?php checked( in_array( $id, $widgets ) ); ?>>
                                     <button type="button" class="wac-move-to-custom-widget" data-widget-id="<?php echo esc_attr( $id ); ?>" 
                                             style="background:none;border:none;color:#ff3b30;cursor:pointer;padding:4px;font-size:16px;line-height:1;opacity:0.7;transition:opacity 0.2s" 
-                                            title="Move to Custom Widgets and delete">
+                                            title="<?php echo esc_attr__( 'Move to Custom Widgets and delete', 'devforge-admin-cleaner' ); ?>">
                                         ×
                                     </button>
                                 </div>
@@ -1608,7 +1608,7 @@ class WAC_Settings {
                 
                 // Display theme widgets
                 if ( ! empty( $theme_widgets ) ) {
-                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">Theme Widgets</strong></div>';
+                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Theme Widgets', 'devforge-admin-cleaner' ) . '</strong></div>';
                     foreach ( $theme_widgets as $id => $label ) : ?>
                         <label class="wac-checkbox-item">
                             <span><?php echo esc_html( $label ); ?> <small style="color:#86868b;font-size:11px">(<?php echo esc_html( $id ); ?>)</small></span>
@@ -1625,7 +1625,7 @@ class WAC_Settings {
                 // because they might be custom widgets that were hidden but not yet saved to custom_dashboard_widgets
                 $has_custom_section = false;
                 if ( ! empty( $custom_widgets_db ) && is_array( $custom_widgets_db ) ) {
-                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">Custom Widgets</strong></div>';
+                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Custom Widgets', 'devforge-admin-cleaner' ) . '</strong></div>';
                     $has_custom_section = true;
                     foreach ( $custom_widgets_db as $custom_id ) {
                         if ( ! empty( $custom_id ) ) {
@@ -1642,7 +1642,7 @@ class WAC_Settings {
                                            value="<?php echo esc_attr( $custom_id ); ?>" <?php checked( $is_hidden, true ); ?>>
                                     <button type="button" class="wac-delete-custom-widget" data-widget-id="<?php echo esc_attr( $custom_id ); ?>" 
                                             style="background:none;border:none;color:#ff3b30;cursor:pointer;padding:4px;font-size:16px;line-height:1;opacity:0.7;transition:opacity 0.2s" 
-                                            title="Delete this custom widget">
+                                            title="<?php echo esc_attr__( 'Delete this custom widget', 'devforge-admin-cleaner' ); ?>">
                                         ×
                                     </button>
                                 </div>
@@ -1662,13 +1662,13 @@ class WAC_Settings {
                 // If no widgets found
                 if ( empty( $core_widgets ) && empty( $plugin_widgets ) && empty( $theme_widgets ) && empty( $custom_widgets_db ) ) {
                     echo '<div style="padding:16px;background:#fff3cd;border:1px solid #ffc107;border-radius:8px;margin:16px 0">';
-                    echo '<p style="margin:0 0 8px;font-size:13px;color:#856404;font-weight:500">No widgets detected yet</p>';
-                    echo '<p style="margin:0;font-size:12px;color:#856404">To see all dashboard widgets (including Elementor, WooCommerce, etc.):</p>';
+                    echo '<p style="margin:0 0 8px;font-size:13px;color:#856404;font-weight:500">' . esc_html__( 'No widgets detected yet', 'devforge-admin-cleaner' ) . '</p>';
+                    echo '<p style="margin:0;font-size:12px;color:#856404">' . esc_html__( 'To see all dashboard widgets (including Elementor, WooCommerce, etc.):', 'devforge-admin-cleaner' ) . '</p>';
                     echo '<ol style="margin:8px 0 0 20px;padding:0;font-size:12px;color:#856404">';
-                    echo '<li>Visit the <a href="' . admin_url() . '" target="_blank" style="color:#007aff">Dashboard page</a></li>';
-                    echo '<li>Return to this page - widgets will appear automatically</li>';
+                    echo '<li>' . sprintf( esc_html__( 'Visit the %s', 'devforge-admin-cleaner' ), '<a href="' . esc_url( admin_url() ) . '" target="_blank" style="color:#007aff">' . esc_html__( 'Dashboard page', 'devforge-admin-cleaner' ) . '</a>' ) . '</li>';
+                    echo '<li>' . esc_html__( 'Return to this page - widgets will appear automatically', 'devforge-admin-cleaner' ) . '</li>';
                     echo '</ol>';
-                    echo '<p style="margin:8px 0 0;font-size:12px;color:#856404">Or add widget IDs manually below.</p>';
+                    echo '<p style="margin:8px 0 0;font-size:12px;color:#856404">' . esc_html__( 'Or add widget IDs manually below.', 'devforge-admin-cleaner' ) . '</p>';
                     echo '</div>';
                 }
                 ?>
@@ -1676,14 +1676,14 @@ class WAC_Settings {
             
             <!-- Manual Widget ID Input -->
             <div style="margin-top:24px;padding-top:24px;border-top:1px solid #e5e5ea">
-                <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">Add Custom Widget ID</h3>
+                <h3 style="font-size:13px;font-weight:600;margin:0 0 8px"><?php echo esc_html__( 'Add Custom Widget ID', 'devforge-admin-cleaner' ); ?></h3>
                 <p style="color:#86868b;font-size:12px;margin:0 0 12px">
-                    If a widget is not listed above, you can hide it by entering its widget ID. Common IDs: <code>e-dashboard-overview</code> (Elementor), <code>woocommerce_dashboard_status</code> (WooCommerce)
+                    <?php echo esc_html__( 'If a widget is not listed above, you can hide it by entering its widget ID. Common IDs:', 'devforge-admin-cleaner' ); ?> <code>e-dashboard-overview</code> (<?php echo esc_html__( 'Elementor', 'devforge-admin-cleaner' ); ?>), <code>woocommerce_dashboard_status</code> (<?php echo esc_html__( 'WooCommerce', 'devforge-admin-cleaner' ); ?>)
                 </p>
                 <div style="display:flex;gap:8px;align-items:flex-start">
-                    <input type="text" id="wac-custom-widget-id" placeholder="e.g., e-dashboard-overview" 
+                    <input type="text" id="wac-custom-widget-id" placeholder="<?php echo esc_attr__( 'e.g., e-dashboard-overview', 'devforge-admin-cleaner' ); ?>" 
                            style="flex:1;padding:8px 12px;border:1px solid #d1d1d6;border-radius:6px;font-size:13px">
-                    <button type="button" class="wac-btn wac-btn-secondary" id="wac-add-custom-widget" style="white-space:nowrap">Add Widget</button>
+                    <button type="button" class="wac-btn wac-btn-secondary" id="wac-add-custom-widget" style="white-space:nowrap"><?php echo esc_html__( 'Add Widget', 'devforge-admin-cleaner' ); ?></button>
                 </div>
                 <div id="wac-custom-widgets-list" style="margin-top:12px">
                     <?php
@@ -1724,13 +1724,13 @@ class WAC_Settings {
                                 '<input type="checkbox" name="wac_settings[hide_dashboard_widgets][]" value="' + $('<div>').text(widgetId).html() + '">' +
                                 '<button type="button" class="wac-delete-custom-widget" data-widget-id="' + $('<div>').text(widgetId).html() + '" ' +
                                 'style="background:none;border:none;color:#ff3b30;cursor:pointer;padding:4px;font-size:16px;line-height:1;opacity:0.7;transition:opacity 0.2s" ' +
-                                'title="Delete this custom widget">×</button>' +
+                                'title="<?php echo esc_js( __( 'Delete this custom widget', 'devforge-admin-cleaner' ) ); ?>">×</button>' +
                                 '</div>' +
                                 '<input type="hidden" name="wac_settings[custom_dashboard_widgets][]" value="' + $('<div>').text(widgetId).html() + '">');
                             $customSection.after($newLabel);
                             $('#wac-custom-widget-id').val('');
                         } else {
-                            alert('This widget ID is already added.');
+                            alert('<?php echo esc_js( __( 'This widget ID is already added.', 'devforge-admin-cleaner' ) ); ?>');
                         }
                     }
                 });
@@ -1834,7 +1834,7 @@ class WAC_Settings {
                     var widgetId = $btn.data('widget-id');
                     var $label = $btn.closest('label.wac-checkbox-item');
                     
-                    if (confirm('Are you sure you want to remove "' + widgetId + '" from custom widgets?')) {
+                    if (confirm('<?php echo esc_js( __( 'Are you sure you want to remove', 'devforge-admin-cleaner' ) ); ?> "' + widgetId + '" <?php echo esc_js( __( 'from custom widgets?', 'devforge-admin-cleaner' ) ); ?>')) {
                         // CRITICAL: Remove hidden input FIRST before removing the label
                         // This ensures the widget ID is not sent in form submission
                         $label.find('input[type="hidden"][name="wac_settings[custom_dashboard_widgets][]"]').remove();
@@ -1876,7 +1876,7 @@ class WAC_Settings {
                     var $label = $btn.closest('label.wac-checkbox-item');
                     var $checkbox = $label.find('input[type="checkbox"][name="wac_settings[hide_dashboard_widgets][]"]');
                     
-                    if (confirm('Move "' + widgetId + '" to Custom Widgets and delete it?')) {
+                    if (confirm('<?php echo esc_js( __( 'Move', 'devforge-admin-cleaner' ) ); ?> "' + widgetId + '" <?php echo esc_js( __( 'to Custom Widgets and delete it?', 'devforge-admin-cleaner' ) ); ?>')) {
                         // Add hidden input to mark this widget as custom
                         $label.append('<input type="hidden" name="wac_settings[custom_dashboard_widgets][]" value="' + $('<div>').text(widgetId).html() + '">');
                         
@@ -1931,12 +1931,12 @@ class WAC_Settings {
             <div class="wac-checkbox-list">
                 <?php
                 $bar_items = array(
-                    'wp-logo'     => 'WordPress Logo',
-                    'site-name'   => 'Site Name',
-                    'updates'     => 'Updates',
-                    'comments'    => 'Comments',
-                    'new-content' => 'New (+)',
-                    'search'      => 'Search',
+                    'wp-logo'     => __( 'WordPress Logo', 'devforge-admin-cleaner' ),
+                    'site-name'   => __( 'Site Name', 'devforge-admin-cleaner' ),
+                    'updates'     => __( 'Updates', 'devforge-admin-cleaner' ),
+                    'comments'    => __( 'Comments', 'devforge-admin-cleaner' ),
+                    'new-content' => __( 'New (+)', 'devforge-admin-cleaner' ),
+                    'search'      => __( 'Search', 'devforge-admin-cleaner' ),
                 );
                 foreach ( $bar_items as $id => $label ) : ?>
                     <label class="wac-checkbox-item">
@@ -1950,8 +1950,8 @@ class WAC_Settings {
             <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e5e5ea">
                 <label class="wac-checkbox-item">
                     <span>
-                        <strong>Hide Admin Toolbar in wp-admin</strong>
-                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px">Completely hide the admin toolbar in WordPress admin area (no space left)</small>
+                        <strong><?php echo esc_html__( 'Hide Admin Toolbar in wp-admin', 'devforge-admin-cleaner' ); ?></strong>
+                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px"><?php echo esc_html__( 'Completely hide the admin toolbar in WordPress admin area (no space left)', 'devforge-admin-cleaner' ); ?></small>
                     </span>
                     <input type="hidden" name="wac_settings[hide_admin_bar_in_admin]" value="0">
                     <input type="checkbox" name="wac_settings[hide_admin_bar_in_admin]" value="1" 
@@ -1960,8 +1960,8 @@ class WAC_Settings {
                 
                 <label class="wac-checkbox-item" style="margin-top:12px">
                     <span>
-                        <strong>Hide Admin Toolbar on Frontend</strong>
-                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px">Completely hide the admin toolbar on frontend for all users including admins (no space left, content starts from top)</small>
+                        <strong><?php echo esc_html__( 'Hide Admin Toolbar on Frontend', 'devforge-admin-cleaner' ); ?></strong>
+                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px"><?php echo esc_html__( 'Completely hide the admin toolbar on frontend for all users including admins (no space left, content starts from top)', 'devforge-admin-cleaner' ); ?></small>
                     </span>
                     <input type="hidden" name="wac_settings[hide_admin_bar_frontend]" value="0">
                     <input type="checkbox" name="wac_settings[hide_admin_bar_frontend]" value="1" 
@@ -2003,10 +2003,10 @@ class WAC_Settings {
     private function tab_productivity( $opt, $is_pro ) {
         // Sub-tabs for Productivity
         $sub_tabs = array(
-            'productivity-command-palette' => 'Command Palette',
-            'productivity-duplicate' => 'Duplicate Posts',
-            'productivity-columns' => 'Admin Columns',
-            'productivity-heartbeat' => 'Heartbeat Control',
+            'productivity-command-palette' => __( 'Command Palette', 'devforge-admin-cleaner' ),
+            'productivity-duplicate' => __( 'Duplicate Posts', 'devforge-admin-cleaner' ),
+            'productivity-columns' => __( 'Admin Columns', 'devforge-admin-cleaner' ),
+            'productivity-heartbeat' => __( 'Heartbeat Control', 'devforge-admin-cleaner' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2023,19 +2023,19 @@ class WAC_Settings {
         <!-- Command Palette -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Command Palette</h2>
+                <h2><?php echo esc_html__( 'Command Palette', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Press <kbd style="background:#e5e5ea;padding:2px 6px;border-radius:4px;font-size:11px">⌘/Ctrl + Shift + P</kbd> anywhere in admin to quickly search posts, pages, users, and navigate to any setting.
+                <?php echo esc_html__( 'Press', 'devforge-admin-cleaner' ); ?> <kbd style="background:#e5e5ea;padding:2px 6px;border-radius:4px;font-size:11px">⌘/Ctrl + Shift + P</kbd> <?php echo esc_html__( 'anywhere in admin to quickly search posts, pages, users, and navigate to any setting.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-row">
                 <div class="wac-row-label">
-                    Enable Command Palette
-                    <small>Uncheck to disable the command palette completely</small>
+                    <?php echo esc_html__( 'Enable Command Palette', 'devforge-admin-cleaner' ); ?>
+                    <small><?php echo esc_html__( 'Uncheck to disable the command palette completely', 'devforge-admin-cleaner' ); ?></small>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[command_palette_enabled]" value="1"
@@ -2045,10 +2045,10 @@ class WAC_Settings {
             </div>
             <div class="wac-row" style="margin-top:12px">
                 <div class="wac-row-label">
-                    Show search icon in admin bar
-                    <small>Display ⌘⇧P button in the top admin bar</small>
+                    <?php echo esc_html__( 'Show search icon in admin bar', 'devforge-admin-cleaner' ); ?>
+                    <small><?php echo esc_html__( 'Display ⌘⇧P button in the top admin bar', 'devforge-admin-cleaner' ); ?></small>
                     <?php if ( ! empty( $opt['hide_admin_bar_in_admin'] ) ) : ?>
-                        <small style="display:block;color:#ff3b30;margin-top:4px">⚠️ Admin bar is hidden - this option is disabled</small>
+                        <small style="display:block;color:#ff3b30;margin-top:4px">⚠️ <?php echo esc_html__( 'Admin bar is hidden - this option is disabled', 'devforge-admin-cleaner' ); ?></small>
                     <?php endif; ?>
                 </div>
                 <label class="wac-switch">
@@ -2063,7 +2063,7 @@ class WAC_Settings {
                 <img src="<?php echo WAC_PLUGIN_URL; ?>assets/img/preview-command.png" alt="" onerror="this.style.display='none'">
                 <div class="wac-preview-placeholder" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:40px 20px;text-align:center">
                     <span class="dashicons dashicons-search" style="font-size:48px;color:#86868b"></span>
-                    <p style="margin:0">Search anything with Cmd/Ctrl + Shift + P</p>
+                    <p style="margin:0"><?php echo esc_html__( 'Search anything with Cmd/Ctrl + Shift + P', 'devforge-admin-cleaner' ); ?></p>
                 </div>
             </div>
             <?php endif; ?>
@@ -2076,13 +2076,13 @@ class WAC_Settings {
         <!-- Duplicate Posts -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Duplicate Posts</h2>
+                <h2><?php echo esc_html__( 'Duplicate Posts', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                One-click duplication for posts, pages, and custom post types. Copies all content, meta, taxonomies, and featured image.
+                <?php echo esc_html__( 'One-click duplication for posts, pages, and custom post types. Copies all content, meta, taxonomies, and featured image.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-row">
@@ -2098,8 +2098,8 @@ class WAC_Settings {
             </div>
             <div class="wac-row">
                 <div class="wac-row-label">
-                    Show in Admin Bar
-                    <small>Add duplicate button when editing posts</small>
+                    <?php echo esc_html__( 'Show in Admin Bar', 'devforge-admin-cleaner' ); ?>
+                    <small><?php echo esc_html__( 'Add duplicate button when editing posts', 'devforge-admin-cleaner' ); ?></small>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[duplicate_admin_bar]" value="1"
@@ -2109,8 +2109,8 @@ class WAC_Settings {
             </div>
             <div class="wac-row">
                 <div class="wac-row-label">
-                    Enable Bulk Duplicate
-                    <small>Add to bulk actions dropdown</small>
+                    <?php echo esc_html__( 'Enable Bulk Duplicate', 'devforge-admin-cleaner' ); ?>
+                    <small><?php echo esc_html__( 'Add to bulk actions dropdown', 'devforge-admin-cleaner' ); ?></small>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[duplicate_bulk]" value="1"
@@ -2122,19 +2122,19 @@ class WAC_Settings {
             <div class="wac-feature-list">
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    One-click duplicate from post list
+                    <?php echo esc_html__( 'One-click duplicate from post list', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Duplicate button in admin bar when editing
+                    <?php echo esc_html__( 'Duplicate button in admin bar when editing', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Bulk duplicate multiple posts at once
+                    <?php echo esc_html__( 'Bulk duplicate multiple posts at once', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Copies all meta, categories, tags, featured image
+                    <?php echo esc_html__( 'Copies all meta, categories, tags, featured image', 'devforge-admin-cleaner' ); ?>
                 </div>
             </div>
             <?php endif; ?>
@@ -2147,13 +2147,13 @@ class WAC_Settings {
         <!-- Admin Columns -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Admin Columns</h2>
+                <h2><?php echo esc_html__( 'Admin Columns', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Add custom columns to post lists - Featured Image, Word Count, Post ID, Custom Fields, and more.
+                <?php echo esc_html__( 'Add custom columns to post lists - Featured Image, Word Count, Post ID, Custom Fields, and more.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Admin_Columns' ) ) : ?>
                 <?php WAC_Admin_Columns::render_ui(); ?>
@@ -2161,23 +2161,23 @@ class WAC_Settings {
             <div class="wac-feature-list">
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Featured Image thumbnail column
+                    <?php echo esc_html__( 'Featured Image thumbnail column', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Post ID column
+                    <?php echo esc_html__( 'Post ID column', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Word Count column
+                    <?php echo esc_html__( 'Word Count column', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Last Modified date column
+                    <?php echo esc_html__( 'Last Modified date column', 'devforge-admin-cleaner' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    Custom Field columns
+                    <?php echo esc_html__( 'Custom Field columns', 'devforge-admin-cleaner' ); ?>
                 </div>
             </div>
             <?php endif; ?>
@@ -2190,18 +2190,18 @@ class WAC_Settings {
         <!-- Heartbeat Control -->
         <div class="wac-settings-section">
             <div class="wac-section-header">
-                <h2>Heartbeat Control</h2>
+                <h2><?php echo esc_html__( 'Heartbeat Control', 'devforge-admin-cleaner' ); ?></h2>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Control WordPress Heartbeat API to reduce server load and improve performance.
+                <?php echo esc_html__( 'Control WordPress Heartbeat API to reduce server load and improve performance.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( class_exists( 'WAC_Heartbeat_Control' ) ) : ?>
                 <?php WAC_Heartbeat_Control::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Disable heartbeat on frontend</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Modify heartbeat frequency</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Reduce server load</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable heartbeat on frontend', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Modify heartbeat frequency', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Reduce server load', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2243,10 +2243,10 @@ class WAC_Settings {
     private function tab_appearance( $opt, $is_pro ) {
         // Sub-tabs for Appearance
         $sub_tabs = array(
-            'appearance-theme' => 'Theme',
-            'appearance-white-label' => 'White Label',
-            'appearance-login' => 'Login',
-            'appearance-css' => 'Custom CSS',
+            'appearance-theme' => __( 'Theme', 'devforge-admin-cleaner' ),
+            'appearance-white-label' => __( 'White Label', 'devforge-admin-cleaner' ),
+            'appearance-login' => __( 'Login', 'devforge-admin-cleaner' ),
+            'appearance-css' => __( 'Custom CSS', 'devforge-admin-cleaner' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2263,22 +2263,22 @@ class WAC_Settings {
         <!-- Admin Theme -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>Admin Theme</h2>
+                <h2><?php echo esc_html__( 'Admin Theme', 'devforge-admin-cleaner' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                Apply custom color schemes or enable dark mode for the entire WordPress admin.
+                <?php echo esc_html__( 'Apply custom color schemes or enable dark mode for the entire WordPress admin.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Admin_Theme' ) ) : ?>
                 <?php WAC_Admin_Theme::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Dark mode for entire admin</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> 5 color presets (Midnight, Ocean, Forest, Sunset, Custom)</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Custom primary/secondary colors</div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Reduced eye strain at night</div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dark mode for entire admin', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( '5 color presets (Midnight, Ocean, Forest, Sunset, Custom)', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Custom primary/secondary colors', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Reduced eye strain at night', 'devforge-admin-cleaner' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2290,13 +2290,13 @@ class WAC_Settings {
         <!-- White Label Admin -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2>White Label Admin <span class="wac-pro-badge-small">PRO</span></h2>
+                <h2><?php echo esc_html__( 'White Label Admin', 'devforge-admin-cleaner' ); ?> <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn">Unlock</a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 20px;font-size:13px">
-                Replace WordPress branding with your own logo, footer text, and styling. Enable White Label to unlock all options below.
+                <?php echo esc_html__( 'Replace WordPress branding with your own logo, footer text, and styling. Enable White Label to unlock all options below.', 'devforge-admin-cleaner' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-row" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #e5e5ea">

@@ -56,3 +56,4 @@ Screenshots klasörüne eklenmeli:
 
 Her screenshot için `readme.txt`'de açıklama olmalı.
 
+
