@@ -758,7 +758,7 @@ class WAC_Settings {
                     <?php echo esc_html__( 'Customize your WordPress admin area, improve productivity, and enhance security with powerful tools.', 'admin-toolkit' ); ?>
                 </p>
                 <!-- View Mode Toggle -->
-                <div style="margin-top:16px;display:flex;align-items:center;gap:12px">
+                <div style="margin-top:16px;display:flex;align-items:center;gap:12px" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wac_view_mode_nonce' ) ); ?>" data-ajax-url="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
                     <span style="font-size:13px;color:#86868b"><?php echo esc_html__( 'View Mode:', 'admin-toolkit' ); ?></span>
                     <label class="wac-view-toggle" style="position:relative;display:inline-block;width:120px;height:32px">
                         <input type="checkbox" id="wac-view-mode-toggle" <?php checked( get_user_meta( get_current_user_id(), 'wac_view_pro_features', true ), '1' ); ?>>
@@ -1337,10 +1337,12 @@ class WAC_Settings {
             
             // View Mode Toggle
             var $toggle = $('#wac-view-mode-toggle');
+            var $toggleContainer = $toggle.closest('div[data-nonce]');
             var $body = $('body');
             var isPro = <?php echo $is_pro ? 'true' : 'false'; ?>;
             var showPro = $toggle.length ? $toggle.is(':checked') : true;
-            var ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : '<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>';
+            var ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : ( $toggleContainer.length ? $toggleContainer.data('ajax-url') : '' );
+            var nonce = $toggleContainer.length ? $toggleContainer.data('nonce') : '';
             
             // Set initial view mode on page load
             function applyViewMode() {
@@ -1355,38 +1357,40 @@ class WAC_Settings {
             applyViewMode();
             
             // Toggle view mode - use both change and click events for better compatibility
-            $toggle.on('change click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                var newShowPro = $(this).is(':checked');
-                showPro = newShowPro;
-                
-                // Apply view mode immediately for visual feedback
-                applyViewMode();
-                
-                // Save preference via AJAX
-                $.ajax({
-                    url: ajaxUrl,
-                    type: 'POST',
-                    data: {
-                        action: 'wac_save_view_mode',
-                        show_pro: showPro ? '1' : '0',
-                        nonce: '<?php echo esc_js( wp_create_nonce( 'wac_view_mode_nonce' ) ); ?>'
-                    },
-                    success: function(response) {
-                        // Reload page to update tab list
-                        window.location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('AJAX error:', error);
-                        // Reload anyway to ensure state is saved
-                        window.location.reload();
-                    }
+            if ($toggle.length && ajaxUrl && nonce) {
+                $toggle.on('change click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    var newShowPro = $(this).is(':checked');
+                    showPro = newShowPro;
+                    
+                    // Apply view mode immediately for visual feedback
+                    applyViewMode();
+                    
+                    // Save preference via AJAX
+                    $.ajax({
+                        url: ajaxUrl,
+                        type: 'POST',
+                        data: {
+                            action: 'wac_save_view_mode',
+                            show_pro: showPro ? '1' : '0',
+                            nonce: nonce
+                        },
+                        success: function(response) {
+                            // Reload page to update tab list
+                            window.location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            console.log('AJAX error:', error);
+                            // Reload anyway to ensure state is saved
+                            window.location.reload();
+                        }
+                    });
+                    
+                    return false;
                 });
-                
-                return false;
-            });
+            }
             
         });
         
