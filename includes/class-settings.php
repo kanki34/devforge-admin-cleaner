@@ -177,15 +177,11 @@ class WAC_Settings {
                 echo '<script>
                 (function() {
                     function showSavedNotification() {
-                        if (typeof jQuery !== "undefined" && typeof wacShowNotification !== "undefined") {
+                        if (typeof jQuery !== "undefined" && typeof wacShowNotification !== "undefined" && typeof wacAdmin !== "undefined") {
                             jQuery(function($) {
                                 // Wait a bit more to ensure everything is ready
                                 setTimeout(function() {
-                                    <?php
-                                    $notification_message_raw = __( 'Changes saved successfully!', 'admin-toolkit' );
-                                    $notification_message_escaped = esc_js( $notification_message_raw );
-                                    ?>
-                                    wacShowNotification("<?php echo $notification_message_escaped; ?>", "success");
+                                    wacShowNotification(wacAdmin.savedMessage, "success");
                                 }, 500);
                             });
                         } else {

@@ -120,6 +120,7 @@ function wac_enqueue_assets( $hook ) {
         wp_localize_script( 'wac-admin', 'wacAdmin', array(
             'ajaxUrl' => admin_url( 'admin-ajax.php' ),
             'nonce'   => wp_create_nonce( 'wac_admin_nonce' ),
+            'savedMessage' => __( 'Changes saved successfully!', 'admin-toolkit' ),
         ) );
     }
 }
