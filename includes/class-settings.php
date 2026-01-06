@@ -986,8 +986,9 @@ class WAC_Settings {
         .wac-view-toggle input:not(:checked) ~ .wac-toggle-label-right{color:#86868b}
         
         /* Hide Pro features when in Free view mode */
-        .wac-free-view .wac-pro-feature{display:none !important}
-        .wac-free-view .wac-pro-tab{display:none !important}
+        body.wac-free-view .wac-pro-feature,
+        body.wac-free-view .wac-pro-tab,
+        body.wac-free-view .wac-sub-tab-content.wac-pro-feature{display:none !important}
         .wac-pro-feature{position:relative}
         .wac-tab-content{background:#fff;border:1px solid #e5e5ea;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
         
