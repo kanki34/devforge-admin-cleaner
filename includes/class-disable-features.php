@@ -198,7 +198,7 @@ class WAC_Disable_Features {
             if ( ! is_user_logged_in() ) {
                 return new WP_Error( 
                     'rest_disabled', 
-                    __( 'REST API is disabled for non-authenticated users.', 'devforge-admin-cleaner' ), 
+                    __( 'REST API is disabled for non-authenticated users.', 'admin-toolkit' ), 
                     array( 'status' => 401 ) 
                 );
             }
@@ -231,32 +231,32 @@ class WAC_Disable_Features {
     public static function get_features() {
         return array(
             'disable_comments' => array(
-                'label' => __( 'Disable Comments', 'devforge-admin-cleaner' ),
-                'description' => __( 'Completely disable comments system', 'devforge-admin-cleaner' ),
+                'label' => __( 'Disable Comments', 'admin-toolkit' ),
+                'description' => __( 'Completely disable comments system', 'admin-toolkit' ),
             ),
             'disable_emojis' => array(
-                'label' => __( 'Disable Emojis', 'devforge-admin-cleaner' ),
-                'description' => __( 'Remove emoji scripts for faster loading', 'devforge-admin-cleaner' ),
+                'label' => __( 'Disable Emojis', 'admin-toolkit' ),
+                'description' => __( 'Remove emoji scripts for faster loading', 'admin-toolkit' ),
             ),
             'disable_rss' => array(
-                'label' => __( 'Disable RSS Feeds', 'devforge-admin-cleaner' ),
-                'description' => __( 'Disable all RSS feed endpoints', 'devforge-admin-cleaner' ),
+                'label' => __( 'Disable RSS Feeds', 'admin-toolkit' ),
+                'description' => __( 'Disable all RSS feed endpoints', 'admin-toolkit' ),
             ),
             'disable_xmlrpc' => array(
-                'label' => __( 'Disable XML-RPC', 'devforge-admin-cleaner' ),
-                'description' => __( 'Disable XML-RPC (recommended for security)', 'devforge-admin-cleaner' ),
+                'label' => __( 'Disable XML-RPC', 'admin-toolkit' ),
+                'description' => __( 'Disable XML-RPC (recommended for security)', 'admin-toolkit' ),
             ),
             'disable_rest_api' => array(
-                'label' => __( 'Restrict REST API', 'devforge-admin-cleaner' ),
-                'description' => __( 'Require authentication for REST API access', 'devforge-admin-cleaner' ),
+                'label' => __( 'Restrict REST API', 'admin-toolkit' ),
+                'description' => __( 'Require authentication for REST API access', 'admin-toolkit' ),
             ),
             'disable_gutenberg' => array(
-                'label' => __( 'Disable Gutenberg', 'devforge-admin-cleaner' ),
-                'description' => __( 'Use classic editor instead of block editor', 'devforge-admin-cleaner' ),
+                'label' => __( 'Disable Gutenberg', 'admin-toolkit' ),
+                'description' => __( 'Use classic editor instead of block editor', 'admin-toolkit' ),
             ),
             'remove_wp_version' => array(
-                'label' => __( 'Hide WordPress Version', 'devforge-admin-cleaner' ),
-                'description' => __( 'Remove version number from frontend (security)', 'devforge-admin-cleaner' ),
+                'label' => __( 'Hide WordPress Version', 'admin-toolkit' ),
+                'description' => __( 'Remove version number from frontend (security)', 'admin-toolkit' ),
             ),
         );
     }

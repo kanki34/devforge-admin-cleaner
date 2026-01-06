@@ -6,7 +6,7 @@
  * Author: DevForge
  * Author URI: https://profiles.wordpress.org/devforge/
  * License: GPL v2 or later
- * Text Domain: devforge-admin-cleaner
+ * Text Domain: admin-toolkit
  * Requires at least: 5.0
  * Requires PHP: 7.2
  */
@@ -36,7 +36,7 @@ if ( ! function_exists( 'wac_fs' ) ) {
 
             $wac_fs = fs_dynamic_init( array(
                 'id'                  => '22593',
-                'slug'                => 'devforge-admin-cleaner',
+                'slug'                => 'admin-toolkit',
                 'type'                => 'plugin',
                 'public_key'          => 'pk_90248dc6b1f90534fbc8021d2d714',
                 'is_premium'          => false,
@@ -45,7 +45,7 @@ if ( ! function_exists( 'wac_fs' ) ) {
                 'has_addons'          => false,
                 'has_paid_plans'      => true,
                 'menu'                => array(
-                    'slug'    => 'devforge-admin-cleaner',
+                    'slug'    => 'admin-toolkit',
                     'support' => false,
                 ),
             ) );
@@ -109,19 +109,10 @@ function wac_enqueue_assets( $hook ) {
             WAC_VERSION 
         );
         
-        // Sortable.js for drag & drop
-        wp_enqueue_script(
-            'sortablejs',
-            'https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js',
-            array(),
-            '1.15.0',
-            true
-        );
-        
         wp_enqueue_script( 
             'wac-admin', 
             WAC_PLUGIN_URL . 'assets/js/admin.js', 
-            array( 'jquery', 'sortablejs' ), 
+            array( 'jquery' ), 
             WAC_VERSION, 
             true 
         );
@@ -207,11 +198,7 @@ function wac_includes() {
     }
 }
 
-// Load text domain
-add_action( 'plugins_loaded', 'wac_load_textdomain' );
-function wac_load_textdomain() {
-    load_plugin_textdomain( 'devforge-admin-cleaner', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-}
+// Text domain is automatically loaded by WordPress.org
 
 // Initialize
 function wac_init() {

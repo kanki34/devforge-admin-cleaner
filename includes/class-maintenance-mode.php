@@ -42,8 +42,8 @@ class WAC_Maintenance_Mode {
             return;
         }
 
-        $title = $this->options['maintenance_title'] ?? __( 'We\'ll be right back', 'devforge-admin-cleaner' );
-        $message = $this->options['maintenance_message'] ?? __( 'Our site is currently undergoing scheduled maintenance. Please check back shortly.', 'devforge-admin-cleaner' );
+        $title = $this->options['maintenance_title'] ?? __( 'We\'ll be right back', 'admin-toolkit' );
+        $message = $this->options['maintenance_message'] ?? __( 'Our site is currently undergoing scheduled maintenance. Please check back shortly.', 'admin-toolkit' );
         $bg_color = $this->options['maintenance_bg_color'] ?? '#ffffff';
         $text_color = $this->options['maintenance_text_color'] ?? '#1d1d1f';
         $bg_image = $this->options['maintenance_bg_image'] ?? '';
@@ -126,7 +126,7 @@ class WAC_Maintenance_Mode {
         $wp_admin_bar->add_node( array(
             'id'    => 'wac-maintenance-notice',
             'title' => '<span style="background:#ff9500;color:#fff;padding:2px 8px;border-radius:3px;font-size:11px;">Maintenance Mode</span>',
-            'href'  => admin_url( 'admin.php?page=devforge-admin-cleaner&tab=features' ),
+            'href'  => admin_url( 'admin.php?page=admin-toolkit&tab=features' ),
         ) );
     }
 }

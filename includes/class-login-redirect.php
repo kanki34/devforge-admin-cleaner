@@ -54,12 +54,12 @@ class WAC_Login_Redirect {
      */
     public static function get_redirect_options() {
         return array(
-            ''                      => __( 'Default (Dashboard)', 'devforge-admin-cleaner' ),
-            home_url()              => __( 'Homepage', 'devforge-admin-cleaner' ),
-            admin_url()             => __( 'Admin Dashboard', 'devforge-admin-cleaner' ),
-            admin_url( 'profile.php' ) => __( 'Profile Page', 'devforge-admin-cleaner' ),
-            admin_url( 'edit.php' ) => __( 'Posts List', 'devforge-admin-cleaner' ),
-            'custom'                => __( 'Custom URL', 'devforge-admin-cleaner' ),
+            ''                      => __( 'Default (Dashboard)', 'admin-toolkit' ),
+            home_url()              => __( 'Homepage', 'admin-toolkit' ),
+            admin_url()             => __( 'Admin Dashboard', 'admin-toolkit' ),
+            admin_url( 'profile.php' ) => __( 'Profile Page', 'admin-toolkit' ),
+            admin_url( 'edit.php' ) => __( 'Posts List', 'admin-toolkit' ),
+            'custom'                => __( 'Custom URL', 'admin-toolkit' ),
         );
     }
 }

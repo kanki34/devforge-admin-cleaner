@@ -103,12 +103,12 @@ class WAC_Notices_Cleaner {
     public static function get_notice_options() {
         return array(
             'hide_all_notices' => array(
-                'label' => __( 'Hide All Notices', 'devforge-admin-cleaner' ),
-                'description' => __( 'Hide all admin notices for non-admin users', 'devforge-admin-cleaner' ),
+                'label' => __( 'Hide All Notices', 'admin-toolkit' ),
+                'description' => __( 'Hide all admin notices for non-admin users', 'admin-toolkit' ),
             ),
             'hide_update_notices' => array(
-                'label' => __( 'Hide Update Notices', 'devforge-admin-cleaner' ),
-                'description' => __( 'Hide plugin/theme update notifications', 'devforge-admin-cleaner' ),
+                'label' => __( 'Hide Update Notices', 'admin-toolkit' ),
+                'description' => __( 'Hide plugin/theme update notifications', 'admin-toolkit' ),
             ),
         );
     }

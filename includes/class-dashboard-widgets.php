@@ -420,7 +420,7 @@ class WAC_Dashboard_Widgets {
      */
     public static function get_all_widgets() {
         // Only run on admin settings page
-        if ( ! is_admin() || ! isset( $_GET['page'] ) || $_GET['page'] !== 'devforge-admin-cleaner' ) {
+        if ( ! is_admin() || ! isset( $_GET['page'] ) || $_GET['page'] !== 'admin-toolkit' ) {
             return array();
         }
         

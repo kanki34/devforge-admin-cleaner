@@ -76,7 +76,7 @@ class WAC_Role_Manager {
                 $title = preg_replace( '/<span.*<\/span>/i', '', $item[0] );
                 $title = trim( strip_tags( $title ) );
                 
-                if ( ! empty( $title ) && $item[2] !== 'devforge-admin-cleaner' ) {
+                if ( ! empty( $title ) && $item[2] !== 'admin-toolkit' ) {
                     $items[ $item[2] ] = $title;
                 }
             }
@@ -90,16 +90,16 @@ class WAC_Role_Manager {
      */
     public static function get_default_menu_items() {
         return array(
-            'index.php'              => __( 'Dashboard', 'devforge-admin-cleaner' ),
-            'edit.php'               => __( 'Posts', 'devforge-admin-cleaner' ),
-            'upload.php'             => __( 'Media', 'devforge-admin-cleaner' ),
-            'edit.php?post_type=page'=> __( 'Pages', 'devforge-admin-cleaner' ),
-            'edit-comments.php'      => __( 'Comments', 'devforge-admin-cleaner' ),
-            'themes.php'             => __( 'Appearance', 'devforge-admin-cleaner' ),
-            'plugins.php'            => __( 'Plugins', 'devforge-admin-cleaner' ),
-            'users.php'              => __( 'Users', 'devforge-admin-cleaner' ),
-            'tools.php'              => __( 'Tools', 'devforge-admin-cleaner' ),
-            'options-general.php'    => __( 'Settings', 'devforge-admin-cleaner' ),
+            'index.php'              => __( 'Dashboard', 'admin-toolkit' ),
+            'edit.php'               => __( 'Posts', 'admin-toolkit' ),
+            'upload.php'             => __( 'Media', 'admin-toolkit' ),
+            'edit.php?post_type=page'=> __( 'Pages', 'admin-toolkit' ),
+            'edit-comments.php'      => __( 'Comments', 'admin-toolkit' ),
+            'themes.php'             => __( 'Appearance', 'admin-toolkit' ),
+            'plugins.php'            => __( 'Plugins', 'admin-toolkit' ),
+            'users.php'              => __( 'Users', 'admin-toolkit' ),
+            'tools.php'              => __( 'Tools', 'admin-toolkit' ),
+            'options-general.php'    => __( 'Settings', 'admin-toolkit' ),
         );
     }
 }

@@ -30,7 +30,7 @@ class WAC_Settings {
             'Admin Toolkit',
             'Admin Toolkit',
             'manage_options',
-            'devforge-admin-cleaner',
+            'admin-toolkit',
             array( $this, 'render_page' ),
             WAC_PLUGIN_URL . 'assets/img/icon-menu.svg',
             80
@@ -96,7 +96,7 @@ class WAC_Settings {
         $redirected = true;
         
         // Build redirect URL
-        $redirect_url = admin_url( 'admin.php?page=devforge-admin-cleaner&settings-updated=true' );
+        $redirect_url = admin_url( 'admin.php?page=admin-toolkit&settings-updated=true' );
         
         // Preserve tab parameter
         if ( isset( $_POST['tab'] ) ) {
@@ -145,7 +145,7 @@ class WAC_Settings {
      */
     public function preserve_tab_on_redirect( $location, $status ) {
         // Only modify redirects for our settings page
-        if ( strpos( $location, 'devforge-admin-cleaner' ) === false ) {
+        if ( strpos( $location, 'admin-toolkit' ) === false ) {
             return $location;
         }
         
@@ -171,7 +171,7 @@ class WAC_Settings {
      */
     public function settings_saved_notice() {
         if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) {
-            if ( isset( $_GET['page'] ) && $_GET['page'] === 'devforge-admin-cleaner' ) {
+            if ( isset( $_GET['page'] ) && $_GET['page'] === 'admin-toolkit' ) {
                 // Show notification after page fully loads
                 // Wait for both DOM and scripts to be ready
                 echo '<script>
@@ -181,7 +181,7 @@ class WAC_Settings {
                             jQuery(function($) {
                                 // Wait a bit more to ensure everything is ready
                                 setTimeout(function() {
-                                    wacShowNotification("<?php echo esc_js( __( 'Settings saved successfully!', 'devforge-admin-cleaner' ) ); ?>", "success");
+                                    wacShowNotification("<?php echo esc_js( __( 'Settings saved successfully!', 'admin-toolkit' ) ); ?>", "success");
                                 }, 500);
                             });
                         } else {
@@ -218,7 +218,7 @@ class WAC_Settings {
             $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_wac_%'" );
             
             // Redirect to prevent resubmission
-            wp_redirect( admin_url( 'admin.php?page=devforge-admin-cleaner&tab=tools&subtab=tools-reset&reset=1' ) );
+            wp_redirect( admin_url( 'admin.php?page=admin-toolkit&tab=tools&subtab=tools-reset&reset=1' ) );
             exit;
         }
     }
@@ -742,12 +742,12 @@ class WAC_Settings {
         <div class="wrap wac-settings-wrap">
             <div style="margin-bottom:32px">
                 <h1>
-                    <?php echo esc_html__( 'Admin Toolkit', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Admin Toolkit', 'admin-toolkit' ); ?>
                     <span class="wac-version">v<?php echo WAC_VERSION; ?></span>
                     <?php if ( $is_pro ) : ?><span class="wac-pro-badge">PRO</span><?php endif; ?>
                 </h1>
                 <p style="margin:8px 0 0;font-size:14px;color:#86868b;max-width:600px">
-                    <?php echo esc_html__( 'Customize your WordPress admin area, improve productivity, and enhance security with powerful tools.', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Customize your WordPress admin area, improve productivity, and enhance security with powerful tools.', 'admin-toolkit' ); ?>
                 </p>
             </div>
 
@@ -759,20 +759,20 @@ class WAC_Settings {
             <nav class="wac-tabs">
                 <?php
                 $tabs = array(
-                    'dashboard'    => __( 'Dashboard', 'devforge-admin-cleaner' ),
-                    'appearance'   => __( 'Appearance', 'devforge-admin-cleaner' ),
-                    'menus-roles'  => __( 'Menus & Roles', 'devforge-admin-cleaner' ),
-                    'productivity' => __( 'Productivity', 'devforge-admin-cleaner' ),
-                    'cleanup'      => __( 'Cleanup', 'devforge-admin-cleaner' ),
-                    'disable-features' => __( 'Disable Features', 'devforge-admin-cleaner' ),
-                    'security'     => __( 'Security', 'devforge-admin-cleaner' ),
-                    'tools'        => __( 'Tools', 'devforge-admin-cleaner' ),
+                    'dashboard'    => __( 'Dashboard', 'admin-toolkit' ),
+                    'appearance'   => __( 'Appearance', 'admin-toolkit' ),
+                    'menus-roles'  => __( 'Menus & Roles', 'admin-toolkit' ),
+                    'productivity' => __( 'Productivity', 'admin-toolkit' ),
+                    'cleanup'      => __( 'Cleanup', 'admin-toolkit' ),
+                    'disable-features' => __( 'Disable Features', 'admin-toolkit' ),
+                    'security'     => __( 'Security', 'admin-toolkit' ),
+                    'tools'        => __( 'Tools', 'admin-toolkit' ),
                 );
                 $pro_tabs = array( 
                     'appearance', 'menus-roles', 'productivity', 'security', 'tools'
                 );
                 foreach ( $tabs as $id => $name ) :
-                    $url = admin_url( 'admin.php?page=devforge-admin-cleaner&tab=' . $id );
+                    $url = admin_url( 'admin.php?page=admin-toolkit&tab=' . $id );
                     $class = ( $tab === $id ) ? 'nav-tab nav-tab-active' : 'nav-tab';
                 ?>
                     <a href="<?php echo esc_url( $url ); ?>" class="<?php echo $class; ?>">
@@ -863,7 +863,7 @@ class WAC_Settings {
 
                 <?php if ( ! in_array( $tab, array( 'tools' ) ) ) : ?>
                 <div class="submit">
-                    <?php submit_button( __( 'Save Changes', 'devforge-admin-cleaner' ), 'primary', 'submit', false ); ?>
+                    <?php submit_button( __( 'Save Changes', 'admin-toolkit' ), 'primary', 'submit', false ); ?>
                 </div>
                 <?php endif; ?>
             </form>
@@ -872,37 +872,37 @@ class WAC_Settings {
                 <div class="wac-settings-sidebar">
                     <!-- Upgrade Card -->
                     <div class="wac-sidebar-card">
-                        <h3>🚀 <?php echo esc_html__( 'Upgrade to Pro', 'devforge-admin-cleaner' ); ?></h3>
-                        <p><?php echo esc_html__( 'Unlock all premium features and take full control of your WordPress admin area.', 'devforge-admin-cleaner' ); ?></p>
+                        <h3>🚀 <?php echo esc_html__( 'Upgrade to Pro', 'admin-toolkit' ); ?></h3>
+                        <p><?php echo esc_html__( 'Unlock all premium features and take full control of your WordPress admin area.', 'admin-toolkit' ); ?></p>
                         <ul style="margin:12px 0;padding-left:20px;font-size:12px;color:#86868b;line-height:1.8;list-style:none;padding-left:0">
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'White Label Admin', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Login Page Customizer', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Menu Editor', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Command Palette', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Activity Log', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Custom Dashboard Widgets', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Admin Columns', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Role Editor', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Export/Import Settings', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'And much more...', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'White Label Admin', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Login Page Customizer', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Menu Editor', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Command Palette', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Activity Log', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Custom Dashboard Widgets', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Admin Columns', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Role Editor', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Export/Import Settings', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'And much more...', 'admin-toolkit' ); ?></li>
                         </ul>
                         <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-sidebar-btn wac-sidebar-btn-secondary">
-                            <?php echo esc_html__( 'Upgrade Now', 'devforge-admin-cleaner' ); ?> →
+                            <?php echo esc_html__( 'Upgrade Now', 'admin-toolkit' ); ?> →
                         </a>
                     </div>
                     
                     <!-- Professional Services Card -->
                     <div class="wac-sidebar-card" style="background:linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);border-color:#1d1d1f">
-                        <h3 style="color:#fff">💼 <?php echo esc_html__( 'Professional Services', 'devforge-admin-cleaner' ); ?></h3>
-                        <p style="color:rgba(255,255,255,0.8)"><?php echo esc_html__( 'Need a custom website or WordPress help? Let\'s work together!', 'devforge-admin-cleaner' ); ?></p>
+                        <h3 style="color:#fff">💼 <?php echo esc_html__( 'Professional Services', 'admin-toolkit' ); ?></h3>
+                        <p style="color:rgba(255,255,255,0.8)"><?php echo esc_html__( 'Need a custom website or WordPress help? Let\'s work together!', 'admin-toolkit' ); ?></p>
                         <ul style="margin:12px 0;padding-left:0;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.8;list-style:none">
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Custom Website Design', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Technical Issue Fixing', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Malicious Code Cleanup', 'devforge-admin-cleaner' ); ?></li>
-                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Hosting Migration', 'devforge-admin-cleaner' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Custom Website Design', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Technical Issue Fixing', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Malicious Code Cleanup', 'admin-toolkit' ); ?></li>
+                            <li style="display:flex;align-items:center;gap:8px;margin-bottom:0"><span style="color:#34c759;font-weight:600">✓</span> <?php echo esc_html__( 'Hosting Migration', 'admin-toolkit' ); ?></li>
                         </ul>
                         <a href="https://pro.fiverr.com/hbasoglu/" target="_blank" class="wac-sidebar-btn" style="background:#34c759;margin-top:12px">
-                            <?php echo esc_html__( 'View My Services', 'devforge-admin-cleaner' ); ?>
+                            <?php echo esc_html__( 'View My Services', 'admin-toolkit' ); ?>
                         </a>
                     </div>
                 </div>
@@ -1384,23 +1384,23 @@ class WAC_Settings {
         <!-- Dashboard Widget Builder -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Custom Widgets', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Custom Widgets', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Create custom dashboard widgets with text, RSS feeds, stats, shortcuts, or personal notes.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Create custom dashboard widgets with text, RSS feeds, stats, shortcuts, or personal notes.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Dashboard_Builder' ) ) : ?>
                 <?php WAC_Dashboard_Builder::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Text/HTML widgets', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'RSS feed widgets', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Quick stats widget', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Personal notes widget', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Role-based visibility', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Text/HTML widgets', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'RSS feed widgets', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Quick stats widget', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Personal notes widget', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Role-based visibility', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -1408,19 +1408,19 @@ class WAC_Settings {
         <!-- Admin Announcements -->
         <div class="wac-settings-section">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Announcements', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Announcements', 'admin-toolkit' ); ?></h2>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Create announcements to show to all admin users on the dashboard or as notices.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Create announcements to show to all admin users on the dashboard or as notices.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( class_exists( 'WAC_Admin_Announcements' ) ) : ?>
                 <?php WAC_Admin_Announcements::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dashboard widget announcements', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Admin notice bar announcements', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Multiple styles (info, success, warning, error)', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dismissible or persistent options', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dashboard widget announcements', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Admin notice bar announcements', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Multiple styles (info, success, warning, error)', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dismissible or persistent options', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -1428,10 +1428,10 @@ class WAC_Settings {
         <div class="wac-settings-section">
             <div class="wac-section-header">
                 <div>
-                    <h2><?php echo esc_html__( 'Hide Dashboard Widgets', 'devforge-admin-cleaner' ); ?></h2>
+                    <h2><?php echo esc_html__( 'Hide Dashboard Widgets', 'admin-toolkit' ); ?></h2>
                     <p style="color:#86868b;margin:4px 0 0;font-size:13px">
-                        <?php echo esc_html__( 'Hide any dashboard widget including those from themes and plugins (e.g., Elementor, WooCommerce, etc.)', 'devforge-admin-cleaner' ); ?>
-                        <br><small style="color:#ff9500">💡 <?php echo esc_html__( 'Tip: Visit the Dashboard page first to load all widgets, then return here to see them.', 'devforge-admin-cleaner' ); ?></small>
+                        <?php echo esc_html__( 'Hide any dashboard widget including those from themes and plugins (e.g., Elementor, WooCommerce, etc.)', 'admin-toolkit' ); ?>
+                        <br><small style="color:#ff9500">💡 <?php echo esc_html__( 'Tip: Visit the Dashboard page first to load all widgets, then return here to see them.', 'admin-toolkit' ); ?></small>
                     </p>
                 </div>
             </div>
@@ -1562,7 +1562,7 @@ class WAC_Settings {
                 
                 // Display core widgets
                 if ( ! empty( $core_widgets ) ) {
-                    echo '<div style="margin-bottom:16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'WordPress Core', 'devforge-admin-cleaner' ) . '</strong></div>';
+                    echo '<div style="margin-bottom:16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'WordPress Core', 'admin-toolkit' ) . '</strong></div>';
                     foreach ( $core_widgets as $id => $label ) : ?>
                         <label class="wac-checkbox-item">
                             <span><?php echo esc_html( $label ); ?></span>
@@ -1584,7 +1584,7 @@ class WAC_Settings {
                         $filtered_plugin_widgets[ $id ] = $label;
                     }
                     if ( ! empty( $filtered_plugin_widgets ) ) {
-                        echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Plugins & Themes', 'devforge-admin-cleaner' ) . '</strong></div>';
+                        echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Plugins & Themes', 'admin-toolkit' ) . '</strong></div>';
                         foreach ( $filtered_plugin_widgets as $id => $label ) : 
                             // Check if this widget should be treated as custom (user wants to delete it)
                             // If it's in custom_dashboard_widgets, show delete button
@@ -1597,7 +1597,7 @@ class WAC_Settings {
                                            value="<?php echo esc_attr( $id ); ?>" <?php checked( in_array( $id, $widgets ) ); ?>>
                                     <button type="button" class="wac-move-to-custom-widget" data-widget-id="<?php echo esc_attr( $id ); ?>" 
                                             style="background:none;border:none;color:#ff3b30;cursor:pointer;padding:4px;font-size:16px;line-height:1;opacity:0.7;transition:opacity 0.2s" 
-                                            title="<?php echo esc_attr__( 'Move to Custom Widgets and delete', 'devforge-admin-cleaner' ); ?>">
+                                            title="<?php echo esc_attr__( 'Move to Custom Widgets and delete', 'admin-toolkit' ); ?>">
                                         ×
                                     </button>
                                 </div>
@@ -1608,7 +1608,7 @@ class WAC_Settings {
                 
                 // Display theme widgets
                 if ( ! empty( $theme_widgets ) ) {
-                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Theme Widgets', 'devforge-admin-cleaner' ) . '</strong></div>';
+                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Theme Widgets', 'admin-toolkit' ) . '</strong></div>';
                     foreach ( $theme_widgets as $id => $label ) : ?>
                         <label class="wac-checkbox-item">
                             <span><?php echo esc_html( $label ); ?> <small style="color:#86868b;font-size:11px">(<?php echo esc_html( $id ); ?>)</small></span>
@@ -1625,7 +1625,7 @@ class WAC_Settings {
                 // because they might be custom widgets that were hidden but not yet saved to custom_dashboard_widgets
                 $has_custom_section = false;
                 if ( ! empty( $custom_widgets_db ) && is_array( $custom_widgets_db ) ) {
-                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Custom Widgets', 'devforge-admin-cleaner' ) . '</strong></div>';
+                    echo '<div style="margin:24px 0 16px"><strong style="font-size:12px;color:#86868b;text-transform:uppercase;letter-spacing:.5px">' . esc_html__( 'Custom Widgets', 'admin-toolkit' ) . '</strong></div>';
                     $has_custom_section = true;
                     foreach ( $custom_widgets_db as $custom_id ) {
                         if ( ! empty( $custom_id ) ) {
@@ -1642,7 +1642,7 @@ class WAC_Settings {
                                            value="<?php echo esc_attr( $custom_id ); ?>" <?php checked( $is_hidden, true ); ?>>
                                     <button type="button" class="wac-delete-custom-widget" data-widget-id="<?php echo esc_attr( $custom_id ); ?>" 
                                             style="background:none;border:none;color:#ff3b30;cursor:pointer;padding:4px;font-size:16px;line-height:1;opacity:0.7;transition:opacity 0.2s" 
-                                            title="<?php echo esc_attr__( 'Delete this custom widget', 'devforge-admin-cleaner' ); ?>">
+                                            title="<?php echo esc_attr__( 'Delete this custom widget', 'admin-toolkit' ); ?>">
                                         ×
                                     </button>
                                 </div>
@@ -1662,13 +1662,13 @@ class WAC_Settings {
                 // If no widgets found
                 if ( empty( $core_widgets ) && empty( $plugin_widgets ) && empty( $theme_widgets ) && empty( $custom_widgets_db ) ) {
                     echo '<div style="padding:16px;background:#fff3cd;border:1px solid #ffc107;border-radius:8px;margin:16px 0">';
-                    echo '<p style="margin:0 0 8px;font-size:13px;color:#856404;font-weight:500">' . esc_html__( 'No widgets detected yet', 'devforge-admin-cleaner' ) . '</p>';
-                    echo '<p style="margin:0;font-size:12px;color:#856404">' . esc_html__( 'To see all dashboard widgets (including Elementor, WooCommerce, etc.):', 'devforge-admin-cleaner' ) . '</p>';
+                    echo '<p style="margin:0 0 8px;font-size:13px;color:#856404;font-weight:500">' . esc_html__( 'No widgets detected yet', 'admin-toolkit' ) . '</p>';
+                    echo '<p style="margin:0;font-size:12px;color:#856404">' . esc_html__( 'To see all dashboard widgets (including Elementor, WooCommerce, etc.):', 'admin-toolkit' ) . '</p>';
                     echo '<ol style="margin:8px 0 0 20px;padding:0;font-size:12px;color:#856404">';
-                    echo '<li>' . sprintf( esc_html__( 'Visit the %s', 'devforge-admin-cleaner' ), '<a href="' . esc_url( admin_url() ) . '" target="_blank" style="color:#007aff">' . esc_html__( 'Dashboard page', 'devforge-admin-cleaner' ) . '</a>' ) . '</li>';
-                    echo '<li>' . esc_html__( 'Return to this page - widgets will appear automatically', 'devforge-admin-cleaner' ) . '</li>';
+                    echo '<li>' . sprintf( esc_html__( 'Visit the %s', 'admin-toolkit' ), '<a href="' . esc_url( admin_url() ) . '" target="_blank" style="color:#007aff">' . esc_html__( 'Dashboard page', 'admin-toolkit' ) . '</a>' ) . '</li>';
+                    echo '<li>' . esc_html__( 'Return to this page - widgets will appear automatically', 'admin-toolkit' ) . '</li>';
                     echo '</ol>';
-                    echo '<p style="margin:8px 0 0;font-size:12px;color:#856404">' . esc_html__( 'Or add widget IDs manually below.', 'devforge-admin-cleaner' ) . '</p>';
+                    echo '<p style="margin:8px 0 0;font-size:12px;color:#856404">' . esc_html__( 'Or add widget IDs manually below.', 'admin-toolkit' ) . '</p>';
                     echo '</div>';
                 }
                 ?>
@@ -1676,14 +1676,14 @@ class WAC_Settings {
             
             <!-- Manual Widget ID Input -->
             <div style="margin-top:24px;padding-top:24px;border-top:1px solid #e5e5ea">
-                <h3 style="font-size:13px;font-weight:600;margin:0 0 8px"><?php echo esc_html__( 'Add Custom Widget ID', 'devforge-admin-cleaner' ); ?></h3>
+                <h3 style="font-size:13px;font-weight:600;margin:0 0 8px"><?php echo esc_html__( 'Add Custom Widget ID', 'admin-toolkit' ); ?></h3>
                 <p style="color:#86868b;font-size:12px;margin:0 0 12px">
-                    <?php echo esc_html__( 'If a widget is not listed above, you can hide it by entering its widget ID. Common IDs:', 'devforge-admin-cleaner' ); ?> <code>e-dashboard-overview</code> (<?php echo esc_html__( 'Elementor', 'devforge-admin-cleaner' ); ?>), <code>woocommerce_dashboard_status</code> (<?php echo esc_html__( 'WooCommerce', 'devforge-admin-cleaner' ); ?>)
+                    <?php echo esc_html__( 'If a widget is not listed above, you can hide it by entering its widget ID. Common IDs:', 'admin-toolkit' ); ?> <code>e-dashboard-overview</code> (<?php echo esc_html__( 'Elementor', 'admin-toolkit' ); ?>), <code>woocommerce_dashboard_status</code> (<?php echo esc_html__( 'WooCommerce', 'admin-toolkit' ); ?>)
                 </p>
                 <div style="display:flex;gap:8px;align-items:flex-start">
-                    <input type="text" id="wac-custom-widget-id" placeholder="<?php echo esc_attr__( 'e.g., e-dashboard-overview', 'devforge-admin-cleaner' ); ?>" 
+                    <input type="text" id="wac-custom-widget-id" placeholder="<?php echo esc_attr__( 'e.g., e-dashboard-overview', 'admin-toolkit' ); ?>" 
                            style="flex:1;padding:8px 12px;border:1px solid #d1d1d6;border-radius:6px;font-size:13px">
-                    <button type="button" class="wac-btn wac-btn-secondary" id="wac-add-custom-widget" style="white-space:nowrap"><?php echo esc_html__( 'Add Widget', 'devforge-admin-cleaner' ); ?></button>
+                    <button type="button" class="wac-btn wac-btn-secondary" id="wac-add-custom-widget" style="white-space:nowrap"><?php echo esc_html__( 'Add Widget', 'admin-toolkit' ); ?></button>
                 </div>
                 <div id="wac-custom-widgets-list" style="margin-top:12px">
                     <?php
@@ -1724,13 +1724,13 @@ class WAC_Settings {
                                 '<input type="checkbox" name="wac_settings[hide_dashboard_widgets][]" value="' + $('<div>').text(widgetId).html() + '">' +
                                 '<button type="button" class="wac-delete-custom-widget" data-widget-id="' + $('<div>').text(widgetId).html() + '" ' +
                                 'style="background:none;border:none;color:#ff3b30;cursor:pointer;padding:4px;font-size:16px;line-height:1;opacity:0.7;transition:opacity 0.2s" ' +
-                                'title="<?php echo esc_js( __( 'Delete this custom widget', 'devforge-admin-cleaner' ) ); ?>">×</button>' +
+                                'title="<?php echo esc_js( __( 'Delete this custom widget', 'admin-toolkit' ) ); ?>">×</button>' +
                                 '</div>' +
                                 '<input type="hidden" name="wac_settings[custom_dashboard_widgets][]" value="' + $('<div>').text(widgetId).html() + '">');
                             $customSection.after($newLabel);
                             $('#wac-custom-widget-id').val('');
                         } else {
-                            alert('<?php echo esc_js( __( 'This widget ID is already added.', 'devforge-admin-cleaner' ) ); ?>');
+                            alert('<?php echo esc_js( __( 'This widget ID is already added.', 'admin-toolkit' ) ); ?>');
                         }
                     }
                 });
@@ -1834,7 +1834,7 @@ class WAC_Settings {
                     var widgetId = $btn.data('widget-id');
                     var $label = $btn.closest('label.wac-checkbox-item');
                     
-                    if (confirm('<?php echo esc_js( __( 'Are you sure you want to remove', 'devforge-admin-cleaner' ) ); ?> "' + widgetId + '" <?php echo esc_js( __( 'from custom widgets?', 'devforge-admin-cleaner' ) ); ?>')) {
+                    if (confirm('<?php echo esc_js( __( 'Are you sure you want to remove', 'admin-toolkit' ) ); ?> "' + widgetId + '" <?php echo esc_js( __( 'from custom widgets?', 'admin-toolkit' ) ); ?>')) {
                         // CRITICAL: Remove hidden input FIRST before removing the label
                         // This ensures the widget ID is not sent in form submission
                         $label.find('input[type="hidden"][name="wac_settings[custom_dashboard_widgets][]"]').remove();
@@ -1876,7 +1876,7 @@ class WAC_Settings {
                     var $label = $btn.closest('label.wac-checkbox-item');
                     var $checkbox = $label.find('input[type="checkbox"][name="wac_settings[hide_dashboard_widgets][]"]');
                     
-                    if (confirm('<?php echo esc_js( __( 'Move', 'devforge-admin-cleaner' ) ); ?> "' + widgetId + '" <?php echo esc_js( __( 'to Custom Widgets and delete it?', 'devforge-admin-cleaner' ) ); ?>')) {
+                    if (confirm('<?php echo esc_js( __( 'Move', 'admin-toolkit' ) ); ?> "' + widgetId + '" <?php echo esc_js( __( 'to Custom Widgets and delete it?', 'admin-toolkit' ) ); ?>')) {
                         // Add hidden input to mark this widget as custom
                         $label.append('<input type="hidden" name="wac_settings[custom_dashboard_widgets][]" value="' + $('<div>').text(widgetId).html() + '">');
                         
@@ -1927,16 +1927,16 @@ class WAC_Settings {
         <!-- Dashboard Toolbar Sub-tab -->
         <div id="dashboard-toolbar" class="wac-sub-tab-content <?php echo $active_sub_tab === 'dashboard-toolbar' ? 'active' : ''; ?>">
         <div class="wac-settings-section">
-            <h2><?php echo esc_html__( 'Admin Toolbar', 'devforge-admin-cleaner' ); ?></h2>
+            <h2><?php echo esc_html__( 'Admin Toolbar', 'admin-toolkit' ); ?></h2>
             <div class="wac-checkbox-list">
                 <?php
                 $bar_items = array(
-                    'wp-logo'     => __( 'WordPress Logo', 'devforge-admin-cleaner' ),
-                    'site-name'   => __( 'Site Name', 'devforge-admin-cleaner' ),
-                    'updates'     => __( 'Updates', 'devforge-admin-cleaner' ),
-                    'comments'    => __( 'Comments', 'devforge-admin-cleaner' ),
-                    'new-content' => __( 'New (+)', 'devforge-admin-cleaner' ),
-                    'search'      => __( 'Search', 'devforge-admin-cleaner' ),
+                    'wp-logo'     => __( 'WordPress Logo', 'admin-toolkit' ),
+                    'site-name'   => __( 'Site Name', 'admin-toolkit' ),
+                    'updates'     => __( 'Updates', 'admin-toolkit' ),
+                    'comments'    => __( 'Comments', 'admin-toolkit' ),
+                    'new-content' => __( 'New (+)', 'admin-toolkit' ),
+                    'search'      => __( 'Search', 'admin-toolkit' ),
                 );
                 foreach ( $bar_items as $id => $label ) : ?>
                     <label class="wac-checkbox-item">
@@ -1950,8 +1950,8 @@ class WAC_Settings {
             <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e5e5ea">
                 <label class="wac-checkbox-item">
                     <span>
-                        <strong><?php echo esc_html__( 'Hide Admin Toolbar in wp-admin', 'devforge-admin-cleaner' ); ?></strong>
-                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px"><?php echo esc_html__( 'Completely hide the admin toolbar in WordPress admin area (no space left)', 'devforge-admin-cleaner' ); ?></small>
+                        <strong><?php echo esc_html__( 'Hide Admin Toolbar in wp-admin', 'admin-toolkit' ); ?></strong>
+                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px"><?php echo esc_html__( 'Completely hide the admin toolbar in WordPress admin area (no space left)', 'admin-toolkit' ); ?></small>
                     </span>
                     <input type="hidden" name="wac_settings[hide_admin_bar_in_admin]" value="0">
                     <input type="checkbox" name="wac_settings[hide_admin_bar_in_admin]" value="1" 
@@ -1960,8 +1960,8 @@ class WAC_Settings {
                 
                 <label class="wac-checkbox-item" style="margin-top:12px">
                     <span>
-                        <strong><?php echo esc_html__( 'Hide Admin Toolbar on Frontend', 'devforge-admin-cleaner' ); ?></strong>
-                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px"><?php echo esc_html__( 'Completely hide the admin toolbar on frontend for all users including admins (no space left, content starts from top)', 'devforge-admin-cleaner' ); ?></small>
+                        <strong><?php echo esc_html__( 'Hide Admin Toolbar on Frontend', 'admin-toolkit' ); ?></strong>
+                        <small style="display:block;color:#86868b;font-size:11px;margin-top:2px"><?php echo esc_html__( 'Completely hide the admin toolbar on frontend for all users including admins (no space left, content starts from top)', 'admin-toolkit' ); ?></small>
                     </span>
                     <input type="hidden" name="wac_settings[hide_admin_bar_frontend]" value="0">
                     <input type="checkbox" name="wac_settings[hide_admin_bar_frontend]" value="1" 
@@ -1975,22 +1975,22 @@ class WAC_Settings {
         <!-- Dashboard General Sub-tab -->
         <div id="dashboard-general" class="wac-sub-tab-content <?php echo $active_sub_tab === 'dashboard-general' ? 'active' : ''; ?>">
         <div class="wac-settings-section">
-            <h2><?php echo esc_html__( 'General', 'devforge-admin-cleaner' ); ?></h2>
+            <h2><?php echo esc_html__( 'General', 'admin-toolkit' ); ?></h2>
             <div class="wac-checkbox-list">
                 <label class="wac-checkbox-item">
-                    <span><?php echo esc_html__( 'Hide Screen Options', 'devforge-admin-cleaner' ); ?></span>
+                    <span><?php echo esc_html__( 'Hide Screen Options', 'admin-toolkit' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_screen_options]" value="1" <?php checked( ! empty( $opt['hide_screen_options'] ) ); ?>>
                 </label>
                 <label class="wac-checkbox-item">
-                    <span><?php echo esc_html__( 'Hide Help Tab', 'devforge-admin-cleaner' ); ?></span>
+                    <span><?php echo esc_html__( 'Hide Help Tab', 'admin-toolkit' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_help_tab]" value="1" <?php checked( ! empty( $opt['hide_help_tab'] ) ); ?>>
                 </label>
                 <label class="wac-checkbox-item">
-                    <span><?php echo esc_html__( 'Hide All Admin Notices', 'devforge-admin-cleaner' ); ?></span>
+                    <span><?php echo esc_html__( 'Hide All Admin Notices', 'admin-toolkit' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_all_notices]" value="1" <?php checked( ! empty( $opt['hide_all_notices'] ) ); ?>>
                 </label>
                 <label class="wac-checkbox-item">
-                    <span><?php echo esc_html__( 'Hide Update Notices', 'devforge-admin-cleaner' ); ?></span>
+                    <span><?php echo esc_html__( 'Hide Update Notices', 'admin-toolkit' ); ?></span>
                     <input type="checkbox" name="wac_settings[hide_update_notices]" value="1" <?php checked( ! empty( $opt['hide_update_notices'] ) ); ?>>
                 </label>
             </div>
@@ -2003,10 +2003,10 @@ class WAC_Settings {
     private function tab_productivity( $opt, $is_pro ) {
         // Sub-tabs for Productivity
         $sub_tabs = array(
-            'productivity-command-palette' => __( 'Command Palette', 'devforge-admin-cleaner' ),
-            'productivity-duplicate' => __( 'Duplicate Posts', 'devforge-admin-cleaner' ),
-            'productivity-columns' => __( 'Admin Columns', 'devforge-admin-cleaner' ),
-            'productivity-heartbeat' => __( 'Heartbeat Control', 'devforge-admin-cleaner' ),
+            'productivity-command-palette' => __( 'Command Palette', 'admin-toolkit' ),
+            'productivity-duplicate' => __( 'Duplicate Posts', 'admin-toolkit' ),
+            'productivity-columns' => __( 'Admin Columns', 'admin-toolkit' ),
+            'productivity-heartbeat' => __( 'Heartbeat Control', 'admin-toolkit' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2023,19 +2023,19 @@ class WAC_Settings {
         <!-- Command Palette -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Command Palette', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Command Palette', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Press', 'devforge-admin-cleaner' ); ?> <kbd style="background:#e5e5ea;padding:2px 6px;border-radius:4px;font-size:11px">⌘/Ctrl + Shift + P</kbd> <?php echo esc_html__( 'anywhere in admin to quickly search posts, pages, users, and navigate to any setting.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Press', 'admin-toolkit' ); ?> <kbd style="background:#e5e5ea;padding:2px 6px;border-radius:4px;font-size:11px">⌘/Ctrl + Shift + P</kbd> <?php echo esc_html__( 'anywhere in admin to quickly search posts, pages, users, and navigate to any setting.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-row">
                 <div class="wac-row-label">
-                    <?php echo esc_html__( 'Enable Command Palette', 'devforge-admin-cleaner' ); ?>
-                    <small><?php echo esc_html__( 'Uncheck to disable the command palette completely', 'devforge-admin-cleaner' ); ?></small>
+                    <?php echo esc_html__( 'Enable Command Palette', 'admin-toolkit' ); ?>
+                    <small><?php echo esc_html__( 'Uncheck to disable the command palette completely', 'admin-toolkit' ); ?></small>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[command_palette_enabled]" value="1"
@@ -2045,10 +2045,10 @@ class WAC_Settings {
             </div>
             <div class="wac-row" style="margin-top:12px">
                 <div class="wac-row-label">
-                    <?php echo esc_html__( 'Show search icon in admin bar', 'devforge-admin-cleaner' ); ?>
-                    <small><?php echo esc_html__( 'Display ⌘⇧P button in the top admin bar', 'devforge-admin-cleaner' ); ?></small>
+                    <?php echo esc_html__( 'Show search icon in admin bar', 'admin-toolkit' ); ?>
+                    <small><?php echo esc_html__( 'Display ⌘⇧P button in the top admin bar', 'admin-toolkit' ); ?></small>
                     <?php if ( ! empty( $opt['hide_admin_bar_in_admin'] ) ) : ?>
-                        <small style="display:block;color:#ff3b30;margin-top:4px">⚠️ <?php echo esc_html__( 'Admin bar is hidden - this option is disabled', 'devforge-admin-cleaner' ); ?></small>
+                        <small style="display:block;color:#ff3b30;margin-top:4px">⚠️ <?php echo esc_html__( 'Admin bar is hidden - this option is disabled', 'admin-toolkit' ); ?></small>
                     <?php endif; ?>
                 </div>
                 <label class="wac-switch">
@@ -2063,7 +2063,7 @@ class WAC_Settings {
                 <img src="<?php echo WAC_PLUGIN_URL; ?>assets/img/preview-command.png" alt="" onerror="this.style.display='none'">
                 <div class="wac-preview-placeholder" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:40px 20px;text-align:center">
                     <span class="dashicons dashicons-search" style="font-size:48px;color:#86868b"></span>
-                    <p style="margin:0"><?php echo esc_html__( 'Search anything with Cmd/Ctrl + Shift + P', 'devforge-admin-cleaner' ); ?></p>
+                    <p style="margin:0"><?php echo esc_html__( 'Search anything with Cmd/Ctrl + Shift + P', 'admin-toolkit' ); ?></p>
                 </div>
             </div>
             <?php endif; ?>
@@ -2076,13 +2076,13 @@ class WAC_Settings {
         <!-- Duplicate Posts -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Duplicate Posts', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Duplicate Posts', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'One-click duplication for posts, pages, and custom post types. Copies all content, meta, taxonomies, and featured image.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'One-click duplication for posts, pages, and custom post types. Copies all content, meta, taxonomies, and featured image.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-row">
@@ -2098,8 +2098,8 @@ class WAC_Settings {
             </div>
             <div class="wac-row">
                 <div class="wac-row-label">
-                    <?php echo esc_html__( 'Show in Admin Bar', 'devforge-admin-cleaner' ); ?>
-                    <small><?php echo esc_html__( 'Add duplicate button when editing posts', 'devforge-admin-cleaner' ); ?></small>
+                    <?php echo esc_html__( 'Show in Admin Bar', 'admin-toolkit' ); ?>
+                    <small><?php echo esc_html__( 'Add duplicate button when editing posts', 'admin-toolkit' ); ?></small>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[duplicate_admin_bar]" value="1"
@@ -2109,8 +2109,8 @@ class WAC_Settings {
             </div>
             <div class="wac-row">
                 <div class="wac-row-label">
-                    <?php echo esc_html__( 'Enable Bulk Duplicate', 'devforge-admin-cleaner' ); ?>
-                    <small><?php echo esc_html__( 'Add to bulk actions dropdown', 'devforge-admin-cleaner' ); ?></small>
+                    <?php echo esc_html__( 'Enable Bulk Duplicate', 'admin-toolkit' ); ?>
+                    <small><?php echo esc_html__( 'Add to bulk actions dropdown', 'admin-toolkit' ); ?></small>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[duplicate_bulk]" value="1"
@@ -2122,19 +2122,19 @@ class WAC_Settings {
             <div class="wac-feature-list">
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'One-click duplicate from post list', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'One-click duplicate from post list', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Duplicate button in admin bar when editing', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Duplicate button in admin bar when editing', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Bulk duplicate multiple posts at once', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Bulk duplicate multiple posts at once', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Copies all meta, categories, tags, featured image', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Copies all meta, categories, tags, featured image', 'admin-toolkit' ); ?>
                 </div>
             </div>
             <?php endif; ?>
@@ -2147,13 +2147,13 @@ class WAC_Settings {
         <!-- Admin Columns -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Admin Columns', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Admin Columns', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Add custom columns to post lists - Featured Image, Word Count, Post ID, Custom Fields, and more.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Add custom columns to post lists - Featured Image, Word Count, Post ID, Custom Fields, and more.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Admin_Columns' ) ) : ?>
                 <?php WAC_Admin_Columns::render_ui(); ?>
@@ -2161,23 +2161,23 @@ class WAC_Settings {
             <div class="wac-feature-list">
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Featured Image thumbnail column', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Featured Image thumbnail column', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Post ID column', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Post ID column', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Word Count column', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Word Count column', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Last Modified date column', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Last Modified date column', 'admin-toolkit' ); ?>
                 </div>
                 <div class="wac-feature-item">
                     <span class="dashicons dashicons-yes-alt"></span>
-                    <?php echo esc_html__( 'Custom Field columns', 'devforge-admin-cleaner' ); ?>
+                    <?php echo esc_html__( 'Custom Field columns', 'admin-toolkit' ); ?>
                 </div>
             </div>
             <?php endif; ?>
@@ -2190,18 +2190,18 @@ class WAC_Settings {
         <!-- Heartbeat Control -->
         <div class="wac-settings-section">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Heartbeat Control', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Heartbeat Control', 'admin-toolkit' ); ?></h2>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Control WordPress Heartbeat API to reduce server load and improve performance.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Control WordPress Heartbeat API to reduce server load and improve performance.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( class_exists( 'WAC_Heartbeat_Control' ) ) : ?>
                 <?php WAC_Heartbeat_Control::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable heartbeat on frontend', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Modify heartbeat frequency', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Reduce server load', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable heartbeat on frontend', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Modify heartbeat frequency', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Reduce server load', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2243,10 +2243,10 @@ class WAC_Settings {
     private function tab_appearance( $opt, $is_pro ) {
         // Sub-tabs for Appearance
         $sub_tabs = array(
-            'appearance-theme' => __( 'Theme', 'devforge-admin-cleaner' ),
-            'appearance-white-label' => __( 'White Label', 'devforge-admin-cleaner' ),
-            'appearance-login' => __( 'Login', 'devforge-admin-cleaner' ),
-            'appearance-css' => __( 'Custom CSS', 'devforge-admin-cleaner' ),
+            'appearance-theme' => __( 'Theme', 'admin-toolkit' ),
+            'appearance-white-label' => __( 'White Label', 'admin-toolkit' ),
+            'appearance-login' => __( 'Login', 'admin-toolkit' ),
+            'appearance-css' => __( 'Custom CSS', 'admin-toolkit' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2263,22 +2263,22 @@ class WAC_Settings {
         <!-- Admin Theme -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Admin Theme', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Admin Theme', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Apply custom color schemes or enable dark mode for the entire WordPress admin.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Apply custom color schemes or enable dark mode for the entire WordPress admin.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Admin_Theme' ) ) : ?>
                 <?php WAC_Admin_Theme::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dark mode for entire admin', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( '5 color presets (Midnight, Ocean, Forest, Sunset, Custom)', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Custom primary/secondary colors', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Reduced eye strain at night', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Dark mode for entire admin', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( '5 color presets (Midnight, Ocean, Forest, Sunset, Custom)', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Custom primary/secondary colors', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Reduced eye strain at night', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2290,19 +2290,19 @@ class WAC_Settings {
         <!-- White Label Admin -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'White Label Admin', 'devforge-admin-cleaner' ); ?> <span class="wac-pro-badge-small">PRO</span></h2>
+                <h2><?php echo esc_html__( 'White Label Admin', 'admin-toolkit' ); ?> <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 20px;font-size:13px">
-                <?php echo esc_html__( 'Replace WordPress branding with your own logo, footer text, and styling. Enable White Label to unlock all options below.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Replace WordPress branding with your own logo, footer text, and styling. Enable White Label to unlock all options below.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-row" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #e5e5ea">
                 <div>
-                    <div class="wac-row-label" style="font-weight:600;margin-bottom:4px"><?php echo esc_html__( 'Enable White Label', 'devforge-admin-cleaner' ); ?></div>
-                    <p style="margin:0;font-size:11px;color:#86868b"><?php echo esc_html__( 'Activate white label features to customize admin branding', 'devforge-admin-cleaner' ); ?></p>
+                    <div class="wac-row-label" style="font-weight:600;margin-bottom:4px"><?php echo esc_html__( 'Enable White Label', 'admin-toolkit' ); ?></div>
+                    <p style="margin:0;font-size:11px;color:#86868b"><?php echo esc_html__( 'Activate white label features to customize admin branding', 'admin-toolkit' ); ?></p>
                 </div>
                 <label class="wac-switch">
                     <input type="checkbox" name="wac_settings[white_label_enabled]" id="wac-white-label-enabled" value="1"
@@ -2313,44 +2313,44 @@ class WAC_Settings {
             <table class="form-table" id="wac-white-label-settings">
                 <tr>
                     <th colspan="2" style="padding:16px 0 8px;font-size:13px;font-weight:600;color:#1d1d1f;border-bottom:1px solid #e5e5ea;margin-bottom:16px">
-                        <?php echo esc_html__( 'Admin Branding', 'devforge-admin-cleaner' ); ?>
+                        <?php echo esc_html__( 'Admin Branding', 'admin-toolkit' ); ?>
                     </th>
                 </tr>
                 <tr>
-                    <th style="padding-top:16px"><?php echo esc_html__( 'Admin Logo', 'devforge-admin-cleaner' ); ?></th>
+                    <th style="padding-top:16px"><?php echo esc_html__( 'Admin Logo', 'admin-toolkit' ); ?></th>
                     <td style="padding-top:16px">
                         <div class="wac-media-field">
                             <input type="url" name="wac_settings[custom_admin_logo]" id="wac-custom-admin-logo" value="<?php echo esc_url( $opt['custom_admin_logo'] ?? '' ); ?>" class="regular-text" placeholder="https://" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
-                            <button type="button" class="wac-media-btn" id="wac-admin-logo-btn" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_html__( 'Select', 'devforge-admin-cleaner' ); ?></button>
+                            <button type="button" class="wac-media-btn" id="wac-admin-logo-btn" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_html__( 'Select', 'admin-toolkit' ); ?></button>
                         </div>
                         <?php if ( ! empty( $opt['custom_admin_logo'] ) ) : ?>
                             <div class="wac-media-preview"><img src="<?php echo esc_url( $opt['custom_admin_logo'] ); ?>"></div>
                         <?php else : ?>
                             <div class="wac-media-preview"></div>
                         <?php endif; ?>
-                        <p class="description" style="margin-top:8px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Replace the WordPress logo in the admin menu and admin bar. Recommended: 200x50px transparent PNG', 'devforge-admin-cleaner' ); ?></p>
+                        <p class="description" style="margin-top:8px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Replace the WordPress logo in the admin menu and admin bar. Recommended: 200x50px transparent PNG', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Hide WordPress Logo', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Hide WordPress Logo', 'admin-toolkit' ); ?></th>
                     <td>
                         <label style="display:flex;align-items:center;gap:8px">
                             <input type="checkbox" name="wac_settings[hide_wp_logo]" id="wac-hide-wp-logo" value="1" <?php checked( ! empty( $opt['hide_wp_logo'] ) ); ?> <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
-                            <span><?php echo esc_html__( 'Remove WordPress logo from the admin bar', 'devforge-admin-cleaner' ); ?></span>
+                            <span><?php echo esc_html__( 'Remove WordPress logo from the admin bar', 'admin-toolkit' ); ?></span>
                         </label>
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Hides the WordPress logo icon from the top admin bar', 'devforge-admin-cleaner' ); ?></p>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Hides the WordPress logo icon from the top admin bar', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
                 <tr>
                     <th colspan="2" style="padding:24px 0 8px;font-size:13px;font-weight:600;color:#1d1d1f;border-bottom:1px solid #e5e5ea;margin-top:8px">
-                        <?php echo esc_html__( 'Footer Branding', 'devforge-admin-cleaner' ); ?>
+                        <?php echo esc_html__( 'Footer Branding', 'admin-toolkit' ); ?>
                     </th>
                 </tr>
                 <tr>
-                    <th style="padding-top:16px"><?php echo esc_html__( 'Footer Text', 'devforge-admin-cleaner' ); ?></th>
+                    <th style="padding-top:16px"><?php echo esc_html__( 'Footer Text', 'admin-toolkit' ); ?></th>
                     <td style="padding-top:16px">
-                        <input type="text" name="wac_settings[custom_footer_text]" id="wac-custom-footer-text" value="<?php echo esc_attr( $opt['custom_footer_text'] ?? '' ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'Powered by Your Company', 'devforge-admin-cleaner' ); ?>" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Replace the default "Thank you for creating with WordPress" footer text', 'devforge-admin-cleaner' ); ?></p>
+                        <input type="text" name="wac_settings[custom_footer_text]" id="wac-custom-footer-text" value="<?php echo esc_attr( $opt['custom_footer_text'] ?? '' ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'Powered by Your Company', 'admin-toolkit' ); ?>" <?php echo empty( $opt['white_label_enabled'] ) ? 'disabled' : ''; ?>>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Replace the default "Thank you for creating with WordPress" footer text', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
             </table>
@@ -2422,44 +2422,44 @@ class WAC_Settings {
                         <div style="margin-top:12px;padding-top:12px;border-top:1px solid #e5e5ea">
                             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Position', 'devforge-admin-cleaner' ); ?></label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Position', 'admin-toolkit' ); ?></label>
                                     <select name="wac_settings[login_bg_position]" style="width:100%;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px">
-                                        <option value="center center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center center' ); ?>><?php echo esc_html__( 'Center', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="center top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center top' ); ?>><?php echo esc_html__( 'Center Top', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="center bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center bottom' ); ?>><?php echo esc_html__( 'Center Bottom', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="left center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left center' ); ?>><?php echo esc_html__( 'Left Center', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="right center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right center' ); ?>><?php echo esc_html__( 'Right Center', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="left top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left top' ); ?>><?php echo esc_html__( 'Left Top', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="right top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right top' ); ?>><?php echo esc_html__( 'Right Top', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="left bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left bottom' ); ?>><?php echo esc_html__( 'Left Bottom', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="right bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right bottom' ); ?>><?php echo esc_html__( 'Right Bottom', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="center center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center center' ); ?>><?php echo esc_html__( 'Center', 'admin-toolkit' ); ?></option>
+                                        <option value="center top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center top' ); ?>><?php echo esc_html__( 'Center Top', 'admin-toolkit' ); ?></option>
+                                        <option value="center bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'center bottom' ); ?>><?php echo esc_html__( 'Center Bottom', 'admin-toolkit' ); ?></option>
+                                        <option value="left center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left center' ); ?>><?php echo esc_html__( 'Left Center', 'admin-toolkit' ); ?></option>
+                                        <option value="right center" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right center' ); ?>><?php echo esc_html__( 'Right Center', 'admin-toolkit' ); ?></option>
+                                        <option value="left top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left top' ); ?>><?php echo esc_html__( 'Left Top', 'admin-toolkit' ); ?></option>
+                                        <option value="right top" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right top' ); ?>><?php echo esc_html__( 'Right Top', 'admin-toolkit' ); ?></option>
+                                        <option value="left bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'left bottom' ); ?>><?php echo esc_html__( 'Left Bottom', 'admin-toolkit' ); ?></option>
+                                        <option value="right bottom" <?php selected( ( $opt['login_bg_position'] ?? 'center center' ), 'right bottom' ); ?>><?php echo esc_html__( 'Right Bottom', 'admin-toolkit' ); ?></option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Size', 'devforge-admin-cleaner' ); ?></label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Size', 'admin-toolkit' ); ?></label>
                                     <select name="wac_settings[login_bg_size]" style="width:100%;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px">
-                                        <option value="cover" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'cover' ); ?>><?php echo esc_html__( 'Cover', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="contain" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'contain' ); ?>><?php echo esc_html__( 'Contain', 'devforge-admin-cleaner' ); ?></option>
-                                        <option value="auto" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'auto' ); ?>><?php echo esc_html__( 'Auto', 'devforge-admin-cleaner' ); ?></option>
+                                        <option value="cover" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'cover' ); ?>><?php echo esc_html__( 'Cover', 'admin-toolkit' ); ?></option>
+                                        <option value="contain" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'contain' ); ?>><?php echo esc_html__( 'Contain', 'admin-toolkit' ); ?></option>
+                                        <option value="auto" <?php selected( ( $opt['login_bg_size'] ?? 'cover' ), 'auto' ); ?>><?php echo esc_html__( 'Auto', 'admin-toolkit' ); ?></option>
                                     </select>
                                 </div>
                             </div>
                             <div style="margin-bottom:12px">
-                                <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Repeat', 'devforge-admin-cleaner' ); ?></label>
+                                <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Repeat', 'admin-toolkit' ); ?></label>
                                 <select name="wac_settings[login_bg_repeat]" style="width:100%;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px">
-                                    <option value="no-repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'no-repeat' ); ?>><?php echo esc_html__( 'No Repeat', 'devforge-admin-cleaner' ); ?></option>
-                                    <option value="repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat' ); ?>><?php echo esc_html__( 'Repeat', 'devforge-admin-cleaner' ); ?></option>
-                                    <option value="repeat-x" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-x' ); ?>><?php echo esc_html__( 'Repeat X', 'devforge-admin-cleaner' ); ?></option>
-                                    <option value="repeat-y" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-y' ); ?>><?php echo esc_html__( 'Repeat Y', 'devforge-admin-cleaner' ); ?></option>
+                                    <option value="no-repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'no-repeat' ); ?>><?php echo esc_html__( 'No Repeat', 'admin-toolkit' ); ?></option>
+                                    <option value="repeat" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat' ); ?>><?php echo esc_html__( 'Repeat', 'admin-toolkit' ); ?></option>
+                                    <option value="repeat-x" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-x' ); ?>><?php echo esc_html__( 'Repeat X', 'admin-toolkit' ); ?></option>
+                                    <option value="repeat-y" <?php selected( ( $opt['login_bg_repeat'] ?? 'no-repeat' ), 'repeat-y' ); ?>><?php echo esc_html__( 'Repeat Y', 'admin-toolkit' ); ?></option>
                                 </select>
                             </div>
                             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Overlay Color', 'devforge-admin-cleaner' ); ?></label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Overlay Color', 'admin-toolkit' ); ?></label>
                                     <input type="color" name="wac_settings[login_bg_overlay]" value="<?php echo esc_attr( $opt['login_bg_overlay'] ?? '#000000' ); ?>" style="width:100%;height:36px;border:1px solid #d1d1d6;border-radius:6px;cursor:pointer">
                                 </div>
                                 <div>
-                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Overlay Opacity', 'devforge-admin-cleaner' ); ?></label>
+                                    <label style="display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:4px"><?php echo esc_html__( 'Overlay Opacity', 'admin-toolkit' ); ?></label>
                                     <div style="display:flex;align-items:center;gap:8px">
                                         <input type="range" name="wac_settings[login_bg_overlay_opacity]" min="0" max="100" value="<?php echo esc_attr( $opt['login_bg_overlay_opacity'] ?? 0 ); ?>" style="flex:1" oninput="this.nextElementSibling.value=this.value">
                                         <input type="number" min="0" max="100" value="<?php echo esc_attr( $opt['login_bg_overlay_opacity'] ?? 0 ); ?>" style="width:60px;padding:6px 8px;border:1px solid #d1d1d6;border-radius:6px;font-size:12px" oninput="this.previousElementSibling.value=this.value">
@@ -2494,63 +2494,63 @@ class WAC_Settings {
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Login Button Text', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Login Button Text', 'admin-toolkit' ); ?></th>
                     <td>
-                        <input type="text" name="wac_settings[login_btn_text]" value="<?php echo esc_attr( $opt['login_btn_text'] ?? __( 'Log In', 'devforge-admin-cleaner' ) ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'Log In', 'devforge-admin-cleaner' ); ?>">
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Custom text for the login button', 'devforge-admin-cleaner' ); ?></p>
+                        <input type="text" name="wac_settings[login_btn_text]" value="<?php echo esc_attr( $opt['login_btn_text'] ?? __( 'Log In', 'admin-toolkit' ) ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'Log In', 'admin-toolkit' ); ?>">
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Custom text for the login button', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Form Settings', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Form Settings', 'admin-toolkit' ); ?></th>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:12px">
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_remember]" value="1" <?php checked( ! empty( $opt['login_hide_remember'] ) ); ?>>
-                                <span><?php echo esc_html__( 'Hide "Remember Me" checkbox', 'devforge-admin-cleaner' ); ?></span>
+                                <span><?php echo esc_html__( 'Hide "Remember Me" checkbox', 'admin-toolkit' ); ?></span>
                             </label>
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_lost_password]" value="1" <?php checked( ! empty( $opt['login_hide_lost_password'] ) ); ?>>
-                                <span><?php echo esc_html__( 'Hide "Lost your password?" link', 'devforge-admin-cleaner' ); ?></span>
+                                <span><?php echo esc_html__( 'Hide "Lost your password?" link', 'admin-toolkit' ); ?></span>
                             </label>
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_back_to_site]" value="1" <?php checked( ! empty( $opt['login_hide_back_to_site'] ) ); ?>>
-                                <span><?php echo esc_html__( 'Hide "Back to [Site]" link', 'devforge-admin-cleaner' ); ?></span>
+                                <span><?php echo esc_html__( 'Hide "Back to [Site]" link', 'admin-toolkit' ); ?></span>
                             </label>
                             <label style="display:flex;align-items:center;gap:8px">
                                 <input type="checkbox" name="wac_settings[login_hide_register]" value="1" <?php checked( ! empty( $opt['login_hide_register'] ) ); ?>>
-                                <span><?php echo esc_html__( 'Hide "Register" link', 'devforge-admin-cleaner' ); ?></span>
+                                <span><?php echo esc_html__( 'Hide "Register" link', 'admin-toolkit' ); ?></span>
                             </label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Form Width', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Form Width', 'admin-toolkit' ); ?></th>
                     <td>
                         <input type="number" name="wac_settings[login_form_width]" value="<?php echo esc_attr( $opt['login_form_width'] ?? '320' ); ?>" min="280" max="600" step="10" style="width:80px"> px
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Login form width (default: 320px)', 'devforge-admin-cleaner' ); ?></p>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Login form width (default: 320px)', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Form Border Radius', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Form Border Radius', 'admin-toolkit' ); ?></th>
                     <td>
                         <input type="number" name="wac_settings[login_form_radius]" value="<?php echo esc_attr( $opt['login_form_radius'] ?? '0' ); ?>" min="0" max="20" step="1" style="width:80px"> px
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Border radius for login form (0-20px)', 'devforge-admin-cleaner' ); ?></p>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Border radius for login form (0-20px)', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Form Shadow', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Form Shadow', 'admin-toolkit' ); ?></th>
                     <td>
                         <label style="display:flex;align-items:center;gap:8px">
                             <input type="checkbox" name="wac_settings[login_form_shadow]" value="1" <?php checked( ! empty( $opt['login_form_shadow'] ) ); ?>>
-                            <span><?php echo esc_html__( 'Enable box shadow on login form', 'devforge-admin-cleaner' ); ?></span>
+                            <span><?php echo esc_html__( 'Enable box shadow on login form', 'admin-toolkit' ); ?></span>
                         </label>
                     </td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Custom Login Message', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Custom Login Message', 'admin-toolkit' ); ?></th>
                     <td>
-                        <textarea name="wac_settings[login_custom_message]" rows="3" class="large-text" placeholder="<?php echo esc_attr__( 'Enter a custom message to display above the login form', 'devforge-admin-cleaner' ); ?>"><?php echo esc_textarea( $opt['login_custom_message'] ?? '' ); ?></textarea>
-                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Optional message displayed above the login form', 'devforge-admin-cleaner' ); ?></p>
+                        <textarea name="wac_settings[login_custom_message]" rows="3" class="large-text" placeholder="<?php echo esc_attr__( 'Enter a custom message to display above the login form', 'admin-toolkit' ); ?>"><?php echo esc_textarea( $opt['login_custom_message'] ?? '' ); ?></textarea>
+                        <p class="description" style="margin-top:4px;font-size:11px;color:#86868b"><?php echo esc_html__( 'Optional message displayed above the login form', 'admin-toolkit' ); ?></p>
                     </td>
                 </tr>
             </table>
@@ -2640,19 +2640,19 @@ class WAC_Settings {
             
             <table class="form-table" id="wac-maintenance-fields">
                 <tr>
-                    <th><?php echo esc_html__( 'Title', 'devforge-admin-cleaner' ); ?></th>
-                    <td><input type="text" name="wac_settings[maintenance_title]" value="<?php echo esc_attr( $opt['maintenance_title'] ?? '' ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'We\'ll be right back', 'devforge-admin-cleaner' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>></td>
+                    <th><?php echo esc_html__( 'Title', 'admin-toolkit' ); ?></th>
+                    <td><input type="text" name="wac_settings[maintenance_title]" value="<?php echo esc_attr( $opt['maintenance_title'] ?? '' ); ?>" class="regular-text" placeholder="<?php echo esc_attr__( 'We\'ll be right back', 'admin-toolkit' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>></td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Message', 'devforge-admin-cleaner' ); ?></th>
-                    <td><textarea name="wac_settings[maintenance_message]" rows="2" class="large-text" placeholder="<?php echo esc_attr__( 'Our site is currently undergoing scheduled maintenance.', 'devforge-admin-cleaner' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_textarea( $opt['maintenance_message'] ?? '' ); ?></textarea></td>
+                    <th><?php echo esc_html__( 'Message', 'admin-toolkit' ); ?></th>
+                    <td><textarea name="wac_settings[maintenance_message]" rows="2" class="large-text" placeholder="<?php echo esc_attr__( 'Our site is currently undergoing scheduled maintenance.', 'admin-toolkit' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>><?php echo esc_textarea( $opt['maintenance_message'] ?? '' ); ?></textarea></td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Background', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Background', 'admin-toolkit' ); ?></th>
                     <td>
                         <div class="wac-color-row">
                             <div class="wac-color-item">
-                                <label><?php echo esc_html__( 'Color', 'devforge-admin-cleaner' ); ?></label>
+                                <label><?php echo esc_html__( 'Color', 'admin-toolkit' ); ?></label>
                                 <input type="color" name="wac_settings[maintenance_bg_color]" value="<?php echo esc_attr( $opt['maintenance_bg_color'] ?? '#ffffff' ); ?>" <?php echo empty( $opt['maintenance_enabled'] ) ? 'disabled' : ''; ?>>
                             </div>
                             <div class="wac-color-item">
@@ -2703,9 +2703,9 @@ class WAC_Settings {
     private function tab_tools( $opt, $is_pro ) {
         // Sub-tabs for Tools
         $sub_tabs = array(
-            'tools-activity-log' => __( 'Activity Log', 'devforge-admin-cleaner' ),
-            'tools-export-import' => __( 'Export/Import', 'devforge-admin-cleaner' ),
-            'tools-reset' => __( 'Reset', 'devforge-admin-cleaner' ),
+            'tools-activity-log' => __( 'Activity Log', 'admin-toolkit' ),
+            'tools-export-import' => __( 'Export/Import', 'admin-toolkit' ),
+            'tools-reset' => __( 'Reset', 'admin-toolkit' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2722,13 +2722,13 @@ class WAC_Settings {
         <!-- Activity Log -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Activity Log', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Activity Log', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Track all admin actions: post edits, plugin changes, user management, and more.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Track all admin actions: post edits, plugin changes, user management, and more.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Activity_Log' ) ) : ?>
                 <?php WAC_Activity_Log::render_ui(); ?>
@@ -2748,13 +2748,13 @@ class WAC_Settings {
         <!-- Export/Import -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Export / Import', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Export / Import', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Backup and migrate your settings between sites.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Backup and migrate your settings between sites.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <div class="wac-export-import-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -2784,16 +2784,16 @@ class WAC_Settings {
         <!-- Tools Reset Sub-tab -->
         <div id="tools-reset" class="wac-sub-tab-content <?php echo $active_sub_tab === 'tools-reset' ? 'active' : ''; ?>">
         <div class="wac-settings-section">
-            <h2><?php echo esc_html__( 'Reset', 'devforge-admin-cleaner' ); ?></h2>
-            <p style="margin:0 0 12px;color:#86868b;"><?php echo esc_html__( 'Reset all settings to defaults. This includes Menu Editor customizations.', 'devforge-admin-cleaner' ); ?></p>
+            <h2><?php echo esc_html__( 'Reset', 'admin-toolkit' ); ?></h2>
+            <p style="margin:0 0 12px;color:#86868b;"><?php echo esc_html__( 'Reset all settings to defaults. This includes Menu Editor customizations.', 'admin-toolkit' ); ?></p>
             <?php if ( isset( $_GET['reset'] ) && $_GET['reset'] == '1' ) : ?>
                 <div class="notice notice-success is-dismissible" style="margin:12px 0;">
-                    <p><?php echo esc_html__( 'All settings have been reset to defaults.', 'devforge-admin-cleaner' ); ?></p>
+                    <p><?php echo esc_html__( 'All settings have been reset to defaults.', 'admin-toolkit' ); ?></p>
                 </div>
             <?php endif; ?>
             <form method="post" style="display:inline">
                 <?php wp_nonce_field( 'wac_reset', '_wac_reset' ); ?>
-                <button type="submit" name="wac_reset" class="button button-primary" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This will reset ALL settings including Menu Editor customizations. This cannot be undone.', 'devforge-admin-cleaner' ) ); ?>');"><?php echo esc_html__( 'Reset All Settings', 'devforge-admin-cleaner' ); ?></button>
+                <button type="submit" name="wac_reset" class="button button-primary" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This will reset ALL settings including Menu Editor customizations. This cannot be undone.', 'admin-toolkit' ) ); ?>');"><?php echo esc_html__( 'Reset All Settings', 'admin-toolkit' ); ?></button>
             </form>
         </div>
         </div>
@@ -2806,9 +2806,9 @@ class WAC_Settings {
         
         // Sub-tabs for Security
         $sub_tabs = array(
-            'security-tweaks' => __( 'Security Tweaks', 'devforge-admin-cleaner' ),
-            'security-login-protection' => __( 'Login Protection', 'devforge-admin-cleaner' ),
-            'security-login-history' => __( 'Login History', 'devforge-admin-cleaner' ),
+            'security-tweaks' => __( 'Security Tweaks', 'admin-toolkit' ),
+            'security-login-protection' => __( 'Login Protection', 'admin-toolkit' ),
+            'security-login-history' => __( 'Login History', 'admin-toolkit' ),
         );
         
         // Get active sub-tab from hash or default
@@ -2825,13 +2825,13 @@ class WAC_Settings {
         <!-- Security Tweaks -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Security Tweaks', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Security Tweaks', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Harden your WordPress installation with these security options.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Harden your WordPress installation with these security options.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
                 <?php foreach ( $security as $key => $s ) : ?>
@@ -2849,11 +2849,11 @@ class WAC_Settings {
                 <?php endforeach; ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Hide WordPress version', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable XML-RPC', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable file editing', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable author archives', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Force HTTPS admin', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Hide WordPress version', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable XML-RPC', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable file editing', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Disable author archives', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Force HTTPS admin', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2865,26 +2865,26 @@ class WAC_Settings {
         <!-- Login Protection -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Login Protection', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Login Protection', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Protect your login page with rate limiting and custom URL.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Protect your login page with rate limiting and custom URL.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro ) : ?>
             <table class="form-table">
                 <tr>
-                    <th><?php echo esc_html__( 'Max Login Attempts', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Max Login Attempts', 'admin-toolkit' ); ?></th>
                     <td><input type="number" name="wac_settings[max_login_attempts]" value="<?php echo esc_attr( $opt['max_login_attempts'] ?? 5 ); ?>" min="1" max="20" style="width:70px;"></td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Lockout (minutes)', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Lockout (minutes)', 'admin-toolkit' ); ?></th>
                     <td><input type="number" name="wac_settings[login_lockout_time]" value="<?php echo esc_attr( $opt['login_lockout_time'] ?? 15 ); ?>" min="1" max="60" style="width:70px;"></td>
                 </tr>
                 <tr>
-                    <th><?php echo esc_html__( 'Custom Login URL', 'devforge-admin-cleaner' ); ?></th>
+                    <th><?php echo esc_html__( 'Custom Login URL', 'admin-toolkit' ); ?></th>
                     <td>
                         <code><?php echo home_url( '/' ); ?></code>
                         <input type="text" name="wac_settings[custom_login_url]" value="<?php echo esc_attr( $opt['custom_login_url'] ?? '' ); ?>" style="width:120px;" placeholder="my-login">
@@ -2893,9 +2893,9 @@ class WAC_Settings {
             </table>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Limit failed login attempts', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Temporary IP lockout', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Custom login URL (hide wp-login.php)', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Limit failed login attempts', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Temporary IP lockout', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Custom login URL (hide wp-login.php)', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
@@ -2907,22 +2907,22 @@ class WAC_Settings {
         <!-- Login History -->
         <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
-                <h2><?php echo esc_html__( 'Login History', 'devforge-admin-cleaner' ); ?></h2>
+                <h2><?php echo esc_html__( 'Login History', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
-                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'devforge-admin-cleaner' ); ?></a>
+                    <a href="<?php echo esc_url( function_exists( 'wac_fs' ) && wac_fs() ? wac_fs()->get_upgrade_url() : '#' ); ?>" class="wac-unlock-btn"><?php echo esc_html__( 'Unlock', 'admin-toolkit' ); ?></a>
                 <?php endif; ?>
             </div>
             <p style="color:#86868b;margin:-8px 0 16px;font-size:13px">
-                <?php echo esc_html__( 'Track all login attempts with IP address, browser, and device information.', 'devforge-admin-cleaner' ); ?>
+                <?php echo esc_html__( 'Track all login attempts with IP address, browser, and device information.', 'admin-toolkit' ); ?>
             </p>
             <?php if ( $is_pro && class_exists( 'WAC_Login_History' ) ) : ?>
                 <?php WAC_Login_History::render_ui(); ?>
             <?php else : ?>
             <div class="wac-feature-list">
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Track successful and failed logins', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'IP address logging', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Browser and device detection', 'devforge-admin-cleaner' ); ?></div>
-                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Geolocation (country/city)', 'devforge-admin-cleaner' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Track successful and failed logins', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'IP address logging', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Browser and device detection', 'admin-toolkit' ); ?></div>
+                <div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> <?php echo esc_html__( 'Geolocation (country/city)', 'admin-toolkit' ); ?></div>
             </div>
             <?php endif; ?>
         </div>
