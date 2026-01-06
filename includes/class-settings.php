@@ -182,7 +182,7 @@ class WAC_Settings {
                                 // Wait a bit more to ensure everything is ready
                                 setTimeout(function() {
                                     <?php
-                                    $notification_message_raw = __( 'Settings saved successfully!', 'admin-toolkit' );
+                                    $notification_message_raw = __( 'Changes saved successfully!', 'admin-toolkit' );
                                     $notification_message_escaped = esc_js( $notification_message_raw );
                                     ?>
                                     wacShowNotification("<?php echo $notification_message_escaped; ?>", "success");
