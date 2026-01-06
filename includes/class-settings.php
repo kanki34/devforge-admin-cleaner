@@ -3218,10 +3218,10 @@ class WAC_Settings {
                 echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">' . esc_html__( 'Unlock', 'admin-toolkit' ) . '</a>';
             }
             echo '</div>';
-            echo '<p style="color:#86868b;margin:-8px 0 16px;font-size:13px">Create custom roles, clone existing ones, and manage all capabilities in detail.</p>';
+            echo '<p style="color:#86868b;margin:-8px 0 16px;font-size:13px">' . esc_html__( 'Create custom roles, clone existing ones, and manage all capabilities in detail.', 'admin-toolkit' ) . '</p>';
             echo '<div class="wac-feature-list">';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Create custom user roles</div>';
-            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Clone existing roles</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Create custom user roles', 'admin-toolkit' ) . '</div>';
+            echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Clone existing roles', 'admin-toolkit' ) . '</div>';
             echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Edit all 70+ capabilities</div>';
             echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Delete unused roles</div>';
             echo '<div class="wac-feature-item"><span class="dashicons dashicons-yes-alt"></span> Visual capability editor</div>';
