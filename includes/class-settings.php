@@ -1335,12 +1335,20 @@ class WAC_Settings {
             var $toggle = $('#wac-view-mode-toggle');
             var $body = $('body');
             var isPro = <?php echo $is_pro ? 'true' : 'false'; ?>;
-            var showPro = $toggle.is(':checked');
+            var showPro = $toggle.length ? $toggle.is(':checked') : true;
+            var ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : '<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>';
             
-            // Set initial view mode
-            if (!showPro && !isPro) {
-                $body.addClass('wac-free-view');
+            // Set initial view mode on page load
+            function applyViewMode() {
+                if (!showPro && !isPro) {
+                    $body.addClass('wac-free-view');
+                } else {
+                    $body.removeClass('wac-free-view');
+                }
             }
+            
+            // Apply initial view mode
+            applyViewMode();
             
             // Toggle view mode
             $toggle.on('change', function() {
@@ -1348,21 +1356,18 @@ class WAC_Settings {
                 
                 // Save preference via AJAX
                 $.ajax({
-                    url: ajaxurl,
+                    url: ajaxUrl,
                     type: 'POST',
                     data: {
                         action: 'wac_save_view_mode',
                         show_pro: showPro ? '1' : '0',
-                        nonce: '<?php echo wp_create_nonce( 'wac_view_mode_nonce' ); ?>'
+                        nonce: '<?php echo esc_js( wp_create_nonce( 'wac_view_mode_nonce' ) ); ?>'
+                    },
+                    success: function() {
+                        // Toggle view immediately
+                        applyViewMode();
                     }
                 });
-                
-                // Toggle view
-                if (showPro || isPro) {
-                    $body.removeClass('wac-free-view');
-                } else {
-                    $body.addClass('wac-free-view');
-                }
             });
             
         });
