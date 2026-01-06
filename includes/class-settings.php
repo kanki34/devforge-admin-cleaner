@@ -23,6 +23,14 @@ class WAC_Settings {
         add_action( 'admin_init', array( $this, 'register_settings' ) );
         add_action( 'admin_init', array( $this, 'handle_reset' ) );
         add_action( 'admin_init', array( $this, 'handle_settings_redirect' ), 999 );
+        add_action( 'wp_ajax_wac_save_view_mode', array( $this, 'save_view_mode' ) );
+    }
+    
+    public function save_view_mode() {
+        check_ajax_referer( 'wac_view_mode_nonce', 'nonce' );
+        $show_pro = isset( $_POST['show_pro'] ) && $_POST['show_pro'] === '1';
+        update_user_meta( get_current_user_id(), 'wac_view_pro_features', $show_pro ? '1' : '0' );
+        wp_send_json_success();
     }
 
     public function add_menu() {
@@ -749,6 +757,18 @@ class WAC_Settings {
                 <p style="margin:8px 0 0;font-size:14px;color:#86868b;max-width:600px">
                     <?php echo esc_html__( 'Customize your WordPress admin area, improve productivity, and enhance security with powerful tools.', 'admin-toolkit' ); ?>
                 </p>
+                <!-- View Mode Toggle -->
+                <div style="margin-top:16px;display:flex;align-items:center;gap:12px">
+                    <span style="font-size:13px;color:#86868b"><?php echo esc_html__( 'View Mode:', 'admin-toolkit' ); ?></span>
+                    <label class="wac-view-toggle" style="position:relative;display:inline-block;width:120px;height:32px">
+                        <input type="checkbox" id="wac-view-mode-toggle" <?php checked( get_user_meta( get_current_user_id(), 'wac_view_pro_features', true ), '1' ); ?>>
+                        <span class="wac-toggle-slider" style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#e5e5e7;transition:.3s;border-radius:16px">
+                            <span style="position:absolute;content:'';height:24px;width:24px;left:4px;bottom:4px;background-color:#fff;transition:.3s;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.2)"></span>
+                        </span>
+                        <span class="wac-toggle-label-left" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:500;color:#86868b;pointer-events:none;transition:.3s"><?php echo esc_html__( 'Free', 'admin-toolkit' ); ?></span>
+                        <span class="wac-toggle-label-right" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:500;color:#86868b;pointer-events:none;transition:.3s"><?php echo esc_html__( 'Pro', 'admin-toolkit' ); ?></span>
+                    </label>
+                </div>
             </div>
 
             <?php settings_errors( 'wac_settings' ); ?>
@@ -771,13 +791,18 @@ class WAC_Settings {
                 $pro_tabs = array( 
                     'appearance', 'menus-roles', 'productivity', 'security', 'tools'
                 );
+                $show_pro_features = get_user_meta( get_current_user_id(), 'wac_view_pro_features', true ) === '1';
                 foreach ( $tabs as $id => $name ) :
                     $url = admin_url( 'admin.php?page=admin-toolkit&tab=' . $id );
                     $class = ( $tab === $id ) ? 'nav-tab nav-tab-active' : 'nav-tab';
+                    $is_pro_tab = in_array( $id, $pro_tabs );
+                    if ( ! $is_pro && ! $show_pro_features && $is_pro_tab ) {
+                        $class .= ' wac-pro-tab';
+                    }
                 ?>
                     <a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( $class ); ?>">
                         <?php echo esc_html( $name ); ?>
-                        <?php if ( in_array( $id, $pro_tabs ) && ! $is_pro ) : ?>
+                        <?php if ( $is_pro_tab && ! $is_pro ) : ?>
                             <span class="wac-pro-badge-small">PRO</span>
                         <?php endif; ?>
                     </a>
@@ -944,6 +969,26 @@ class WAC_Settings {
         .wac-tabs .nav-tab:hover{background:rgba(0,0,0,.04);color:#1d1d1f}
         .wac-tabs .nav-tab-active,.wac-tabs .nav-tab-active:hover{background:#fff;color:#1d1d1f;box-shadow:0 1px 2px rgba(0,0,0,.06);font-weight:600}
         .wac-tabs .nav-tab .wac-pro-badge-small{margin-left:3px;font-size:8px;padding:1px 4px;line-height:1.2}
+        
+        /* View Mode Toggle */
+        .wac-view-toggle{position:relative;display:inline-block;width:120px;height:32px}
+        .wac-view-toggle input{opacity:0;width:0;height:0}
+        .wac-view-toggle .wac-toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#e5e5e7;transition:.3s;border-radius:16px}
+        .wac-view-toggle .wac-toggle-slider span{position:absolute;content:'';height:24px;width:24px;left:4px;bottom:4px;background-color:#fff;transition:.3s;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.2)}
+        .wac-view-toggle input:checked + .wac-toggle-slider{background-color:#007aff}
+        .wac-view-toggle input:checked + .wac-toggle-slider span{transform:translateX(88px)}
+        .wac-view-toggle .wac-toggle-label-left,.wac-view-toggle .wac-toggle-label-right{position:absolute;top:50%;transform:translateY(-50%);font-size:12px;font-weight:500;pointer-events:none;transition:.3s}
+        .wac-view-toggle .wac-toggle-label-left{left:12px;color:#86868b}
+        .wac-view-toggle .wac-toggle-label-right{right:12px;color:#86868b}
+        .wac-view-toggle input:checked ~ .wac-toggle-label-left{color:#86868b}
+        .wac-view-toggle input:checked ~ .wac-toggle-label-right{color:#fff;font-weight:600}
+        .wac-view-toggle input:not(:checked) ~ .wac-toggle-label-left{color:#fff;font-weight:600}
+        .wac-view-toggle input:not(:checked) ~ .wac-toggle-label-right{color:#86868b}
+        
+        /* Hide Pro features when in Free view mode */
+        .wac-free-view .wac-pro-feature{display:none !important}
+        .wac-free-view .wac-pro-tab{display:none !important}
+        .wac-pro-feature{position:relative}
         .wac-tab-content{background:#fff;border:1px solid #e5e5ea;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
         
         /* Fixed Checkbox */
@@ -1286,6 +1331,40 @@ class WAC_Settings {
             setTimeout(activateSubTabFromHash, 500);
             setTimeout(activateSubTabFromHash, 1000);
             
+            // View Mode Toggle
+            var $toggle = $('#wac-view-mode-toggle');
+            var $body = $('body');
+            var isPro = <?php echo $is_pro ? 'true' : 'false'; ?>;
+            var showPro = $toggle.is(':checked');
+            
+            // Set initial view mode
+            if (!showPro && !isPro) {
+                $body.addClass('wac-free-view');
+            }
+            
+            // Toggle view mode
+            $toggle.on('change', function() {
+                showPro = $(this).is(':checked');
+                
+                // Save preference via AJAX
+                $.ajax({
+                    url: ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'wac_save_view_mode',
+                        show_pro: showPro ? '1' : '0',
+                        nonce: '<?php echo wp_create_nonce( 'wac_view_mode_nonce' ); ?>'
+                    }
+                });
+                
+                // Toggle view
+                if (showPro || isPro) {
+                    $body.removeClass('wac-free-view');
+                } else {
+                    $body.addClass('wac-free-view');
+                }
+            });
+            
         });
         
         // CRITICAL: Also try on window load (after all resources are loaded)
@@ -1382,7 +1461,7 @@ class WAC_Settings {
         <div id="dashboard-widgets" class="wac-sub-tab-content <?php echo $active_sub_tab === 'dashboard-widgets' ? 'active' : ''; ?>">
         
         <!-- Dashboard Widget Builder -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Custom Widgets', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2020,9 +2099,9 @@ class WAC_Settings {
         ?>
         
         <!-- Productivity Command Palette Sub-tab -->
-        <div id="productivity-command-palette" class="wac-sub-tab-content <?php echo $active_sub_tab === 'productivity-command-palette' ? 'active' : ''; ?>">
+        <div id="productivity-command-palette" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'productivity-command-palette' ? 'active' : ''; ?>">
         <!-- Command Palette -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Command Palette', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2073,9 +2152,9 @@ class WAC_Settings {
         <!-- End Productivity Command Palette Sub-tab -->
 
         <!-- Productivity Duplicate Sub-tab -->
-        <div id="productivity-duplicate" class="wac-sub-tab-content <?php echo $active_sub_tab === 'productivity-duplicate' ? 'active' : ''; ?>">
+        <div id="productivity-duplicate" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'productivity-duplicate' ? 'active' : ''; ?>">
         <!-- Duplicate Posts -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Duplicate Posts', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2146,7 +2225,7 @@ class WAC_Settings {
         <!-- Productivity Columns Sub-tab -->
         <div id="productivity-columns" class="wac-sub-tab-content <?php echo $active_sub_tab === 'productivity-columns' ? 'active' : ''; ?>">
         <!-- Admin Columns -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Admin Columns', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2260,9 +2339,9 @@ class WAC_Settings {
         ?>
         
         <!-- Appearance Theme Sub-tab -->
-        <div id="appearance-theme" class="wac-sub-tab-content <?php echo $active_sub_tab === 'appearance-theme' ? 'active' : ''; ?>">
+        <div id="appearance-theme" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'appearance-theme' ? 'active' : ''; ?>">
         <!-- Admin Theme -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Admin Theme', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2287,9 +2366,9 @@ class WAC_Settings {
         <!-- End Appearance Theme Sub-tab -->
 
         <!-- Appearance White Label Sub-tab -->
-        <div id="appearance-white-label" class="wac-sub-tab-content <?php echo $active_sub_tab === 'appearance-white-label' ? 'active' : ''; ?>">
+        <div id="appearance-white-label" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'appearance-white-label' ? 'active' : ''; ?>">
         <!-- White Label Admin -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'White Label Admin', 'admin-toolkit' ); ?> <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2380,9 +2459,9 @@ class WAC_Settings {
         <!-- End Appearance White Label Sub-tab -->
 
         <!-- Appearance Login Sub-tab -->
-        <div id="appearance-login" class="wac-sub-tab-content <?php echo $active_sub_tab === 'appearance-login' ? 'active' : ''; ?>">
+        <div id="appearance-login" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'appearance-login' ? 'active' : ''; ?>">
         <!-- Login Page Design -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Login Page Design</h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2574,9 +2653,9 @@ class WAC_Settings {
         <!-- End Appearance Login Sub-tab -->
 
         <!-- Appearance CSS Sub-tab -->
-        <div id="appearance-css" class="wac-sub-tab-content <?php echo $active_sub_tab === 'appearance-css' ? 'active' : ''; ?>">
+        <div id="appearance-css" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'appearance-css' ? 'active' : ''; ?>">
         <!-- Custom CSS -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Custom CSS</h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2719,9 +2798,9 @@ class WAC_Settings {
         ?>
         
         <!-- Tools Activity Log Sub-tab -->
-        <div id="tools-activity-log" class="wac-sub-tab-content <?php echo $active_sub_tab === 'tools-activity-log' ? 'active' : ''; ?>">
+        <div id="tools-activity-log" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'tools-activity-log' ? 'active' : ''; ?>">
         <!-- Activity Log -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Activity Log', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2745,9 +2824,9 @@ class WAC_Settings {
         <!-- End Tools Activity Log Sub-tab -->
 
         <!-- Tools Export/Import Sub-tab -->
-        <div id="tools-export-import" class="wac-sub-tab-content <?php echo $active_sub_tab === 'tools-export-import' ? 'active' : ''; ?>">
+        <div id="tools-export-import" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'tools-export-import' ? 'active' : ''; ?>">
         <!-- Export/Import -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Export / Import', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2822,9 +2901,9 @@ class WAC_Settings {
         ?>
         
         <!-- Security Tweaks Sub-tab -->
-        <div id="security-tweaks" class="wac-sub-tab-content <?php echo $active_sub_tab === 'security-tweaks' ? 'active' : ''; ?>">
+        <div id="security-tweaks" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'security-tweaks' ? 'active' : ''; ?>">
         <!-- Security Tweaks -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Security Tweaks', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2862,9 +2941,9 @@ class WAC_Settings {
         <!-- End Security Tweaks Sub-tab -->
 
         <!-- Security Login Protection Sub-tab -->
-        <div id="security-login-protection" class="wac-sub-tab-content <?php echo $active_sub_tab === 'security-login-protection' ? 'active' : ''; ?>">
+        <div id="security-login-protection" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'security-login-protection' ? 'active' : ''; ?>">
         <!-- Login Protection -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Login Protection', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2904,9 +2983,9 @@ class WAC_Settings {
         <!-- End Security Login Protection Sub-tab -->
         
         <!-- Security Login History Sub-tab -->
-        <div id="security-login-history" class="wac-sub-tab-content <?php echo $active_sub_tab === 'security-login-history' ? 'active' : ''; ?>">
+        <div id="security-login-history" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'security-login-history' ? 'active' : ''; ?>">
         <!-- Login History -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2><?php echo esc_html__( 'Login History', 'admin-toolkit' ); ?></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2936,7 +3015,7 @@ class WAC_Settings {
         ?>
         
         <!-- White Label Admin -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>White Label Admin <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -2991,7 +3070,7 @@ class WAC_Settings {
         </div>
 
         <!-- Login Page Design -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Login Page Design</h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3066,7 +3145,7 @@ class WAC_Settings {
         </div>
 
         <!-- Custom CSS -->
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Custom CSS</h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3138,7 +3217,7 @@ class WAC_Settings {
         <!-- End Cleanup Database Sub-tab -->
         
         <!-- Cleanup Media Sub-tab -->
-        <div id="cleanup-media" class="wac-sub-tab-content <?php echo $active_sub_tab === 'cleanup-media' ? 'active' : ''; ?>">
+        <div id="cleanup-media" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'cleanup-media' ? 'active' : ''; ?>">
         <?php
         // Media Cleanup
         $this->tab_media_cleanup( $opt, $is_pro );
@@ -3178,7 +3257,7 @@ class WAC_Settings {
         ?>
         
         <!-- Menus & Roles Menu Editor Sub-tab -->
-        <div id="menus-roles-menu-editor" class="wac-sub-tab-content <?php echo $active_sub_tab === 'menus-roles-menu-editor' ? 'active' : ''; ?>">
+        <div id="menus-roles-menu-editor" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'menus-roles-menu-editor' ? 'active' : ''; ?>">
         <?php
         // Menu Editor
         if ( $is_pro && class_exists( 'WAC_Menu_Editor' ) ) {
@@ -3186,7 +3265,7 @@ class WAC_Settings {
             WAC_Menu_Editor::render_ui();
             echo '</div>';
         } else {
-            echo '<div class="wac-settings-section ' . ( ! $is_pro ? 'wac-locked' : '' ) . '">';
+            echo '<div class="wac-settings-section wac-pro-feature ' . ( ! $is_pro ? 'wac-locked' : '' ) . '">';
             echo '<div class="wac-section-header"><h2>' . esc_html__( 'Admin Menu Editor', 'admin-toolkit' ) . '</h2>';
             if ( ! $is_pro && function_exists( 'wac_fs' ) && wac_fs() ) {
                 echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">' . esc_html__( 'Unlock', 'admin-toolkit' ) . '</a>';
@@ -3204,7 +3283,7 @@ class WAC_Settings {
         <!-- End Menus & Roles Menu Editor Sub-tab -->
         
         <!-- Menus & Roles Role Editor Sub-tab -->
-        <div id="menus-roles-role-editor" class="wac-sub-tab-content <?php echo $active_sub_tab === 'menus-roles-role-editor' ? 'active' : ''; ?>">
+        <div id="menus-roles-role-editor" class="wac-sub-tab-content wac-pro-feature <?php echo $active_sub_tab === 'menus-roles-role-editor' ? 'active' : ''; ?>">
         <?php
         // Role Editor
         if ( $is_pro && class_exists( 'WAC_Role_Editor' ) ) {
@@ -3212,7 +3291,7 @@ class WAC_Settings {
             WAC_Role_Editor::render_ui();
             echo '</div>';
         } else {
-            echo '<div class="wac-settings-section ' . ( ! $is_pro ? 'wac-locked' : '' ) . '">';
+            echo '<div class="wac-settings-section wac-pro-feature ' . ( ! $is_pro ? 'wac-locked' : '' ) . '">';
             echo '<div class="wac-section-header"><h2>' . esc_html__( 'Role Editor', 'admin-toolkit' ) . ' <span class="wac-pro-badge-small">PRO</span></h2>';
             if ( ! $is_pro && function_exists( 'wac_fs' ) && wac_fs() ) {
                 echo '<a href="' . esc_url( wac_fs()->get_upgrade_url() ) . '" class="wac-unlock-btn">' . esc_html__( 'Unlock', 'admin-toolkit' ) . '</a>';
@@ -3303,7 +3382,7 @@ class WAC_Settings {
 
     private function tab_white_label( $opt, $is_pro ) {
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>White Label Admin <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3360,7 +3439,7 @@ class WAC_Settings {
 
     private function tab_login_page( $opt, $is_pro ) {
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Login Page Design</h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3438,7 +3517,7 @@ class WAC_Settings {
     private function tab_command_palette( $opt, $is_pro ) {
         // Extract from tab_productivity
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Command Palette <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3474,7 +3553,7 @@ class WAC_Settings {
     private function tab_duplicate_post( $opt, $is_pro ) {
         // Extract from tab_productivity
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Duplicate Posts <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3873,7 +3952,7 @@ class WAC_Settings {
 
     private function tab_media_cleanup( $opt, $is_pro ) {
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Media Cleanup <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3899,7 +3978,7 @@ class WAC_Settings {
     private function tab_security_tweaks( $opt, $is_pro ) {
         $security = class_exists( 'WAC_Security_Tweaks' ) ? WAC_Security_Tweaks::get_options() : array();
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Security Tweaks <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3936,7 +4015,7 @@ class WAC_Settings {
 
     private function tab_activity_log( $opt, $is_pro ) {
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Activity Log <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
@@ -3961,7 +4040,7 @@ class WAC_Settings {
 
     private function tab_export_import( $opt, $is_pro ) {
         ?>
-        <div class="wac-settings-section <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
+        <div class="wac-settings-section wac-pro-feature <?php echo ! $is_pro ? 'wac-locked' : ''; ?>">
             <div class="wac-section-header">
                 <h2>Export / Import <span class="wac-pro-badge-small">PRO</span></h2>
                 <?php if ( ! $is_pro ) : ?>
