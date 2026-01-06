@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: Admin Toolkit
- * Plugin URI: https://profiles.wordpress.org/devforge/
  * Description: The ultimate WordPress admin customization toolkit.
  * Version: 2.5.0
  * Author: DevForge
