@@ -99,8 +99,8 @@ function wac_get_roles() {
 add_action( 'admin_enqueue_scripts', 'wac_enqueue_assets' );
 function wac_enqueue_assets( $hook ) {
     // Check if we're on our page
-    if ( strpos( $hook, 'admin-cleaner' ) !== false || 
-         ( isset( $_GET['page'] ) && strpos( $_GET['page'], 'admin-cleaner' ) !== false ) ) {
+    if ( strpos( $hook, 'admin-toolkit' ) !== false || 
+         ( isset( $_GET['page'] ) && strpos( $_GET['page'], 'admin-toolkit' ) !== false ) ) {
         
         wp_enqueue_style( 
             'wac-admin', 
